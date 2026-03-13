@@ -1,5 +1,3 @@
-// src/components/home/BestSellersCarousel.tsx
-// ─── CSS-only horizontal scroll carousel with arrow controls ─────────────────
 "use client";
 
 import { useRef } from "react";

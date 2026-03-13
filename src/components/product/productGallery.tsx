@@ -1,5 +1,3 @@
-// src/components/product/ProductGallery.tsx
-// ─── PDP image gallery: thumbnails, zoom on hover/pinch, keyboard nav ───────
 "use client";
 
 import { useState, useCallback } from "react";

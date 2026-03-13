@@ -1,5 +1,3 @@
-// src/components/shared/ProductCard.tsx
-// ─── Reusable card used in grids, carousels, and search results ──────────────
 "use client";
 
 import Image     from "next/image";

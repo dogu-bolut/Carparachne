@@ -1,6 +1,3 @@
-// src/app/blog/page.tsx  (Blog Index)
-// ─── Article grid with featured post hero + category filtering ───────────────
-
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link  from "next/link";

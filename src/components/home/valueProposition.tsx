@@ -1,5 +1,3 @@
-// src/components/home/ValueProposition.tsx
-// ─── Trust signals: shipping, returns, quality, sustainability ───────────────
 import { Truck, RotateCcw, Leaf, BadgeCheck } from "lucide-react";
 
 const VALUES = [

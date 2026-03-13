@@ -1,6 +1,3 @@
-// src/app/layout.tsx
-// ─── Root layout — font injection, providers, persistent shell ───────────────
-
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";

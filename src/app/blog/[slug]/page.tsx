@@ -1,6 +1,3 @@
-// src/app/blog/[slug]/page.tsx  (Blog Post)
-// ─── Single post: hero, rich editorial prose, author card, related ───────────
-
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link  from "next/link";

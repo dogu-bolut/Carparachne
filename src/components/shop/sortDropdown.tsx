@@ -1,4 +1,3 @@
-// src/components/shop/SortDropdown.tsx
 "use client";
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";

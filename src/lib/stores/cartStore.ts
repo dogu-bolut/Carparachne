@@ -1,6 +1,3 @@
-// src/lib/stores/cartStore.ts
-// ─── Zustand cart store — persisted to localStorage ─────────────────────────
-
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { Cart, CartItem, ProductVariantType } from "@/lib/types";

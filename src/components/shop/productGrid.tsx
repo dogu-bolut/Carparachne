@@ -1,6 +1,3 @@
-// src/components/shop/ProductGrid.tsx
-// ─── Async server component — fetches + renders paginated product grid ───────
-
 import { ProductCard }   from "@/components/shared/productCard";
 import { Pagination }    from "@/components/shared/pagination";
 import { getProducts }   from "@/lib/utils/index";

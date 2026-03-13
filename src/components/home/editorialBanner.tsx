@@ -1,6 +1,3 @@
-// src/components/home/EditorialBanner.tsx
-// ─── Full-width lifestyle image banner with overlaid editorial copy ───────────
-
 import Image from "next/image";
 import Link  from "next/link";
 

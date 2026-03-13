@@ -1,5 +1,3 @@
-// src/components/shared/FaqAccordion.tsx
-// ─── Radix UI Accordion with smooth animation ────────────────────────────────
 "use client";
 
 import * as Accordion from "@radix-ui/react-accordion";

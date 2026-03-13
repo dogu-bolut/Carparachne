@@ -1,5 +1,3 @@
-// src/components/shop/MobileFilterSheet.tsx
-// ─── Full-screen filter drawer for mobile — wraps FilterSidebar ─────────────
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";

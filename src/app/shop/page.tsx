@@ -1,6 +1,3 @@
-// src/app/shop/page.tsx  (Product Catalog)
-// ─── Full catalog: sidebar filters + sort + responsive grid ─────────────────
-
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { FilterSidebar }   from "@/components/shop/filterSidebar";

@@ -1,5 +1,3 @@
-// src/components/cart/CartDrawer.tsx
-// ─── Slide-out cart drawer: item list, qty controls, subtotal, CTA ───────────
 "use client";
 
 import { useEffect, useRef } from "react";

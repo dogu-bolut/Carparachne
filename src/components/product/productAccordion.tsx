@@ -1,5 +1,3 @@
-// src/components/product/ProductAccordion.tsx
-// ─── PDP accordion: Details, Specs, Shipping & Returns ──────────────────────
 "use client";
 
 import * as Accordion from "@radix-ui/react-accordion";

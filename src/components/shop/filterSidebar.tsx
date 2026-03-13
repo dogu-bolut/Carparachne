@@ -1,5 +1,3 @@
-// src/components/shop/FilterSidebar.tsx
-// ─── Collapsible filter groups: categories, price range, tags, stock ─────────
 "use client";
 
 import { useState, useTransition } from "react";

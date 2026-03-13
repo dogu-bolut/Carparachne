@@ -1,6 +1,3 @@
-// src/components/product/RelatedProducts.tsx
-// ─── Horizontal scroll grid of related products ──────────────────────────────
-
 import { ProductCard } from "@/components/shared/productCard";
 import type { Product } from "@/lib/types";
 

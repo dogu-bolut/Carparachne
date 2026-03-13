@@ -1,6 +1,3 @@
-// src/components/home/CategoryGrid.tsx
-// ─── Responsive masonry-style category tiles ────────────────────────────────
-
 import Image from "next/image";
 import Link  from "next/link";
 

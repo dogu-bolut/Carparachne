@@ -1,5 +1,3 @@
-// src/components/shared/ToastRegion.tsx
-// ─── Radix Toast — global notification region ────────────────────────────────
 "use client";
 
 import * as Toast from "@radix-ui/react-toast";

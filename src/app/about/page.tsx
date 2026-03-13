@@ -1,6 +1,3 @@
-// src/app/about/page.tsx  (About Us)
-// ─── Storytelling layout: mission, alternating blocks, team grid ─────────────
-
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { TeamMember } from "@/lib/types";

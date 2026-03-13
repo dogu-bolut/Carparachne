@@ -1,6 +1,3 @@
-// src/app/policies/[slug]/page.tsx
-// ─── Shared layout for all policy pages ─────────────────────────────────────
-
 import type { Metadata } from "next";
 import { notFound }  from "next/navigation";
 import Link from "next/link";

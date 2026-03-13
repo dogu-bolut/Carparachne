@@ -1,5 +1,3 @@
-// src/components/shared/ContactForm.tsx
-// ─── Accessible contact form with client-side validation ────────────────────
 "use client";
 
 import { useState } from "react";

@@ -1,4 +1,3 @@
-// src/lib/utils/formatPrice.ts
 export function formatPrice(amount: number, currency = "TRY"): string {
     return new Intl.NumberFormat("en-IE", {
       style:    "currency",

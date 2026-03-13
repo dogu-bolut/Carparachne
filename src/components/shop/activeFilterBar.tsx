@@ -1,5 +1,3 @@
-// src/components/shop/ActiveFilterBar.tsx
-// ─── Dismissible chips showing currently active filters ──────────────────────
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";

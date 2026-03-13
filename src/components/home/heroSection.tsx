@@ -1,5 +1,3 @@
-// src/components/home/HeroSection.tsx
-// ─── Full-viewport hero with responsive image, headline, dual CTAs ───────────
 "use client";
 
 import Image from "next/image";

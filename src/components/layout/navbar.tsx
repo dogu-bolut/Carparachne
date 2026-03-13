@@ -1,5 +1,3 @@
-// src/components/layout/Navbar.tsx
-// ─── Sticky top navigation: logo, nav links, search, cart badge ─────────────
 "use client";
 
 import { useState, useEffect, useRef } from "react";

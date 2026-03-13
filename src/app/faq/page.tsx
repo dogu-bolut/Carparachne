@@ -1,6 +1,3 @@
-// src/app/faq/page.tsx
-// ─── FAQ page: search bar + categorized accordion groups ────────────────────
-
 import type { Metadata } from "next";
 import { FaqAccordion } from "@/components/shared/faqAccordion";
 import type { FaqItem } from "@/lib/types";

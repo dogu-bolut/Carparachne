@@ -1,6 +1,3 @@
-// src/components/layout/Footer.tsx
-// ─── Site footer: brand, nav columns, newsletter, legal ─────────────────────
-
 "use client";
 
 import Link from "next/link";

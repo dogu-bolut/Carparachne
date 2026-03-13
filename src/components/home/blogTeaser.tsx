@@ -1,6 +1,3 @@
-// src/components/home/BlogTeaser.tsx
-// ─── Home section: 3 most recent blog post cards ────────────────────────────
-
 import Image from "next/image";
 import Link  from "next/link";
 import { formatDate } from "@/lib/utils/index";

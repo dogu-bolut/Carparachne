@@ -1,5 +1,3 @@
-// src/components/product/ProductInfo.tsx
-// ─── Right panel of PDP: name, price, variant selectors, ATC button ─────────
 "use client";
 
 import { useState } from "react";

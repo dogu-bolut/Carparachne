@@ -1,6 +1,3 @@
-// src/app/not-found.tsx
-// ─── 404 Page ────────────────────────────────────────────────────────────────
-
 import type { Metadata } from "next";
 import Link from "next/link";
 

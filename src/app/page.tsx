@@ -1,6 +1,3 @@
-// src/app/page.tsx  (Home)
-// ─── Main marketing page — hero, categories, bestsellers, brand story ────────
-
 import type { Metadata } from "next";
 import { HeroSection }        from "@/components/home/heroSection";
 import { CategoryGrid }       from "@/components/home/categoryGrid";

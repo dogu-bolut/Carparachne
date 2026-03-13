@@ -1,4 +1,3 @@
-// src/lib/stores/toastStore.ts
 import { create } from "zustand";
 import type { ToastMessage, ToastType } from "@/lib/types";
 

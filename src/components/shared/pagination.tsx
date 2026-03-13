@@ -1,6 +1,3 @@
-// src/components/shared/Pagination.tsx
-// ─── Page number navigation used by ProductGrid and BlogIndex ────────────────
-
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Props {

@@ -1,6 +1,3 @@
-// src/app/products/[slug]/page.tsx  (Product Detail Page)
-// ─── Full PDP: gallery, info panel, accordion, related products ───────────────
-
 import type { Metadata } from "next";
 import { notFound }          from "next/navigation";
 import { Suspense }          from "react";

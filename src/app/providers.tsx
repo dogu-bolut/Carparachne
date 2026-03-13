@@ -1,5 +1,3 @@
-// src/app/providers.tsx
-// ─── Client providers: React Query, Zustand hydration boundary ──────────────
 "use client";
 
 import { useState } from "react";

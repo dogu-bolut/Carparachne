@@ -1,6 +1,3 @@
-// src/app/contact/page.tsx
-// ─── Contact page: info column + validated form ──────────────────────────────
-
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/shared/contactForm";
 import { Mail, MapPin, Clock, MessageSquare } from "lucide-react";

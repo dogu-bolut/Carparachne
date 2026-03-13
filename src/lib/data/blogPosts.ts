@@ -1,6 +1,3 @@
-// src/lib/data/blogPosts.ts
-
-// Defining the type helps ensure any new mock posts match what your UI expects
 export interface BlogPost {
     slug: string;
     title: string;
