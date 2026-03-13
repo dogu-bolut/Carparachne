@@ -19,7 +19,7 @@ const FAQ_DATA: Array<{ category: string; items: FaqItem[] }> = [
       {
         id: "o2", category: "Orders & Payment",
         question: "Can I change or cancel my order after placing it?",
-        answer: "Orders can be amended or cancelled within 1 hour of placement. After that, fulfilment begins and changes may no longer be possible. Please contact us immediately at hello@atelier.com.",
+        answer: "Orders can be amended or cancelled within 1 hour of placement. After that, fulfilment begins and changes may no longer be possible. Please contact us immediately at hello@carparachne.com.",
       },
       {
         id: "o3", category: "Orders & Payment",
@@ -59,7 +59,7 @@ const FAQ_DATA: Array<{ category: string; items: FaqItem[] }> = [
       {
         id: "r2", category: "Returns & Exchanges",
         question: "How do I start a return?",
-        answer: "Visit our Returns Portal at atelier.com/returns, enter your order number and email, and follow the prompts. A prepaid return label will be emailed to you within a few minutes.",
+        answer: "Visit our Returns Portal at carparachne.com/returns, enter your order number and email, and follow the prompts. A prepaid return label will be emailed to you within a few minutes.",
       },
       {
         id: "r3", category: "Returns & Exchanges",
@@ -83,7 +83,7 @@ const FAQ_DATA: Array<{ category: string; items: FaqItem[] }> = [
       },
       {
         id: "p3", category: "Products & Sizing",
-        question: "How should I care for my Atelier pieces?",
+        question: "How should I care for my Carparachne pieces?",
         answer: "Each product includes specific care instructions on its label and product page. Generally, we recommend cold machine wash or hand wash for most items, and line drying away from direct sunlight to preserve colour and shape.",
       },
     ],

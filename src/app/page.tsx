@@ -7,7 +7,7 @@ import { EditorialBanner }    from "@/components/home/editorialBanner";
 import { BlogTeaser }         from "@/components/home/blogTeaser";
 
 export const metadata: Metadata = {
-  title: "Atelier — Refined Commerce",
+  title: "Carparachne — Refined Commerce",
   description:
     "Thoughtfully curated products for a considered life. Shop new arrivals, best sellers, and editorial collections.",
 };

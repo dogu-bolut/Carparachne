@@ -62,9 +62,9 @@ export function Navbar() {
           <Link
             href="/"
             className="font-display text-2xl font-light tracking-tighter text-ink-soft hover:text-accent transition-colors duration-200"
-            aria-label="Atelier — home"
+            aria-label="Carparachne — home"
           >
-            Atelier
+            Carparachne
           </Link>
 
           {/* ── Desktop nav ── */}

@@ -18,13 +18,13 @@ const POLICIES: Record<string, { title: string; lastUpdated: string; content: st
       <p>We use strictly necessary cookies to operate our site and, with your consent, analytics cookies (via a privacy-first provider) to understand how our site is used. You can manage cookie preferences at any time via the link in our footer.</p>
 
       <h2>4. Data Retention</h2>
-      <p>We retain your personal data for as long as necessary to provide our services and comply with legal obligations. You may request deletion of your data at any time by contacting us at privacy@atelier.com.</p>
+      <p>We retain your personal data for as long as necessary to provide our services and comply with legal obligations. You may request deletion of your data at any time by contacting us at privacy@carparachne.com.</p>
 
       <h2>5. Your Rights</h2>
       <p>Under GDPR, you have the right to access, correct, delete, restrict processing of, and port your personal data. You also have the right to object to processing and to withdraw consent where processing is based on consent.</p>
 
       <h2>6. Contact</h2>
-      <p>For any privacy-related enquiries, please contact our Data Controller at privacy@atelier.com.</p>
+      <p>For any privacy-related enquiries, please contact our Data Controller at privacy@carparachne.com.</p>
     `,
   },
   terms: {
@@ -32,7 +32,7 @@ const POLICIES: Record<string, { title: string; lastUpdated: string; content: st
     lastUpdated: "1 March 2025",
     content: `
       <h2>1. Acceptance of Terms</h2>
-      <p>By accessing or using atelier.com, you agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree, please discontinue use of the site.</p>
+      <p>By accessing or using carparachne.com, you agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree, please discontinue use of the site.</p>
 
       <h2>2. Products and Pricing</h2>
       <p>All prices are displayed in Euros (EUR) and include VAT where applicable. We reserve the right to change prices at any time without notice. Product images are illustrative; actual colours may vary slightly due to screen calibration.</p>
@@ -41,10 +41,10 @@ const POLICIES: Record<string, { title: string; lastUpdated: string; content: st
       <p>Placing an order constitutes an offer to purchase. We reserve the right to refuse or cancel any order. A contract is formed only when we dispatch your goods and send a dispatch confirmation email.</p>
 
       <h2>4. Intellectual Property</h2>
-      <p>All content on this site — including images, text, logos, and design — is the property of Atelier ApS and is protected by copyright law. Reproduction without express written permission is prohibited.</p>
+      <p>All content on this site — including images, text, logos, and design — is the property of Carparachne ApS and is protected by copyright law. Reproduction without express written permission is prohibited.</p>
 
       <h2>5. Limitation of Liability</h2>
-      <p>To the fullest extent permitted by law, Atelier shall not be liable for any indirect, incidental, or consequential damages arising from use of our products or website.</p>
+      <p>To the fullest extent permitted by law, Carparachne shall not be liable for any indirect, incidental, or consequential damages arising from use of our products or website.</p>
 
       <h2>6. Governing Law</h2>
       <p>These Terms are governed by the laws of Denmark. Any disputes shall be subject to the exclusive jurisdiction of the Danish courts.</p>

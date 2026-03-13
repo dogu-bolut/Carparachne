@@ -37,7 +37,7 @@ export function Footer() {
               href="/"
               className="font-display text-3xl font-light tracking-tighter text-white"
             >
-              Atelier
+              Carparachne
             </Link>
             <p className="text-sm leading-relaxed text-surface/60 max-w-xs">
               Thoughtfully curated products for those who value quality, craft, and a considered life.
@@ -113,7 +113,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-site py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-surface/40">
-            © {new Date().getFullYear()} Atelier. All rights reserved.
+            © {new Date().getFullYear()} Carparachne. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             {[

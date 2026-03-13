@@ -35,12 +35,12 @@ const dmMono = DM_Mono({
 
 /* ── Site-wide metadata ───────────────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title:       { template: "%s — Atelier", default: "Atelier — Refined Commerce" },
+  title:       { template: "%s — Carparachne", default: "Carparachne — Refined Commerce" },
   description: "Thoughtfully curated products for a considered life.",
   openGraph: {
     type:        "website",
     locale:      "en_US",
-    siteName:    "Atelier",
+    siteName:    "Carparachne",
   },
   robots: { index: true, follow: true },
 };

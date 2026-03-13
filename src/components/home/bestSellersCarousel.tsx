@@ -27,8 +27,8 @@ const MOCK_BESTSELLERS: Product[] = Array.from({ length: 8 }, (_, i) => {
   return {
     id:               `bs-${i}`,
     slug:             `product-${i + 1}`,
-    name:             MOCK_NAMES[i] ?? "Atelier Product",
-    brand:            "Atelier",
+    name:             MOCK_NAMES[i] ?? "Carparachne Product",
+    brand:            "Carparachne",
     description:      "",
     shortDescription: "",
     price,

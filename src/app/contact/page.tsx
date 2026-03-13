@@ -4,15 +4,15 @@ import { Mail, MapPin, Clock, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with the Atelier team. We typically respond within one business day.",
+  description: "Get in touch with the Carparachne team. We typically respond within one business day.",
 };
 
 const CONTACT_INFO = [
   {
     Icon: Mail,
     label: "Email",
-    value: "hello@atelier.com",
-    href:  "mailto:hello@atelier.com",
+    value: "hello@carparachne.com",
+    href:  "mailto:hello@carparachne.com",
   },
   {
     Icon: Clock,

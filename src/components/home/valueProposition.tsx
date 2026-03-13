@@ -11,7 +11,7 @@ export function ValueProposition() {
   return (
     <section
       className="bg-surface-raised border-y border-ink-line"
-      aria-label="Why Atelier"
+      aria-label="Why Carparachne"
     >
       <div className="container-site py-10 lg:py-12">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">

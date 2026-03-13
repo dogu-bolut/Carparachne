@@ -7,7 +7,7 @@ import { formatDate }    from "@/lib/utils/index";
 export const metadata: Metadata = {
   title: "Journal",
   description:
-    "Stories on craft, sustainability, style, and the considered life. Dispatches from the Atelier studio.",
+    "Stories on craft, sustainability, style, and the considered life. Dispatches from the Carparachne studio.",
 };
 
 /* ── Static data — replace with CMS query ── */

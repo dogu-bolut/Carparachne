@@ -5,7 +5,7 @@ import type { TeamMember } from "@/lib/types";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "We believe in the enduring value of quality craft. Learn about our story, mission, and the people behind Atelier.",
+    "We believe in the enduring value of quality craft. Learn about our story, mission, and the people behind Carparachne.",
 };
 
 /* ── Static data — replace with CMS in production ── */
@@ -20,9 +20,9 @@ const STORY_BLOCKS: Array<{
   {
     eyebrow:  "Our Beginning",
     heading:  "Born from a love\nof enduring craft",
-    body:     "Atelier began in 2018 in a small studio in Copenhagen — a single room stacked with sample fabrics, sketches, and the firm belief that the things we choose to surround ourselves with should be made with intention. We were tired of fast cycles and fleeting trends. We wanted objects and garments that would earn a place in your life, not just your wardrobe.",
+    body:     "Carparachne began in 2018 in a small studio in Copenhagen — a single room stacked with sample fabrics, sketches, and the firm belief that the things we choose to surround ourselves with should be made with intention. We were tired of fast cycles and fleeting trends. We wanted objects and garments that would earn a place in your life, not just your wardrobe.",
     image:    "/images/about-studio.jpg",
-    imageAlt: "The original Atelier studio — white walls, warm natural light, fabric swatches",
+    imageAlt: "The original Carparachne studio — white walls, warm natural light, fabric swatches",
     reverse:  false,
   },
   {
@@ -84,7 +84,7 @@ export default function AboutPage() {
       <section className="relative h-[60vh] min-h-[420px] overflow-hidden">
         <Image
           src="/images/about-hero.jpg"
-          alt="Atelier studio — the starting point of every product"
+          alt="Carparachne studio — the starting point of every product"
           fill
           priority
           sizes="100vw"
