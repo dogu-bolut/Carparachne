@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.atelier.com",     // your production CDN
+        hostname: "cdn.carparachne.com",     // your production CDN
         pathname: "/images/**",
       },
       {

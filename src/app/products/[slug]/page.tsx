@@ -8,13 +8,17 @@ import { RelatedProducts }   from "@/components/product/relatedProducts";
 import { Breadcrumbs }       from "@/components/shop/sortDropdown";
 import { getProductBySlug, getRelatedProducts } from "@/lib/utils/index";
 
+// 1. Update Props to treat params as a Promise
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 /* Static metadata generation */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = await getProductBySlug(params.slug);
+  // 2. Await the params
+  const { slug } = await params;
+  
+  const product = await getProductBySlug(slug);
   if (!product) return {};
 
   const ogImage = product.images[0]?.src ?? "/og-default.png";
@@ -29,7 +33,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductDetailPage({ params }: Props) {
-  const product = await getProductBySlug(params.slug);
+  // 3. Await the params here too
+  const { slug } = await params;
+  
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   const relatedProducts = await getRelatedProducts(product.relatedProductIds);

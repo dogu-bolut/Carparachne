@@ -5,18 +5,15 @@ import { notFound }   from "next/navigation";
 import { ArrowLeft }  from "lucide-react";
 import { formatDate } from "@/lib/utils/index";
 
-/* In production: replace with CMS/DB fetch */
 async function getPost(slug: string) {
   const posts = await import("@/lib/data/blogPosts").then((m) => m.POSTS).catch(() => []);
   return posts.find((p: any) => p.slug === slug) ?? null;
 }
 
-// 1. Define the correct Next.js 15 Params type as a Promise
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-// 2. Update generateMetadata to await the params
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params; // Await the promise here
   const post = await getPost(slug);
@@ -35,9 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// 3. Update the main page component to await the params
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params; // Await the promise here too
+  const { slug } = await params;
   const post = await getPost(slug);
   
   if (!post) notFound();

@@ -11,20 +11,28 @@ export const metadata: Metadata = {
   description: "Browse our full collection of thoughtfully made products.",
 };
 
+// 1. Extract the shape of your search params
+type SearchParamsType = {
+  sort?:        string;
+  categories?:  string;   // comma-separated slugs
+  minPrice?:    string;
+  maxPrice?:    string;
+  tags?:        string;
+  inStock?:     string;
+  page?:        string;
+  badge?:       string;
+};
+
+// 2. Define the props with searchParams as a Promise
 interface ShopPageProps {
-  searchParams: {
-    sort?:        string;
-    categories?:  string;   // comma-separated slugs
-    minPrice?:    string;
-    maxPrice?:    string;
-    tags?:        string;
-    inStock?:     string;
-    page?:        string;
-    badge?:       string;
-  };
+  searchParams: Promise<SearchParamsType>;
 }
 
-export default function ShopPage({ searchParams }: ShopPageProps) {
+// 3. Make the component async
+export default async function ShopPage({ searchParams }: ShopPageProps) {
+  // 4. Await the searchParams promise to get the actual values
+  const resolvedParams = await searchParams;
+
   return (
     <div className="min-h-screen">
       {/* ── Page header ── */}
@@ -44,7 +52,8 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
             className="hidden lg:block w-64 flex-shrink-0 sticky top-24"
             aria-label="Product filters"
           >
-            <FilterSidebar searchParams={searchParams} />
+            {/* Pass the resolved params down so child components remain synchronous */}
+            <FilterSidebar searchParams={resolvedParams} />
           </aside>
 
           {/* ── Right: controls + grid ── */}
@@ -53,20 +62,20 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
             {/* Toolbar */}
             <div className="flex items-center justify-between mb-5 gap-4">
               {/* Mobile filter trigger */}
-              <MobileFilterSheet searchParams={searchParams} />
+              <MobileFilterSheet searchParams={resolvedParams} />
 
               {/* Active filter chips */}
               <div className="flex-1 min-w-0">
-                <ActiveFilterBar searchParams={searchParams} />
+                <ActiveFilterBar searchParams={resolvedParams} />
               </div>
 
               {/* Sort */}
-              <SortDropdown current={searchParams.sort ?? "featured"} />
+              <SortDropdown current={resolvedParams.sort ?? "featured"} />
             </div>
 
             {/* Product grid */}
             <Suspense fallback={<ProductGridSkeleton />}>
-              <ProductGrid searchParams={searchParams} />
+              <ProductGrid searchParams={resolvedParams} />
             </Suspense>
           </div>
         </div>

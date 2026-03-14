@@ -18,13 +18,18 @@ async function getPosts(): Promise<BlogPost[]> {
   return MOCK_POSTS;
 }
 
-export default async function BlogIndexPage({
-  searchParams,
-}: {
-  searchParams: { category?: string };
-}) {
-  const posts    = await getPosts();
-  const category = searchParams.category ?? "All";
+// 1. Define the props with searchParams as a Promise
+type Props = {
+  searchParams: Promise<{ category?: string }>;
+};
+
+// 2. Apply the Props type to your page component
+export default async function BlogIndexPage({ searchParams }: Props) {
+  const posts = await getPosts();
+  
+  // 3. Await the searchParams promise before reading the category
+  const resolvedParams = await searchParams;
+  const category = resolvedParams.category ?? "All";
 
   const filtered =
     category === "All"

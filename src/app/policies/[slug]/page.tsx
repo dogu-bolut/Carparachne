@@ -106,14 +106,25 @@ export async function generateStaticParams() {
   return Object.keys(POLICIES).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const policy = POLICIES[params.slug];
+// 1. Define Props with params as a Promise
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+// 2. Make generateMetadata async and await params
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const policy = POLICIES[slug];
+  
   if (!policy) return {};
   return { title: policy.title };
 }
 
-export default function PolicyPage({ params }: { params: { slug: string } }) {
-  const policy = POLICIES[params.slug];
+// 3. Make the main component async and await params
+export default async function PolicyPage({ params }: Props) {
+  const { slug } = await params;
+  const policy = POLICIES[slug];
+  
   if (!policy) notFound();
 
   return (
@@ -125,19 +136,19 @@ export default function PolicyPage({ params }: { params: { slug: string } }) {
           <h2 className="label-caps text-ink-muted mb-4">Policies</h2>
           <nav aria-label="Policy pages">
             <ul className="flex flex-col gap-1">
-              {POLICY_NAV.map(({ slug, label }) => (
-                <li key={slug}>
+              {POLICY_NAV.map((navItem) => (
+                <li key={navItem.slug}>
                   <Link
-                    href={`/policies/${slug}`}
+                    href={`/policies/${navItem.slug}`}
                     className={`
                       block px-3 py-2 rounded text-sm transition-colors duration-150
-                      ${params.slug === slug
+                      ${slug === navItem.slug
                         ? "bg-accent-light text-accent font-medium"
                         : "text-ink-muted hover:text-ink hover:bg-surface-sunken"}
                     `}
-                    aria-current={params.slug === slug ? "page" : undefined}
+                    aria-current={slug === navItem.slug ? "page" : undefined}
                   >
-                    {label}
+                    {navItem.label}
                   </Link>
                 </li>
               ))}
