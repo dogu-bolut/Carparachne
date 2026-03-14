@@ -11,9 +11,18 @@ async function getPost(slug: string) {
   return posts.find((p: any) => p.slug === slug) ?? null;
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+// 1. Define the correct Next.js 15 Params type as a Promise
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+// 2. Update generateMetadata to await the params
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params; // Await the promise here
+  const post = await getPost(slug);
+  
   if (!post) return {};
+  
   return {
     title:       post.seo.title,
     description: post.seo.description,
@@ -26,8 +35,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+// 3. Update the main page component to await the params
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params; // Await the promise here too
+  const post = await getPost(slug);
+  
   if (!post) notFound();
 
   return (
