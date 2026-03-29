@@ -83,7 +83,7 @@ export default function AboutPage() {
       {/* ── Hero ── */}
       <section className="relative h-[60vh] min-h-[420px] overflow-hidden">
         <Image
-          src="/images/about-hero.jpg"
+          src="/images/about-hero.png"
           alt="Carparachne studio — the starting point of every product"
           fill
           priority
