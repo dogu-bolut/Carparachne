@@ -21,7 +21,7 @@ const STORY_BLOCKS: Array<{
     eyebrow:  "Our Beginning",
     heading:  "Born from a love\nof enduring craft",
     body:     "Carparachne began in 2018 in a small studio in Copenhagen — a single room stacked with sample fabrics, sketches, and the firm belief that the things we choose to surround ourselves with should be made with intention. We were tired of fast cycles and fleeting trends. We wanted objects and garments that would earn a place in your life, not just your wardrobe.",
-    image:    "/images/about-studio.png",
+    image:    "/images/about-studio.jpg",
     imageAlt: "The original Carparachne studio — white walls, warm natural light, fabric swatches",
     reverse:  false,
   },
@@ -29,7 +29,7 @@ const STORY_BLOCKS: Array<{
     eyebrow:  "Our Philosophy",
     heading:  "Less, but\nbetter",
     body:     "We source materials directly from family-run mills across Portugal, Japan, and Peru — partners we visit twice a year and work with on long-term contracts. Every product passes through a 28-point quality review before it reaches you. We deliberately keep our range small; each piece earns its place. If something doesn't justify its existence, we don't make it.",
-    image:    "/images/about-sourcing.png",
+    image:    "/images/about-sourcing.jpg",
     imageAlt: "Natural linen fabric being inspected in a Portuguese textile mill",
     reverse:  true,
   },
@@ -37,7 +37,7 @@ const STORY_BLOCKS: Array<{
     eyebrow:  "Our Commitment",
     heading:  "Sustainability\nas practice",
     body:     "For us, sustainability isn't a marketing claim — it's a design constraint. We use certified organic and recycled materials wherever possible, work exclusively with carbon-neutral shipping partners, and publish an annual impact report with full supply-chain transparency. Our packaging is entirely compostable.",
-    image:    "/images/about-sustainability.png",
+    image:    "/images/about-sustainability.jpg",
     imageAlt: "Compostable packaging and certified organic cotton labels",
     reverse:  false,
   },
@@ -47,25 +47,25 @@ const TEAM: TeamMember[] = [
   {
     id: "1", name: "Lena Hartmann", role: "Founder & Creative Director",
     bio: "Former textile engineer turned designer. Lena's obsession with material science shapes every product decision.",
-    image: { id: "t1", src: "/images/team-lena.png", altText: "Lena Hartmann", width: 400, height: 400 },
+    image: { id: "t1", src: "/images/team-lena.jpg", altText: "Lena Hartmann", width: 400, height: 400 },
     socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
   },
   {
     id: "2", name: "Marcus Veil", role: "Head of Sourcing",
     bio: "Marcus has spent 15 years building relationships with the world's finest material producers.",
-    image: { id: "t2", src: "/images/team-marcus.png", altText: "Marcus Veil", width: 400, height: 400 },
+    image: { id: "t2", src: "/images/team-marcus.jpg", altText: "Marcus Veil", width: 400, height: 400 },
     socials: { linkedin: "https://linkedin.com" },
   },
   {
     id: "3", name: "Priya Nair", role: "Head of Product",
     bio: "Priya brings a human-centred design approach to every piece, obsessing over fit, function and feel.",
-    image: { id: "t3", src: "/images/team-priya.png", altText: "Priya Nair", width: 400, height: 400 },
+    image: { id: "t3", src: "/images/team-priya.jpg", altText: "Priya Nair", width: 400, height: 400 },
     socials: { instagram: "https://instagram.com" },
   },
   {
     id: "4", name: "Tobias Renn", role: "Operations & Sustainability",
     bio: "Tobias built our supply chain from scratch and holds us accountable to every sustainability promise we make.",
-    image: { id: "t4", src: "/images/team-tobias.png", altText: "Tobias Renn", width: 400, height: 400 },
+    image: { id: "t4", src: "/images/team-tobias.jpg", altText: "Tobias Renn", width: 400, height: 400 },
     socials: { linkedin: "https://linkedin.com" },
   },
 ];
@@ -83,7 +83,7 @@ export default function AboutPage() {
       {/* ── Hero ── */}
       <section className="relative h-[60vh] min-h-[420px] overflow-hidden">
         <Image
-          src="/images/about-hero.png"
+          src="/images/about-hero.jpg"
           alt="Carparachne studio — the starting point of every product"
           fill
           priority
