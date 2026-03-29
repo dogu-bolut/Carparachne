@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     // Define breakpoints that match Tailwind screens for optimal srcSet
     deviceSizes:  [375, 640, 768, 1024, 1280, 1440, 1920],
     imageSizes:   [16, 32, 48, 64, 80, 96, 128, 256, 384],
+    qualities: [25, 50, 75, 80, 85, 90, 100],
 
     // Domains / patterns for external images (CDN, Shopify, Contentful, etc.)
     remotePatterns: [
