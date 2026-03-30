@@ -175,25 +175,37 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* ── Author bio card ── */}
       <div className="border-t border-ink-line bg-surface-sunken">
-        <div className="container-site py-10 max-w-[860px]">
-          <div className="flex gap-5 items-start">
-            <div className="relative w-14 h-14 rounded-full overflow-hidden bg-surface-raised flex-shrink-0">
-              <Image
-                src={post.author.avatar.src}
-                alt={post.author.avatar.altText}
-                fill sizes="56px"
-                className="object-cover"
-              />
+        {/* 1. Remove max-w from the main container so it matches the sections above */}
+        <div className="container-site py-10">
+          
+          {/* 2. MIRROR GRID: Exact same layout as the prose/sidebar, 
+              forcing the bio into the left text column. */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-12 xl:gap-16 items-start max-w-[1060px]">
+            
+            {/* Left Column (1fr): Author Bio (Aligns with article text) */}
+            <div className="flex gap-5 items-start">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden bg-surface-raised flex-shrink-0">
+                <Image
+                  src={post.author.avatar.src}
+                  alt={post.author.avatar.altText}
+                  fill sizes="56px"
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <p className="label-caps text-ink-ghost mb-1">Written by</p>
+                <h3 className="font-sans font-semibold text-ink-soft mb-1">{post.author.name}</h3>
+                {post.author.bio && (
+                  <p className="text-sm text-ink-muted leading-relaxed max-w-prose">
+                    {post.author.bio}
+                  </p>
+                )}
+              </div>
             </div>
-            <div>
-              <p className="label-caps text-ink-ghost mb-1">Written by</p>
-              <h3 className="font-sans font-semibold text-ink-soft mb-1">{post.author.name}</h3>
-              {post.author.bio && (
-                <p className="text-sm text-ink-muted leading-relaxed max-w-prose">
-                  {post.author.bio}
-                </p>
-              )}
-            </div>
+
+            {/* Right Column (220px): Left intentionally empty to preserve grid math */}
+            <div className="hidden lg:block" aria-hidden="true"></div>
+
           </div>
         </div>
       </div>
