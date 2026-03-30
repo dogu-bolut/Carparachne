@@ -53,48 +53,62 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="absolute inset-0 bg-gradient-to-b from-ink/20 via-ink/40 to-ink/75" aria-hidden />
 
         <div className="relative z-raised h-full flex flex-col justify-end">
-          <div className="container-site pb-12 max-w-[860px]">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="badge bg-white/15 text-white/90 backdrop-blur-sm border border-white/20">
-                {post.category}
-              </span>
-              <span className="label-caps text-white/60">{post.readingTime} min read</span>
+          {/* 1. Keep the site container full width here */}
+          <div className="container-site pb-12">
+            {/* 2. Constrain the width on an inner div so it aligns left */}
+            <div className="max-w-[860px]">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="badge bg-white/15 text-white/90 backdrop-blur-sm border border-white/20">
+                  {post.category}
+                </span>
+                <span className="label-caps text-white/60">{post.readingTime} min read</span>
+              </div>
+              <h1 className="text-white text-3xl md:text-4xl lg:text-5xl text-balance leading-tight">
+                {post.title}
+              </h1>
             </div>
-            <h1 className="text-white text-3xl md:text-4xl lg:text-5xl text-balance leading-tight">
-              {post.title}
-            </h1>
           </div>
         </div>
       </section>
 
       {/* ── Author bar ── */}
       <div className="border-b border-ink-line bg-surface-raised">
-        <div className="container-site py-5 max-w-[860px] flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden bg-surface-sunken flex-shrink-0">
-              <Image
-                src={post.author.avatar.src}
-                alt={post.author.avatar.altText}
-                fill sizes="40px"
-                className="object-cover"
-              />
+        <div className="container-site py-5">
+          {/* MIRROR GRID: We use the exact same grid, gap, and max-width 
+            as the content section below, but use items-center for vertical alignment.
+          */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-4 xl:gap-16 items-center max-w-[1060px]">
+            
+            {/* Left Column (1fr): Author Info aligns with prose */}
+            <div className="flex items-center gap-3">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden bg-surface-sunken flex-shrink-0">
+                <Image
+                  src={post.author.avatar.src}
+                  alt={post.author.avatar.altText}
+                  fill sizes="40px"
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-ink-soft">{post.author.name}</p>
+                <p className="text-xs text-ink-ghost">
+                  {post.author.role ?? ""} · {formatDate(post.publishedAt)}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-medium text-ink-soft">{post.author.name}</p>
-              <p className="text-xs text-ink-ghost">
-                {post.author.role ?? ""} · {formatDate(post.publishedAt)}
-              </p>
-            </div>
-          </div>
 
-          {/* Back link */}
-          <Link
-            href="/blog"
-            className="flex items-center gap-1.5 label-caps text-ink-muted hover:text-ink transition-colors"
-          >
-            <ArrowLeft size={12} />
-            All Articles
-          </Link>
+            {/* Right Column (220px): Back link aligns perfectly with sidebar */}
+            <div className="flex items-center">
+              <Link
+                href="/blog"
+                className="flex items-center gap-1.5 label-caps text-ink-muted hover:text-ink transition-colors"
+              >
+                <ArrowLeft size={12} />
+                All Articles
+              </Link>
+            </div>
+            
+          </div>
         </div>
       </div>
 
