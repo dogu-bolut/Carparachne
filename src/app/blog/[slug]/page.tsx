@@ -99,42 +99,15 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
 
       {/* ── Prose content ── */}
-      <div className="container-site py-12 lg:py-16">
+      <div className="container-site py-6 lg:py-16">
         {/*
           Editorial grid: prose column (left) + sticky sidebar (right).
           On mobile, sidebar drops below.
         */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-12 xl:gap-16 items-start max-w-[1060px]">
 
-          {/* Main prose */}
-          <div
-            className="prose prose-editorial prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-
           {/* Sidebar: table of contents + share */}
-          <aside className="lg:sticky lg:top-24 flex flex-col gap-8">
-            <div className="bg-surface-raised rounded-lg border border-ink-line p-5">
-              <h2 className="label-caps text-ink-muted mb-4">In this article</h2>
-              {/* TOC items would be auto-generated from headings via rehype-toc */}
-              <nav aria-label="Table of contents">
-                <ul className="flex flex-col gap-2.5">
-                  {post.toc?.map((item: { id: string; text: string; level: number }) => (
-                    <li key={item.id}>
-                      <a
-                        href={`#${item.id}`}
-                        className={`
-                          block text-sm hover:text-accent transition-colors
-                          ${item.level === 2 ? "text-ink-muted" : "text-ink-ghost pl-3"}
-                        `}
-                      >
-                        {item.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
+          <aside className="lg:sticky lg:top-24 flex flex-col gap-6 order-first lg:order-last">
 
             {/* Tags */}
             {post.tags.length > 0 && (
@@ -153,7 +126,36 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
               </div>
             )}
+
+            <div className="bg-surface-raised rounded-lg border border-ink-line p-5">
+              <h2 className="label-caps text-ink-muted mb-4">In this article</h2>
+              {/* TOC items would be auto-generated from headings via rehype-toc */}
+              <nav aria-label="Table of contents">
+                <ul className="flex flex-col gap-2">
+                  {post.toc?.map((item: { id: string; text: string; level: number }) => (
+                    <li key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        className={`
+                          block text-sm hover:text-accent transition-colors
+                          ${item.level === 2 ? "text-ink-muted" : "text-ink-ghost pl-3"}
+                        `}
+                      >
+                        {item.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>            
           </aside>
+
+          {/* Main prose */}
+          <div
+            className="prose prose-editorial prose-lg max-w-none prose-headings:scroll-mt-28"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+
         </div>
       </div>
 

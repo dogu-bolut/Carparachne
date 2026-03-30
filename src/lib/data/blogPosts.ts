@@ -38,13 +38,6 @@ export interface BlogPost {
       category: "Craft",
       readingTime: 6,
       publishedAt: "2026-03-10T08:00:00Z",
-      toc: [
-        { id: "the-science-of-cellulose", text: "The Science of Cellulose: Linen and Cotton", level: 2 },
-        { id: "the-memory-of-protein", text: "The Memory of Protein: Wool and Silk", level: 2 },
-        { id: "the-synthetic-contrast", text: "Why Plastic Degrades Instead of Aging", level: 2 },
-        { id: "sustainability-through-longevity", text: "Sustainability Through Longevity", level: 2 },
-        { id: "caring-for-natural-fibres", text: "Caring for the Patina", level: 2 }
-      ],
       content: `
         <p>There is a particular kind of beauty that synthetic materials can never replicate — the grace of a garment that has been worn, washed, and lived in. In modern fashion, we are often sold the illusion of perfection: a pristine, unwrinkled garment straight off the rack. But true luxury and longevity lie not in how a piece looks on its first day, but in how it evolves over its lifetime.</p>
         
@@ -99,6 +92,13 @@ export interface BlogPost {
         bio: "Lena is obsessed with sustainable supply chains and vintage weaving techniques.", 
         avatar: { src: "/images/team-lena.jpg", altText: "Lena Hartmann" } 
       },
+      toc: [
+        { id: "the-science-of-cellulose", text: "The Science of Cellulose: Linen and Cotton", level: 2 },
+        { id: "the-memory-of-protein", text: "The Memory of Protein: Wool and Silk", level: 2 },
+        { id: "the-synthetic-contrast", text: "Why Plastic Degrades Instead of Aging", level: 2 },
+        { id: "sustainability-through-longevity", text: "Sustainability Through Longevity", level: 2 },
+        { id: "caring-for-natural-fibres", text: "Caring for the Patina", level: 2 }
+      ],
     },
     {
       slug: "our-visit-to-the-alentejo-mills",
