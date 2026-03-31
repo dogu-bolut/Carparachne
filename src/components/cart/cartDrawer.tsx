@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link  from "next/link";
 import Image from "next/image";
 import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight } from "lucide-react";
-import { useCartStore }   from "@/lib/stores/cartStore";
-import { formatPrice }    from "@/lib/utils/index";
-import type { CartItem }  from "@/lib/types";
+import { useCartStore }  from "@/lib/stores/cartStore";
+import { formatPrice }   from "@/lib/utils/index";
+import type { CartItem } from "@/lib/types";
 
 export function CartDrawer() {
   const {
@@ -15,59 +15,87 @@ export function CartDrawer() {
     removeItem, updateQuantity,
   } = useCartStore();
 
-  /* Trap focus + lock body scroll */
+  // Don't render at all on SSR — prevents hydration mismatch
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const drawerRef = useRef<HTMLDivElement>(null);
+
+  // Lock body scroll and focus trap
   useEffect(() => {
     if (!isOpen) return;
-    const prevFocus = document.activeElement as HTMLElement;
+    const prev = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
     drawerRef.current?.focus();
     return () => {
       document.body.style.overflow = "";
-      prevFocus?.focus();
+      prev?.focus();
     };
   }, [isOpen]);
 
-  /* Close on Escape */
+  // Close on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeCart(); };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [closeCart]);
 
+  // Nothing rendered until JS hydrates
+  if (!mounted) return null;
+
   return (
     <>
-      {/* ── Backdrop ── */}
+      {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-overlay bg-surface-overlay animate-fade-in"
           onClick={closeCart}
           aria-hidden
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 50,
+            backgroundColor: "rgba(26,26,26,0.48)",
+            animation: "fade-in 200ms ease both",
+          }}
         />
       )}
 
-      {/* ── Drawer panel ── */}
+      {/* Drawer panel */}
       <div
         ref={drawerRef}
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
         tabIndex={-1}
-        className={`
-          fixed right-0 top-0 bottom-0 z-drawer
-          w-full sm:w-[420px] max-w-[100vw]
-          bg-surface-raised shadow-drawer
-          flex flex-col
-          transition-transform duration-350 ease-out-expo
-          outline-none
-          ${isOpen ? "translate-x-0 animate-slide-in-right" : "translate-x-full"}
-        `}
+        style={{
+          position:    "fixed",
+          top:         0,
+          right:       0,
+          bottom:      0,
+          zIndex:      60,
+          width:       "min(420px, 100vw)",
+          backgroundColor: "#FFFFFF",
+          boxShadow:   "-4px 0 32px rgba(26,26,26,0.12)",
+          display:     "flex",
+          flexDirection: "column",
+          outline:     "none",
+          transform:   isOpen ? "translateX(0)" : "translateX(100%)",
+          transition:  "transform 350ms cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-ink-line">
-          <div className="flex items-center gap-2.5">
-            <ShoppingBag size={18} className="text-ink-soft" />
-            <h2 className="font-sans text-base font-semibold text-ink-soft">
+        <div style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "1.25rem 1.5rem",
+          borderBottom: "1px solid #D4D4D4",
+          flexShrink: 0,
+        }}>
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.625rem" }}>
+            <ShoppingBag size={18} color="#2C2C2C" />
+            <h2 style={{ fontFamily: "var(--font-body)", fontSize: "1rem", fontWeight: 600, color: "#2C2C2C", margin: 0 }}>
               Your Cart
             </h2>
             {itemCount > 0 && (
@@ -76,19 +104,20 @@ export function CartDrawer() {
           </div>
           <button
             onClick={closeCart}
-            className="btn-ghost p-1.5"
+            className="btn-ghost"
+            style={{ padding: "0.375rem" }}
             aria-label="Close cart"
           >
             <X size={18} />
           </button>
         </div>
 
-        {/* ── Items or empty state ── */}
-        <div className="flex-1 overflow-y-auto">
+        {/* Items / empty state */}
+        <div style={{ flex: 1, overflowY: "auto" }}>
           {items.length === 0 ? (
             <EmptyCart onClose={closeCart} />
           ) : (
-            <ul className="divide-y divide-ink-line/50 px-6" aria-label="Cart items">
+            <ul style={{ margin: 0, padding: "0 1.5rem" }} aria-label="Cart items">
               {items.map((item) => (
                 <CartLineItem
                   key={item.id}
@@ -101,34 +130,59 @@ export function CartDrawer() {
           )}
         </div>
 
-        {/* ── Footer: subtotal + CTA ── */}
+        {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-ink-line px-6 py-6 bg-surface">
-            {/* Subtotal row */}
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-sm text-ink-muted">Subtotal</span>
-              <span className="text-base font-semibold text-ink-soft">
-                {formatPrice(subtotal, items[0]?.currency ?? "USD")}
+          <div style={{
+            borderTop: "1px solid #D4D4D4",
+            padding: "1.5rem",
+            backgroundColor: "#F7F6F4",
+            flexShrink: 0,
+          }}>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: "0.375rem" }}>
+              <span style={{ fontSize: "0.875rem", color: "#5A5A5A" }}>Subtotal</span>
+              <span style={{ fontSize: "1rem", fontWeight: 600, color: "#2C2C2C" }}>
+                {formatPrice(subtotal, items[0]?.currency ?? "EUR")}
               </span>
             </div>
-            <p className="text-xs text-ink-ghost mb-5">
+            <p style={{ fontSize: "0.75rem", color: "#9A9A9A", marginBottom: "1.25rem" }}>
               Shipping and taxes calculated at checkout.
             </p>
-
-            {/* Checkout CTA */}
+            {/* Primary CTA — checkout */}
             <Link
               href="/checkout"
               onClick={closeCart}
-              className="btn-primary w-full flex items-center justify-center gap-2 text-sm"
+              className="btn-primary"
+              style={{ width: "100%", justifyContent: "center", gap: "0.5rem" }}
             >
-              Proceed to Checkout
-              <ArrowRight size={15} />
+              Proceed to Checkout <ArrowRight size={15} />
             </Link>
-
-            {/* Continue shopping */}
+            {/* Secondary CTA — view full cart page */}
+            <Link
+              href="/cart"
+              onClick={closeCart}
+              className="btn-secondary"
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                marginTop: "0.625rem",
+                fontSize: "0.8125rem",
+              }}
+            >
+              View Cart
+            </Link>
             <button
               onClick={closeCart}
-              className="w-full text-center text-sm text-ink-muted hover:text-ink mt-3 transition-colors"
+              style={{
+                width: "100%",
+                textAlign: "center",
+                fontSize: "0.8125rem",
+                color: "#9A9A9A",
+                marginTop: "0.625rem",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "0.25rem",
+              }}
             >
               Continue Shopping
             </button>
@@ -139,83 +193,53 @@ export function CartDrawer() {
   );
 }
 
-/* ── Single cart line item ── */
+/* ── Line item ── */
 function CartLineItem({
-  item,
-  onRemove,
-  onChangeQty,
+  item, onRemove, onChangeQty,
 }: {
   item: CartItem;
   onRemove: () => void;
   onChangeQty: (q: number) => void;
 }) {
-  const variantLabel = Object.values(item.selectedVariants)
-    .filter(Boolean)
-    .join(" / ");
+  const variantLabel = Object.values(item.selectedVariants).filter(Boolean).join(" / ");
 
   return (
-    <li className="flex gap-4 py-5">
-      {/* Thumbnail */}
-      <Link
-        href={`/products/${item.slug}`}
-        className="relative flex-shrink-0 w-20 h-24 rounded overflow-hidden bg-surface-sunken"
-      >
-        <Image
-          src={item.image.src}
-          alt={item.image.altText}
-          fill
-          sizes="80px"
-          quality={70}
-          className="object-cover"
-        />
+    <li style={{ display: "flex", flexDirection: "row", gap: "1rem", padding: "1.25rem 0", borderBottom: "1px solid rgba(212,212,212,0.5)" }}>
+      <Link href={`/products/${item.slug}`} style={{ position: "relative", flexShrink: 0, width: 80, height: 96, borderRadius: 6, overflow: "hidden", backgroundColor: "#EFEDE9", display: "block" }}>
+        <Image src={item.image.src} alt={item.image.altText} fill sizes="80px" quality={70} className="object-cover" />
       </Link>
 
-      {/* Info */}
-      <div className="flex-1 min-w-0 flex flex-col justify-between">
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
         <div>
           <Link
             href={`/products/${item.slug}`}
-            className="text-sm font-medium text-ink-soft leading-snug hover:text-accent transition-colors line-clamp-2"
+            style={{ fontSize: "0.875rem", fontWeight: 500, color: "#2C2C2C", lineHeight: 1.3, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}
+            className="hover:text-[#C8976A] transition-colors"
           >
             {item.name}
           </Link>
           {variantLabel && (
-            <p className="text-xs text-ink-ghost mt-0.5">{variantLabel}</p>
+            <p style={{ fontSize: "0.75rem", color: "#9A9A9A", marginTop: "0.125rem" }}>{variantLabel}</p>
           )}
         </div>
 
-        <div className="flex items-center justify-between mt-3">
-          {/* Qty stepper */}
-          <div className="flex items-center border border-ink-line rounded">
-            <button
-              onClick={() => onChangeQty(item.quantity - 1)}
-              className="w-7 h-7 flex items-center justify-center text-ink-muted hover:text-ink hover:bg-surface-sunken rounded-l transition-colors"
-              aria-label="Decrease quantity"
-            >
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: "0.75rem" }}>
+          {/* Qty */}
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", border: "1px solid #D4D4D4", borderRadius: 4 }}>
+            <button onClick={() => onChangeQty(item.quantity - 1)} style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", color: "#9A9A9A", borderRadius: "4px 0 0 4px" }} aria-label="Decrease quantity" className="hover:bg-[#EFEDE9] hover:text-[#1A1A1A] transition-colors">
               <Minus size={11} />
             </button>
-            <span className="w-7 text-center text-xs font-medium text-ink-soft">
-              {item.quantity}
-            </span>
-            <button
-              onClick={() => onChangeQty(item.quantity + 1)}
-              className="w-7 h-7 flex items-center justify-center text-ink-muted hover:text-ink hover:bg-surface-sunken rounded-r transition-colors"
-              aria-label="Increase quantity"
-            >
+            <span style={{ width: 28, textAlign: "center", fontSize: "0.75rem", fontWeight: 500, color: "#2C2C2C" }}>{item.quantity}</span>
+            <button onClick={() => onChangeQty(item.quantity + 1)} style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", color: "#9A9A9A", borderRadius: "0 4px 4px 0" }} aria-label="Increase quantity" className="hover:bg-[#EFEDE9] hover:text-[#1A1A1A] transition-colors">
               <Plus size={11} />
             </button>
           </div>
 
-          {/* Price */}
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold text-ink-soft">
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.75rem" }}>
+            <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "#2C2C2C" }}>
               {formatPrice(item.price * item.quantity, item.currency)}
             </span>
-            <button
-              onClick={onRemove}
-              className="text-ink-ghost hover:text-error transition-colors"
-              aria-label={`Remove ${item.name} from cart`}
-            >
+            <button onClick={onRemove} style={{ color: "#9A9A9A" }} aria-label={`Remove ${item.name}`} className="hover:text-[#C04040] transition-colors">
               <Trash2 size={14} />
             </button>
           </div>
@@ -228,23 +252,17 @@ function CartLineItem({
 /* ── Empty state ── */
 function EmptyCart({ onClose }: { onClose: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-5 px-8 text-center py-16">
-      <div className="w-16 h-16 bg-surface-sunken rounded-full flex items-center justify-center">
-        <ShoppingBag size={24} className="text-ink-ghost" />
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: "1.25rem", padding: "4rem 2rem", textAlign: "center" }}>
+      <div style={{ width: 64, height: 64, backgroundColor: "#EFEDE9", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <ShoppingBag size={24} color="#9A9A9A" />
       </div>
       <div>
-        <h3 className="font-sans text-base font-semibold text-ink-soft mb-2">
-          Your cart is empty
-        </h3>
-        <p className="text-sm text-ink-muted leading-relaxed">
+        <h3 style={{ fontFamily: "var(--font-body)", fontSize: "1rem", fontWeight: 600, color: "#2C2C2C", marginBottom: "0.5rem" }}>Your cart is empty</h3>
+        <p style={{ fontSize: "0.875rem", color: "#5A5A5A", lineHeight: 1.6, maxWidth: "22ch", margin: "0 auto" }}>
           Looks like you haven't added anything yet. Explore our collections to get started.
         </p>
       </div>
-      <Link
-        href="/shop"
-        onClick={onClose}
-        className="btn-primary mt-2"
-      >
+      <Link href="/shop" onClick={onClose} className="btn-primary" style={{ marginTop: "0.5rem" }}>
         Start Shopping
       </Link>
     </div>
