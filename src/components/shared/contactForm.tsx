@@ -148,9 +148,17 @@ export function ContactForm() {
       </div>
 
       {/* Order number (optional) */}
-      <Field label="Order number (optional)" id="orderNumber" name="orderNumber"
-        value={form.orderNumber ?? ""} onChange={handleChange}
-        placeholder="#CARPA-00000" />
+      <Field 
+        label="Order number (optional)" 
+        id="orderNumber" 
+        name="orderNumber"
+        value={form.orderNumber ?? ""} 
+        onChange={(e) => {
+          e.target.value = e.target.value.toUpperCase();
+          handleChange(e);
+        }}
+        placeholder="#CARPA-00000" 
+      />
 
       {/* Message */}
       <div>
