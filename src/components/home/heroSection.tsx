@@ -37,7 +37,7 @@ export function HeroSection() {
 
       {/* Next/Image handles lazy-load, blur-up, and CLS prevention */}
       <Image
-        src="/images/hero-desktop.jpg"
+        src="/images/hero-desktop.png"
         alt="A styled flat-lay of this season's new arrivals — earthy tones, natural textures"
         fill
         priority                        /* LCP image — never lazy */

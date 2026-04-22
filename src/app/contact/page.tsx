@@ -11,8 +11,8 @@ const CONTACT_INFO = [
   {
     Icon: Mail,
     label: "Email",
-    value: "dogubolut@gmail.com",
-    href:  "mailto:dogubolut@gmail.com",
+    value: "support@carparachne.com",
+    href:  "mailto:support@carparachne.com",
   },
   {
     Icon: Clock,

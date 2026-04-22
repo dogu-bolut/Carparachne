@@ -95,7 +95,7 @@ export function CartPageClient() {
             {/* Column headers — desktop only */}
             <div
               className="hidden md:grid mb-4 pb-3 border-b border-ink-line"
-              style={{ gridTemplateColumns: "1fr 120px 120px 40px", gap: "1rem" }}
+              style={{ gridTemplateColumns: "80px 120px 1fr 1px", gap: "1rem" }}
             >
               <span className="label-caps text-ink-ghost">Product</span>
               <span className="label-caps text-ink-ghost text-center">Quantity</span>
@@ -224,7 +224,7 @@ export function CartPageClient() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "var(--font-display)",
+                      fontFamily: "var(--font-body)",
                       fontSize: "1.5rem",
                       fontWeight: 500,
                       color: "#1A1A1A",

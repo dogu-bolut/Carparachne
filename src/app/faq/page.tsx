@@ -14,12 +14,12 @@ const FAQ_DATA: Array<{ category: string; items: FaqItem[] }> = [
       {
         id: "o1", category: "Orders & Payment",
         question: "What payment methods do you accept?",
-        answer: "We accept all major credit and debit cards (Visa, Mastercard, Amex), Apple Pay, Google Pay, and PayPal. All transactions are processed securely via Stripe.",
+        answer: "We accept all major credit and debit cards (Visa, Mastercard, Troy), Apple Pay, Google Pay, and PayPal. All transactions are processed securely via PayTR.",
       },
       {
         id: "o2", category: "Orders & Payment",
         question: "Can I change or cancel my order after placing it?",
-        answer: "Orders can be amended or cancelled within 1 hour of placement. After that, fulfilment begins and changes may no longer be possible. Please contact us immediately at hello@carparachne.com.",
+        answer: "Orders can be amended or cancelled within 1 hour of placement. After that, fulfilment begins and changes may no longer be possible. Please contact us immediately at support@carparachne.com.",
       },
       {
         id: "o3", category: "Orders & Payment",

@@ -29,8 +29,8 @@ import nodemailer        from "nodemailer";
 import type { ContactFormData } from "@/lib/types";
 
 // ── Destination ──────────────────────────────────────────────────────────────
-const TO_ADDRESS   = "dogubolut@gmail.com";
-const FROM_ADDRESS = process.env.SMTP_USER ?? "dogubolut@gmail.com";
+const TO_ADDRESS   = "support@carparachne.com";
+const FROM_ADDRESS = process.env.SMTP_USER ?? "support@carparachne.com";
 const FROM_NAME    = "Carparachne Contact Form";
 
 // ── Input validation (mirrors client-side) ───────────────────────────────────
