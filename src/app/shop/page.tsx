@@ -49,12 +49,18 @@ export default async function ShopPage({ searchParams }: Props) {
   return (
     <div>
       {/* ── Page header ── */}
-      <div className="container-site py-12 lg:py-16 border-b border-ink-line overflow-hidden">
-        <div className="relative">
-          <div className="absolute -left-4 -top-4 w-24 h-24 bg-orange-200/40 blur-3xl rounded-full" />
-          
-          <h1 className="relative z-10">Shop</h1>
-        </div>
+      <div className="container-site py-12 lg:py-16 border-b border-ink-line">
+        <h1 className="relative inline-block px-2">
+          <span 
+            className="absolute inset-0 z-0" 
+            style={{ 
+              backgroundColor: '#fef3c7',
+              transform: 'rotate(-0.3deg)',  
+              boxShadow: '4px 4px 0px 0px rgba(0,0,0,0.05)'
+            }}
+          />
+          <span className="relative z-10">Shop</span>
+        </h1>
       </div>
 
       {/* ── Main content: sidebar + product grid ── */}
