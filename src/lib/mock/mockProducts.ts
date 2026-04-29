@@ -8,12 +8,28 @@ export const MOCK_PRODUCTS: Product[] = [
     shortDescription: "Stonewashed Portuguese linen overshirt.",
     price: 129, compareAtPrice: 165, currency: "EUR",
     images: [{ id: "img-0", src: "/images/product-1.jpg", altText: "Linen overshirt in ecru", width: 800, height: 1067 }],
-    variants: [], specs: [],
+    variants: [
+      {
+        id: "v-size",
+        type: "size",
+        name: "Size",
+        options: [
+          { label: "S", value: "S", inStock: true },
+          { label: "M", value: "M", inStock: true },
+          { label: "L", value: "L", inStock: false }
+        ]
+      }
+    ],
+    specs: [
+      { label: "Material", value: "100% Portuguese Linen" },
+      { label: "Care", value: "Machine wash cold, lay flat to dry" },
+      { label: "Origin", value: "Made in Portugal" }
+    ],
     categorySlug: "clothing",
     tags: ["Organic", "Handcrafted", "New Arrival"],
     badge: "bestseller",
     rating: 5, reviewCount: 20, inStock: true,
-    relatedProductIds: [],
+    relatedProductIds: ["bs-1", "bs-2", "bs-3", "bs-6"],
     seo: { title: "The Linen Overshirt", description: "" },
   },
   {
@@ -185,4 +201,8 @@ export function filterAndSortProducts(
   const products = results.slice((pageNum - 1) * size, pageNum * size);
 
   return { products, total };
+}
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return MOCK_PRODUCTS.find((p) => p.slug === slug);
 }

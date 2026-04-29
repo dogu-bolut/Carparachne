@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { HeroSection }        from "@/components/home/heroSection";
 import { CategoryGrid }       from "@/components/home/categoryGrid";
-import { BestSellersCarousel } from "@/components/home/bestSellersCarousel";
+import { ProductCarousel } from "@/components/product/productCarousel";
+import { MOCK_PRODUCTS } from "@/lib/mock/mockProducts";
 import { ValueProposition }   from "@/components/home/valueProposition";
 import { EditorialBanner }    from "@/components/home/editorialBanner";
 import { BlogTeaser }         from "@/components/home/blogTeaser";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const homeBestsellers = MOCK_PRODUCTS.slice(0, 8);
   return (
     <>
       {/* 1. Full-viewport hero with CTA */}
@@ -47,7 +49,7 @@ export default function HomePage() {
               View all →
             </a>
           </header>
-          <BestSellersCarousel />
+          <ProductCarousel products={homeBestsellers} />
         </div>
       </section>
 

@@ -4,9 +4,10 @@ import { Suspense }          from "react";
 import { ProductGallery }    from "@/components/product/productGallery";
 import { ProductInfo }       from "@/components/product/productInfo";
 import { ProductAccordion }  from "@/components/product/productAccordion";
-import { RelatedProducts }   from "@/components/product/relatedProducts";
 import { Breadcrumbs }       from "@/components/shop/sortDropdown";
 import { getProductBySlug, getRelatedProducts } from "@/lib/utils/index";
+import { ProductCarousel } from "@/components/product/productCarousel";
+import { ProductReviews } from "@/components/product/productReviews";
 
 // 1. Update Props to treat params as a Promise
 interface Props {
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await getProductBySlug(slug);
   if (!product) return {};
 
-  const ogImage = product.images[0]?.src ?? "/og-default.png";
+  const ogImage = product.images[0]?.src ?? "/og-default.jpg";
 
   return {
     title:       product.seo.title,
@@ -60,7 +61,6 @@ export default async function ProductDetailPage({ params }: Props) {
         aria-labelledby="product-title"
       >
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-8 xl:gap-16 items-start">
-
           {/* Left: Image gallery */}
           <div className="lg:sticky lg:top-24">
             <ProductGallery images={product.images} productName={product.name} />
@@ -69,30 +69,30 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* Right: Product info */}
           <div>
             <ProductInfo product={product} />
-
-            {/* Divider */}
             <hr className="my-8" />
-
-            {/* Accordion: Description, Details, Shipping, Returns */}
             <ProductAccordion product={product} />
           </div>
+        </div>
+
+        <div className="mt-16 lg:mt-24">
+          <ProductReviews product={product} />
         </div>
       </section>
 
       {/* ── Related products ── */}
       {relatedProducts.length > 0 && (
         <section
-          className="section-md border-t border-ink-line"
+          className="section-md border-t border-ink-line mt-24 pt-16"
           aria-labelledby="related-heading"
         >
           <div className="container-site">
             <header className="mb-10">
               <p className="label-caps text-ink-muted mb-3">You may also like</p>
-              <h2 id="related-heading">Related Products</h2>
+              <h2 id="related-heading" className="text-2xl font-semibold">Related Products</h2>
             </header>
-            <Suspense fallback={null}>
-              <RelatedProducts products={relatedProducts} />
-            </Suspense>
+            
+            {/* ✅ Pass the dynamically fetched related products here */}
+            <ProductCarousel products={relatedProducts} />
           </div>
         </section>
       )}

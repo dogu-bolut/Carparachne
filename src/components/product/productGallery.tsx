@@ -48,9 +48,8 @@ export function ProductGallery({ images, productName }: Props) {
   }
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-4">
+    <div className="flex flex-col-reverse lg:flex-row gap-4 w-full max-w-[550px] mx-auto">
 
-      {/* ── Thumbnail strip (vertical on desktop, horizontal on mobile) ── */}
       <div
         className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto lg:max-h-[620px] no-scrollbar"
         role="tablist"
@@ -80,7 +79,6 @@ export function ProductGallery({ images, productName }: Props) {
         ))}
       </div>
 
-      {/* ── Main image ── */}
       <div className="flex-1 relative">
         <div
           className={`
@@ -93,14 +91,14 @@ export function ProductGallery({ images, productName }: Props) {
           onKeyDown={handleKeyDown}
           tabIndex={0}
           role="img"
-          aria-label={`${productName} — image ${activeIndex + 1} of ${images.length}. Press arrow keys to navigate.`}
+          aria-label={`${productName} — image ${activeIndex + 1} of ${images.length}.`}
         >
           <Image
             src={active.src}
             alt={active.altText}
             fill
             priority={activeIndex === 0}
-            sizes="(max-width: 768px) 100vw, 55vw"
+            sizes="(max-width: 768px) 100vw, 550px"
             quality={90}
             className={`
               object-cover transition-transform duration-300 ease-out-expo
@@ -114,7 +112,6 @@ export function ProductGallery({ images, productName }: Props) {
             draggable={false}
           />
 
-          {/* Zoom hint */}
           {!zoomed && (
             <div className="absolute bottom-3 right-3 bg-surface-raised/70 backdrop-blur-sm rounded-full p-2 pointer-events-none">
               <ZoomIn size={14} className="text-ink-muted" />
@@ -122,7 +119,6 @@ export function ProductGallery({ images, productName }: Props) {
           )}
         </div>
 
-        {/* ── Prev / Next arrows ── */}
         {images.length > 1 && (
           <>
             <button
@@ -142,7 +138,6 @@ export function ProductGallery({ images, productName }: Props) {
           </>
         )}
 
-        {/* Dot indicators (mobile) */}
         {images.length > 1 && (
           <div className="flex justify-center gap-1.5 mt-3 lg:hidden" aria-hidden>
             {images.map((_, i) => (

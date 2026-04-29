@@ -98,7 +98,7 @@ export function ProductAccordion({ product }: { product: Product }) {
             </Accordion.Trigger>
           </Accordion.Header>
 
-          <Accordion.Content className="overflow-hidden data-[state=open]:animate-[accordion-down_220ms_ease-out] data-[state=closed]:animate-[accordion-up_160ms_ease-in]">
+          <Accordion.Content className="overflow-hidden">
             <div className="accordion-content">
               {content}
             </div>

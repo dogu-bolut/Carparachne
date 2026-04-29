@@ -32,6 +32,14 @@ export interface ProductImage {
     value: string;
   }
   
+  export type Review = {
+    id: string;
+    author: string;
+    rating: number;
+    date: string;
+    text: string;
+  };
+
   export type BadgeType = "new" | "sale" | "bestseller" | "low-stock" | "sold-out";
   
   export interface Product {
@@ -50,8 +58,9 @@ export interface ProductImage {
     categorySlug: string;
     tags: string[];
     badge?: BadgeType;
-    rating: number;                // 0–5
-    reviewCount: number;
+    rating?: number;                // 0–5
+    reviewCount?: number;
+    reviews?: Review[];
     inStock: boolean;
     relatedProductIds: string[];
     seo: {

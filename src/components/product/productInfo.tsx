@@ -76,14 +76,14 @@ export function ProductInfo({ product }: { product: Product }) {
       </h1>
 
       {/* Rating */}
-      {product.reviewCount > 0 && (
+      {(product.reviewCount || 0) > 0 && (
         <div className="flex items-center gap-2 mb-5">
           <div className="flex gap-0.5" aria-hidden>
             {Array.from({ length: 5 }, (_, i) => (
               <Star
                 key={i}
                 size={14}
-                className={i < Math.round(product.rating) ? "text-accent fill-accent" : "text-ink-line fill-ink-line"}
+                className={i < Math.round(product.rating || 0) ? "text-accent fill-accent" : "text-ink-line fill-ink-line"}
               />
             ))}
           </div>
@@ -91,7 +91,7 @@ export function ProductInfo({ product }: { product: Product }) {
             href="#reviews"
             className="text-sm text-ink-muted hover:text-ink underline underline-offset-2 transition-colors"
           >
-            {product.rating.toFixed(1)} ({product.reviewCount} reviews)
+            {(product.rating || 0).toFixed(1)} ({product.reviewCount || 0} reviews)
           </a>
         </div>
       )}

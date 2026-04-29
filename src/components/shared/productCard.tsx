@@ -175,7 +175,7 @@ export function ProductCard({
           </h3>
 
           {/* Star rating */}
-          {product.reviewCount > 0 && (
+          {(product.reviewCount || 0) > 0 && (
             <div 
               className="flex items-center gap-1.5 mb-2" 
               aria-label={`${product.rating} out of 5 stars`}
@@ -186,7 +186,7 @@ export function ProductCard({
                   <svg
                     key={i}
                     suppressHydrationWarning
-                    className={`w-3 h-3 ${i < Math.round(product.rating) ? "text-accent" : "text-ink-line"}`}
+                    className={`w-3 h-3 ${i < Math.round(product.rating || 0) ? "text-accent" : "text-ink-line"}`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -203,8 +203,8 @@ export function ProductCard({
             <span className="text-sm font-semibold text-ink-soft">
               {formatPrice(product.price, product.currency)}
             </span>
-            {product.compareAtPrice && (
-              <span className="text-xs text-ink-ghost line-through">
+            {product.compareAtPrice && product.compareAtPrice > product.price &&(
+              <span className="text-ink-muted line-through text-sm">
                 {formatPrice(product.compareAtPrice, product.currency)}
               </span>
             )}

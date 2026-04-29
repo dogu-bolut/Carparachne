@@ -41,7 +41,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
           </Accordion.Header>
 
           <Accordion.Content
-            className="overflow-hidden data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_150ms_ease-in]"
+            className="overflow-hidden"
           >
             <div className="accordion-content pr-8">
               {/* Support HTML content from CMS */}
