@@ -25,14 +25,14 @@ type Collection = {
   isFeatured?: boolean;
 };
 
-type CollectionCategory = "All" | "Apparel" | "Accessories" | "Home & Linen" | "Archive";
+type CollectionCategory = "All" | "Apparel" | "Accessories" | "Home & Living" | "Archive";
 
 /* ── Static data ── */
 const CATEGORIES: CollectionCategory[] = [
   "All",
   "Apparel",
   "Accessories",
-  "Home & Linen",
+  "Home & Living",
   "Archive",
 ];
 
@@ -277,7 +277,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Functional objects made by hand in our Lisbon studio. Each piece is thrown on the wheel, glazed with natural ash glazes, and fired at high temperature for durability that outlasts trends.",
     season: "Ongoing",
     year: 2026,
-    category: "Home & Linen",
+    category: "Home & Living",
     itemCount: 9,
     coverImage: {
       src: "/images/collection-ceramics.jpg",
@@ -312,7 +312,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Stonewashed linen in seven undyed and naturally dyed colourways. Designed to live on your table and bed for decades, not seasons.",
     season: "Perennial",
     year: 2024,
-    category: "Home & Linen",
+    category: "Home & Living",
     itemCount: 22,
     coverImage: {
       src: "/images/collection-table-linen.jpg",

@@ -3,19 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter, usePathname }  from "next/navigation";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
-
-/* ── Static filter config — replace with API data ── */
-const CATEGORIES = [
-  { slug: "clothing",    label: "Clothing",     count: 48 },
-  { slug: "accessories", label: "Accessories",  count: 32 },
-  { slug: "home",        label: "Home & Living", count: 27 },
-  { slug: "beauty",      label: "Beauty",        count: 15 },
-];
-
-const TAGS = [
-  "Organic", "Handcrafted", "Limited Edition",
-  "Sustainable", "New Arrival", "Gift Idea",
-];
+import type { CategoryOption } from "@/lib/mock/mockProducts";
 
 const PRICE_PRESETS = [
   { label: "Under $50",     min: 0,   max: 50  },
@@ -26,11 +14,15 @@ const PRICE_PRESETS = [
 
 interface Props {
   searchParams: Record<string, string | undefined>;
+  /** Category list derived from live product data (slug, label, count). */
+  categories:   CategoryOption[];
+  /** Tag list derived from live product data, alphabetically sorted. */
+  tags:         string[];
 }
 
 type Section = "categories" | "price" | "tags" | "availability";
 
-export function FilterSidebar({ searchParams }: Props) {
+export function FilterSidebar({ searchParams, categories, tags }: Props) {
   const router   = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -106,7 +98,7 @@ export function FilterSidebar({ searchParams }: Props) {
         onToggle={() => toggle("categories")}
       >
         <ul className="flex flex-col gap-2.5">
-          {CATEGORIES.map(({ slug, label, count }) => (
+          {categories.map(({ slug, label, count }) => (
             <li key={slug}>
               <label className="flex items-center justify-between cursor-pointer group">
                 <span className="flex items-center gap-2.5">
@@ -193,7 +185,7 @@ export function FilterSidebar({ searchParams }: Props) {
         onToggle={() => toggle("tags")}
       >
         <div className="flex flex-wrap gap-2">
-          {TAGS.map((tag) => {
+          {tags.map((tag) => {
             const active = activeTags.includes(tag);
             return (
               <button

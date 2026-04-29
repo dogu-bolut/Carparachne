@@ -7,7 +7,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: "A relaxed overshirt cut from Portuguese stonewashed linen. Designed to be worn open over a tee or buttoned up as a light jacket.",
     shortDescription: "Stonewashed Portuguese linen overshirt.",
     price: 129, compareAtPrice: 165, currency: "EUR",
-    images: [{ id: "img-0", src: "/images/product-1.jpg", altText: "Linen overshirt in ecru", width: 800, height: 1067 }],
+    images: [{ id: "img-1", src: "/images/product-1.jpg", altText: "Linen overshirt in ecru", width: 800, height: 1067 },{ id: "img-2", src: "/images/product-1.jpg", altText: "Linen overshirt in ecru", width: 800, height: 1067 }],
     variants: [
       {
         id: "v-size",
@@ -28,7 +28,7 @@ export const MOCK_PRODUCTS: Product[] = [
     categorySlug: "clothing",
     tags: ["Organic", "Handcrafted", "New Arrival"],
     badge: "bestseller",
-    rating: 5, reviewCount: 20, inStock: true,
+    rating: 5, reviewCount: 2, inStock: true,
     relatedProductIds: ["bs-1", "bs-2", "bs-3", "bs-6"],
     seo: { title: "The Linen Overshirt", description: "" },
   },
@@ -83,7 +83,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 110, compareAtPrice: 110, currency: "EUR",
     images: [{ id: "img-4", src: "/images/product-5.jpg", altText: "Two stoneware mugs on a stone surface", width: 800, height: 1067 }],
     variants: [], specs: [],
-    categorySlug: "home",
+    categorySlug: "home-and-living",
     tags: ["Handcrafted", "Gift Idea"],
     rating: 4, reviewCount: 55, inStock: true,
     relatedProductIds: [],
@@ -111,7 +111,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 220, compareAtPrice: 280, currency: "EUR",
     images: [{ id: "img-6", src: "/images/product-7.jpg", altText: "Natural wool blanket draped over a chair", width: 800, height: 1067 }],
     variants: [], specs: [],
-    categorySlug: "home",
+    categorySlug: "home-and-living",
     tags: ["Organic", "Sustainable"],
     rating: 5, reviewCount: 69, inStock: true,
     relatedProductIds: [],
@@ -125,7 +125,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 55, compareAtPrice: 55, currency: "EUR",
     images: [{ id: "img-7", src: "/images/product-8.jpg", altText: "White ceramic candle vessel", width: 800, height: 1067 }],
     variants: [], specs: [],
-    categorySlug: "home",
+    categorySlug: "home-and-living",
     tags: ["Gift Idea", "New Arrival", "Sustainable"],
     badge: "new",
     rating: 4, reviewCount: 76, inStock: true,
@@ -205,4 +205,58 @@ export function filterAndSortProducts(
 
 export function getProductBySlug(slug: string): Product | undefined {
   return MOCK_PRODUCTS.find((p) => p.slug === slug);
+}
+
+export interface CategoryOption {
+  slug:  string;
+  label: string;
+  count: number;
+}
+
+export interface FilterOptions {
+  categories: CategoryOption[];
+  tags:       string[];
+}
+
+function slugToLabel(slug: string): string {
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+    .replace(/\bAnd\b/g, "&");
+}
+
+export function getFilterOptions(source: Product[] = MOCK_PRODUCTS): FilterOptions {
+  const categoryCount = new Map<string, number>();
+  const tagCount      = new Map<string, number>(); // Changed from Set to Map to track counts
+
+  for (const product of source) {
+    categoryCount.set(
+      product.categorySlug,
+      (categoryCount.get(product.categorySlug) ?? 0) + 1,
+    );
+    
+    for (const tag of product.tags) {
+      tagCount.set(tag, (tagCount.get(tag) ?? 0) + 1);
+    }
+  }
+
+  const categories: CategoryOption[] = Array.from(categoryCount.entries()).map(
+    ([slug, count]) => ({ slug, label: slugToLabel(slug), count }),
+  );
+
+  const tags = Array.from(tagCount.entries())
+    .sort((a, b) => {
+      const countA = a[1];
+      const countB = b[1];
+      
+      if (countB !== countA) {
+        return countB - countA; 
+      }
+      return a[0].localeCompare(b[0]);
+    })
+    .slice(0, 10)
+    .map(([tag]) => tag);
+
+  return { categories, tags };
 }

@@ -15,7 +15,7 @@ const CATEGORIES = [
     span:  "",
   },
   {
-    slug: "home",         label: "Home & Living",
+    slug: "home-and-living",         label: "Home & Living",
     image: "/images/cat-home.jpg",
     alt:   "Ceramic vases and woven baskets in warm afternoon light",
     span:  "",

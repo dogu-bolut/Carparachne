@@ -91,7 +91,6 @@ export default async function ProductDetailPage({ params }: Props) {
               <h2 id="related-heading" className="text-2xl font-semibold">Related Products</h2>
             </header>
             
-            {/* ✅ Pass the dynamically fetched related products here */}
             <ProductCarousel products={relatedProducts} />
           </div>
         </section>

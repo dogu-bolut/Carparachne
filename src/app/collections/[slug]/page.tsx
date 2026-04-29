@@ -18,6 +18,7 @@ type Collection = {
   season: string;
   year: number;
   category: string;
+  categorySlug: string;
   itemCount: number;
   coverImage: { src: string; altText: string };
   galleryImages?: { src: string; altText: string }[];
@@ -37,7 +38,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Woven from Portuguese stonewashed linen, this season's garments are designed for warmth without weight — loose silhouettes that move with the body and soften further with every wash.",
     longDescription:
       "We spent three days at the Alentejo mills choosing this season's weights and weaves. The result is a linen that starts soft and only improves. Every piece in this collection is cut to be worn loosely, layered without bulk, and lived in without care.\n\nThe palette this year is drawn from the Portuguese landscape in early spring: chalk walls, dry grass, the pale grey of aged cork. Nothing was dyed that didn't need to be.",
-    season: "Spring", year: 2026, category: "Apparel", itemCount: 14, isNew: true,
+    season: "Spring", year: 2026, category: "Apparel", categorySlug: "apparel", itemCount: 14, isNew: true,
     coverImage: { src: "/images/collection-spring-linen.jpg", altText: "Linen draped garments in ivory and sand tones" },
     galleryImages: [
       { src: "/images/collection-spring-linen-2.jpg", altText: "Linen shirt on wooden hanger" },
@@ -55,7 +56,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Functional objects made by hand in our Lisbon studio. Each piece is thrown on the wheel, glazed with natural ash glazes, and fired at high temperature for durability that outlasts trends.",
     longDescription:
       "Every mug, bowl, and vessel in this collection was made in our Lisbon workshop between January and March 2026. We work with a single studio potter who trained in Japan and now splits her time between Lisbon and the Alentejo.\n\nAsh glazes are unpredictable. No two pieces come out the same. We consider this a feature.",
-    season: "Ongoing", year: 2026, category: "Home & Linen", itemCount: 9, isNew: true,
+    season: "Ongoing", year: 2026, category: "Home & Living", categorySlug: "home-and-living", itemCount: 9, isNew: true,
     coverImage: { src: "/images/collection-ceramics.jpg", altText: "Stoneware bowls and cups on a stone surface" },
     galleryImages: [
       { src: "/images/collection-ceramics-2.jpg", altText: "Close-up of ash glaze on stoneware" },
@@ -72,7 +73,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Heavy-gauge merino and a Scottish Harris tweed collaboration. Structured coats, relaxed trousers, and the softest roll-neck you will own.",
     longDescription:
       "This collection was two years in the making. We partnered with a fourth-generation Harris Tweed weaver on the Isle of Harris to develop a cloth that sits between classic tweed and something more contemporary — still handwoven on a treadle loom, still certified, but with a weight and handle that feels right for now.\n\nThe merino pieces use an extra-fine 17.5 micron fibre sourced from a single estate in Patagonia.",
-    season: "Autumn", year: 2025, category: "Apparel", itemCount: 18,
+    season: "Autumn", year: 2025, category: "Apparel", categorySlug: "apparel", itemCount: 18,
     coverImage: { src: "/images/collection-wool.jpg", altText: "Wool coats hanging in a stone archway" },
     galleryImages: [],
     productSlugs: ["merino-crewneck", "wool-blanket"],
@@ -87,7 +88,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Stonewashed linen in seven undyed and naturally dyed colourways. Designed to live on your table and bed for decades, not seasons.",
     longDescription:
       "This is the collection we return to every year. Nothing changes — the weight, the weave, the seven colourways. We consider it finished.\n\nThe linen is woven in Portugal, stonewashed in Belgium, and packaged in recycled kraft at our studio. No plastic, no synthetic dyes in the undyed range.",
-    season: "Perennial", year: 2024, category: "Home & Linen", itemCount: 22,
+    season: "Perennial", year: 2024, category: "Home & Living", categorySlug: "home-and-living", itemCount: 22,
     coverImage: { src: "/images/collection-table-linen.jpg", altText: "Linen tablecloth set with simple ceramic ware" },
     galleryImages: [],
     productSlugs: ["bamboo-candle", "ceramic-mug-set"],
@@ -102,7 +103,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Belts, wallets, and bags cut from full-grain vegetable-tanned leather. No hardware polish, no coating — just leather that ages to a patina unique to its owner.",
     longDescription:
       "Vegetable tanning takes 60 days. Chrome tanning takes 24 hours. We use vegetable-tanned leather from a tannery in Tuscany that has been using the same oak bark pits since 1580.\n\nEvery piece is cut and stitched by hand in our Porto workshop. We do not use machines for stitching. The result is a product that will outlast almost anything else in your wardrobe.",
-    season: "Ongoing", year: 2025, category: "Accessories", itemCount: 11,
+    season: "Ongoing", year: 2025, category: "Accessories", categorySlug: "accessories", itemCount: 11,
     coverImage: { src: "/images/collection-leather.jpg", altText: "Tan leather bag on a wooden workshop bench" },
     galleryImages: [],
     productSlugs: ["leather-card-holder", "canvas-tote"],
@@ -117,7 +118,7 @@ const MOCK_COLLECTIONS: Collection[] = [
       "Select pieces from our 2023 summer collection, offered at reduced price while stock lasts. Same quality, same provenance — just a season older.",
     longDescription:
       "We make a point of selling through our archive honestly — no artificial urgency, no flash sales. These pieces are here because they're genuinely good and genuinely reduced. When they're gone, they're gone.\n\nAll archive items ship within 48 hours from our Lisbon warehouse.",
-    season: "Summer", year: 2023, category: "Archive", itemCount: 6,
+    season: "Summer", year: 2023, category: "Archive", categorySlug: "archive", itemCount: 6,
     coverImage: { src: "/images/collection-archive.jpg", altText: "Folded linen garments in warm afternoon light" },
     galleryImages: [],
     productSlugs: ["the-linen-overshirt", "silk-scarf"],
@@ -294,7 +295,7 @@ export default async function CollectionDetailPage({ params }: Props) {
             {/* CTA */}
             <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <Link
-                href={`/shop?categories=${collection.category.toLowerCase().replace(/\s/g, "-")}`}
+                href={`/shop?categories=${collection.categorySlug.toLowerCase().replace(/\s/g, "-")}`}
                 className="btn-primary flex-1 text-center"
               >
                 Shop This Collection
@@ -320,7 +321,7 @@ export default async function CollectionDetailPage({ params }: Props) {
                 </h2>
               </div>
               <Link
-                href={`/shop?categories=${collection.category.toLowerCase().replace(/\s/g, "-")}`}
+                href={`/shop?categories=${collection.categorySlug.toLowerCase().replace(/\s/g, "-")}`}
                 className="text-sm text-ink-muted hover:text-accent underline underline-offset-2 transition-colors hidden sm:block"
               >
                 View all {collection.itemCount} pieces
@@ -341,7 +342,7 @@ export default async function CollectionDetailPage({ params }: Props) {
 
             <div className="mt-8 text-center sm:hidden">
               <Link
-                href={`/shop?categories=${collection.category.toLowerCase().replace(/\s/g, "-")}`}
+                href={`/shop?categories=${collection.categorySlug.toLowerCase().replace(/\s/g, "-")}`}
                 className="btn-secondary inline-flex"
               >
                 View all {collection.itemCount} pieces

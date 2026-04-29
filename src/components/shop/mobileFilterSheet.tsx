@@ -3,12 +3,17 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { SlidersHorizontal, X } from "lucide-react";
 import { FilterSidebar } from "./filterSidebar";
+import type { CategoryOption } from "@/lib/mock/mockProducts";
 
 interface Props {
   searchParams: Record<string, string | undefined>;
+  /** Category list derived from live product data (slug, label, count). */
+  categories:   CategoryOption[];
+  /** Tag list derived from live product data, alphabetically sorted. */
+  tags:         string[];
 }
 
-export function MobileFilterSheet({ searchParams }: Props) {
+export function MobileFilterSheet({ searchParams, categories, tags }: Props) {
   const activeCount = [
     (searchParams.categories ?? "").split(",").filter(Boolean).length,
     searchParams.minPrice ? 1 : 0,
@@ -58,7 +63,11 @@ export function MobileFilterSheet({ searchParams }: Props) {
 
           {/* Scrollable filter content */}
           <div className="flex-1 overflow-y-auto px-6 py-6">
-            <FilterSidebar searchParams={searchParams} />
+            <FilterSidebar
+              searchParams={searchParams}
+              categories={categories}
+              tags={tags}
+            />
           </div>
 
           {/* Footer CTA */}

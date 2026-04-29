@@ -9,7 +9,11 @@ import { SortDropdown }     from "@/components/shop/sortDropdown";
 import { ProductCard }      from "@/components/shared/productCard";
 import { Pagination }       from "@/components/shared/pagination";
 
-import { filterAndSortProducts, MOCK_PRODUCTS } from "@/lib/mock/mockProducts";
+import {
+  filterAndSortProducts,
+  getFilterOptions,
+  MOCK_PRODUCTS,
+} from "@/lib/mock/mockProducts";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -17,16 +21,16 @@ export const metadata: Metadata = {
     "Browse the full Carparachne collection — natural fibres, considered objects, and slow-made accessories.",
 };
 
-const PAGE_SIZE = 8; // use 8 so mock data paginates visibly; bump to 20 for production
+const PAGE_SIZE = 8; // bump to 20 for production
 
 type Props = {
   searchParams: Promise<Record<string, string | undefined>>;
 };
 
 export default async function ShopPage({ searchParams }: Props) {
-  const params   = await searchParams;
-  const sort     = params.sort     ?? "featured";
-  const page     = Number(params.page ?? 1);
+  const params = await searchParams;
+  const sort   = params.sort ?? "featured";
+  const page   = Number(params.page ?? 1);
 
   /* ── Filter + sort mock products ── */
   const { products, total } = filterAndSortProducts(
@@ -34,8 +38,10 @@ export default async function ShopPage({ searchParams }: Props) {
     MOCK_PRODUCTS,
   );
 
-  const totalPages  = Math.ceil(total / PAGE_SIZE);
-  const hasFilters  = !!(
+  const { categories, tags } = getFilterOptions(MOCK_PRODUCTS);
+
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+  const hasFilters = !!(
     params.categories || params.minPrice ||
     params.maxPrice   || params.inStock  || params.tags
   );
@@ -43,9 +49,12 @@ export default async function ShopPage({ searchParams }: Props) {
   return (
     <div>
       {/* ── Page header ── */}
-      <div className="container-site py-12 lg:py-16 border-b border-ink-line">
-        <p className="label-caps text-ink-muted mb-3">Carparachne</p>
-        <h1>Shop</h1>
+      <div className="container-site py-12 lg:py-16 border-b border-ink-line overflow-hidden">
+        <div className="relative">
+          <div className="absolute -left-4 -top-4 w-24 h-24 bg-orange-200/40 blur-3xl rounded-full" />
+          
+          <h1 className="relative z-10">Shop</h1>
+        </div>
       </div>
 
       {/* ── Main content: sidebar + product grid ── */}
@@ -54,7 +63,11 @@ export default async function ShopPage({ searchParams }: Props) {
 
           {/* ── Sidebar (desktop) ── */}
           <aside className="hidden lg:block w-56 xl:w-64 flex-shrink-0 sticky top-24">
-            <FilterSidebar searchParams={params} />
+            <FilterSidebar
+              searchParams={params}
+              categories={categories}
+              tags={tags}
+            />
           </aside>
 
           {/* ── Right column ── */}
@@ -65,7 +78,11 @@ export default async function ShopPage({ searchParams }: Props) {
               <div className="flex items-center gap-3 flex-wrap flex-1 min-w-0">
 
                 {/* Mobile filter trigger */}
-                <MobileFilterSheet searchParams={params} />
+                <MobileFilterSheet
+                  searchParams={params}
+                  categories={categories}
+                  tags={tags}
+                />
 
                 {/* Active filter chips */}
                 <ActiveFilterBar searchParams={params} />
