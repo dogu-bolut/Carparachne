@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import { FilterSidebar }    from "@/components/shop/filterSidebar";
+import { FilterSidebar } from "@/components/shop/filterSidebar";
 import { MobileFilterSheet } from "@/components/shop/mobileFilterSheet";
-import { ActiveFilterBar }  from "@/components/shop/activeFilterBar";
-import { SortDropdown }     from "@/components/shop/sortDropdown";
-import { ProductCard }      from "@/components/shared/productCard";
-import { Pagination }       from "@/components/shared/pagination";
+import { ActiveFilterBar } from "@/components/shop/activeFilterBar";
+import { SortDropdown } from "@/components/shop/sortDropdown";
+import { ProductCard } from "@/components/shared/productCard";
+import { Pagination } from "@/components/shared/pagination";
 
 import {
   filterAndSortProducts,
@@ -29,8 +29,8 @@ type Props = {
 
 export default async function ShopPage({ searchParams }: Props) {
   const params = await searchParams;
-  const sort   = params.sort ?? "featured";
-  const page   = Number(params.page ?? 1);
+  const sort = params.sort ?? "featured";
+  const page = Number(params.page ?? 1);
 
   /* ── Filter + sort mock products ── */
   const { products, total } = filterAndSortProducts(
@@ -42,8 +42,11 @@ export default async function ShopPage({ searchParams }: Props) {
 
   const totalPages = Math.ceil(total / PAGE_SIZE);
   const hasFilters = !!(
-    params.categories || params.minPrice ||
-    params.maxPrice   || params.inStock  || params.tags
+    params.categories ||
+    params.minPrice ||
+    params.maxPrice ||
+    params.inStock ||
+    params.tags
   );
 
   return (
@@ -51,12 +54,12 @@ export default async function ShopPage({ searchParams }: Props) {
       {/* ── Page header ── */}
       <div className="container-site py-12 lg:py-16 border-b border-ink-line">
         <h1 className="relative inline-block px-2">
-          <span 
-            className="absolute inset-0 z-0" 
-            style={{ 
-              backgroundColor: '#fef3c7',
-              transform: 'rotate(-0.3deg)',  
-              boxShadow: '4px 4px 0px 0px rgba(0,0,0,0.05)'
+          <span
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundColor: "#fef3c7",
+              transform: "rotate(4.0deg)",
+              boxShadow: "4px 4px 0px 0px rgba(0,0,0,0.05)",
             }}
           />
           <span className="relative z-10">Shop</span>
@@ -66,7 +69,6 @@ export default async function ShopPage({ searchParams }: Props) {
       {/* ── Main content: sidebar + product grid ── */}
       <div className="container-site py-10 lg:py-14">
         <div className="flex gap-10 lg:gap-14 items-start">
-
           {/* ── Sidebar (desktop) ── */}
           <aside className="hidden lg:block w-56 xl:w-64 flex-shrink-0 sticky top-24">
             <FilterSidebar
@@ -78,11 +80,9 @@ export default async function ShopPage({ searchParams }: Props) {
 
           {/* ── Right column ── */}
           <div className="flex-1 min-w-0">
-
             {/* Toolbar row */}
             <div className="flex items-start sm:items-center justify-between gap-3 mb-6 flex-wrap">
               <div className="flex items-center gap-3 flex-wrap flex-1 min-w-0">
-
                 {/* Mobile filter trigger */}
                 <MobileFilterSheet
                   searchParams={params}
@@ -103,8 +103,8 @@ export default async function ShopPage({ searchParams }: Props) {
             {/* Result count */}
             {total > 0 ? (
               <p className="text-sm text-ink-ghost mb-5">
-                Showing{" "}
-                {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, total)} of{" "}
+                Showing {(page - 1) * PAGE_SIZE + 1}–
+                {Math.min(page * PAGE_SIZE, total)} of{" "}
                 <strong className="text-ink-soft">{total}</strong>{" "}
                 {total === 1 ? "product" : "products"}
               </p>
