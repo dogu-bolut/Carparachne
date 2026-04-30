@@ -1,38 +1,51 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter, usePathname }  from "next/navigation";
+import { useState, useEffect, useTransition } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import type { CategoryOption } from "@/lib/mock/mockProducts";
 
 const PRICE_PRESETS = [
-  { label: "Under $50",     min: 0,   max: 50  },
-  { label: "$50 – $100",    min: 50,  max: 100 },
-  { label: "$100 – $200",   min: 100, max: 200 },
-  { label: "$200+",         min: 200, max: 9999 },
+  { label: "Under $50", min: 0, max: 50 },
+  { label: "$50 – $100", min: 50, max: 100 },
+  { label: "$100 – $200", min: 100, max: 200 },
+  { label: "$200+", min: 200, max: 9999 },
 ];
 
 interface Props {
   searchParams: Record<string, string | undefined>;
-  /** Category list derived from live product data (slug, label, count). */
-  categories:   CategoryOption[];
-  /** Tag list derived from live product data, alphabetically sorted. */
-  tags:         string[];
+  categories: CategoryOption[];
+  tags: string[];
 }
 
 type Section = "categories" | "price" | "tags" | "availability";
 
 export function FilterSidebar({ searchParams, categories, tags }: Props) {
-  const router   = useRouter();
+  const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState<Set<Section>>(
-    new Set(["categories", "price"])
+    new Set(["categories", "price"]),
   );
 
-  const activeCategories = (searchParams.categories ?? "").split(",").filter(Boolean);
-  const activeTags       = (searchParams.tags       ?? "").split(",").filter(Boolean);
-  const inStockOnly      = searchParams.inStock === "true";
+  // Local state for the custom price inputs so we don't push a route on every keystroke.
+  const [localMin, setLocalMin] = useState(searchParams.minPrice ?? "");
+  const [localMax, setLocalMax] = useState(searchParams.maxPrice ?? "");
+
+  // Keep local inputs in sync when a preset (or "Clear all") changes the URL params.
+  useEffect(() => {
+    setLocalMin(searchParams.minPrice ?? "");
+  }, [searchParams.minPrice]);
+
+  useEffect(() => {
+    setLocalMax(searchParams.maxPrice ?? "");
+  }, [searchParams.maxPrice]);
+
+  const activeCategories = (searchParams.categories ?? "")
+    .split(",")
+    .filter(Boolean);
+  const activeTags = (searchParams.tags ?? "").split(",").filter(Boolean);
+  const inStockOnly = searchParams.inStock === "true";
 
   function toggle(section: Section) {
     setOpen((prev) => {
@@ -46,7 +59,17 @@ export function FilterSidebar({ searchParams, categories, tags }: Props) {
     const params = new URLSearchParams(searchParams as Record<string, string>);
     if (value === null || value === "") params.delete(key);
     else params.set(key, value);
-    params.delete("page"); // reset pagination
+    params.delete("page");
+    startTransition(() => router.push(`${pathname}?${params.toString()}`));
+  }
+
+  function updateParams(updates: Record<string, string | null>) {
+    const params = new URLSearchParams(searchParams as Record<string, string>);
+    for (const [key, value] of Object.entries(updates)) {
+      if (value === null || value === "") params.delete(key);
+      else params.set(key, value);
+    }
+    params.delete("page");
     startTransition(() => router.push(`${pathname}?${params.toString()}`));
   }
 
@@ -66,15 +89,25 @@ export function FilterSidebar({ searchParams, categories, tags }: Props) {
     startTransition(() => router.push(pathname));
   }
 
+  /** Commit the custom min/max fields on blur. */
+  function commitPriceRange() {
+    updateParams({
+      minPrice: localMin || null,
+      maxPrice: localMax || null,
+    });
+  }
+
   const hasFilters =
     activeCategories.length > 0 ||
     activeTags.length > 0 ||
     inStockOnly ||
-    searchParams.minPrice ||
-    searchParams.maxPrice;
+    !!searchParams.minPrice ||
+    !!searchParams.maxPrice;
 
   return (
-    <div className={`transition-opacity duration-200 ${isPending ? "opacity-50 pointer-events-none" : ""}`}>
+    <div
+      className={`transition-opacity duration-200 ${isPending ? "opacity-50 pointer-events-none" : ""}`}
+    >
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="flex items-center gap-2 font-sans text-base font-semibold text-ink-soft">
@@ -129,8 +162,11 @@ export function FilterSidebar({ searchParams, categories, tags }: Props) {
         <ul className="flex flex-col gap-2.5 mb-4">
           {PRICE_PRESETS.map(({ label, min, max }) => {
             const active =
+              searchParams.minPrice !== undefined &&
+              searchParams.maxPrice !== undefined &&
               Number(searchParams.minPrice) === min &&
               Number(searchParams.maxPrice) === max;
+
             return (
               <li key={label}>
                 <label className="flex items-center gap-2.5 cursor-pointer group">
@@ -138,8 +174,11 @@ export function FilterSidebar({ searchParams, categories, tags }: Props) {
                     checked={active}
                     onChange={() =>
                       active
-                        ? (updateParam("minPrice", null), updateParam("maxPrice", null))
-                        : (updateParam("minPrice", String(min)), updateParam("maxPrice", String(max)))
+                        ? updateParams({ minPrice: null, maxPrice: null })
+                        : updateParams({
+                            minPrice: String(min),
+                            maxPrice: String(max),
+                          })
                     }
                     id={`price-${min}-${max}`}
                   />
@@ -152,14 +191,16 @@ export function FilterSidebar({ searchParams, categories, tags }: Props) {
           })}
         </ul>
 
-        {/* Custom range inputs */}
+        {/* Custom range inputs — navigate only on blur, not on every keystroke */}
         <div className="flex items-center gap-2">
           <input
             type="number"
             min={0}
             placeholder="Min"
-            value={searchParams.minPrice ?? ""}
-            onChange={(e) => updateParam("minPrice", e.target.value || null)}
+            value={localMin}
+            onChange={(e) => setLocalMin(e.target.value)}
+            onBlur={commitPriceRange}
+            onKeyDown={(e) => e.key === "Enter" && commitPriceRange()}
             className="w-full text-sm py-2 px-3"
             aria-label="Minimum price"
           />
@@ -168,8 +209,10 @@ export function FilterSidebar({ searchParams, categories, tags }: Props) {
             type="number"
             min={0}
             placeholder="Max"
-            value={searchParams.maxPrice ?? ""}
-            onChange={(e) => updateParam("maxPrice", e.target.value || null)}
+            value={localMax}
+            onChange={(e) => setLocalMax(e.target.value)}
+            onBlur={commitPriceRange}
+            onKeyDown={(e) => e.key === "Enter" && commitPriceRange()}
             className="w-full text-sm py-2 px-3"
             aria-label="Maximum price"
           />
@@ -193,9 +236,11 @@ export function FilterSidebar({ searchParams, categories, tags }: Props) {
                 onClick={() => toggleTag(tag)}
                 className={`
                   px-3 py-1.5 rounded text-xs font-medium border transition-all duration-150
-                  ${active
-                    ? "bg-ink text-white border-ink"
-                    : "bg-transparent text-ink-muted border-ink-line hover:border-ink hover:text-ink"}
+                  ${
+                    active
+                      ? "bg-ink text-white border-ink"
+                      : "bg-transparent text-ink-muted border-ink-line hover:border-ink hover:text-ink"
+                  }
                 `}
                 aria-pressed={active}
               >
@@ -274,9 +319,7 @@ function CheckBox({
       className={`
         w-4 h-4 rounded-sm flex-shrink-0 border transition-all duration-150
         flex items-center justify-center
-        ${checked
-          ? "bg-ink border-ink"
-          : "bg-surface-raised border-ink-line"}
+        ${checked ? "bg-ink border-ink" : "bg-surface-raised border-ink-line"}
       `}
       role="checkbox"
       aria-checked={checked}
@@ -286,8 +329,18 @@ function CheckBox({
       onKeyDown={(e) => e.key === " " && onChange()}
     >
       {checked && (
-        <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 12 12">
-          <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M2 6l3 3 5-5" />
+        <svg
+          className="w-2.5 h-2.5 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 12 12"
+        >
+          <path
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2 6l3 3 5-5"
+          />
         </svg>
       )}
     </div>
