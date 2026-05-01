@@ -1,43 +1,64 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useTransition }          from "react";
-import { X }                      from "lucide-react";
+import { useTransition } from "react";
+import { X } from "lucide-react";
+import { PRICE_PRESETS } from "./filterSidebar";
 
 interface Props {
   searchParams: Record<string, string | undefined>;
 }
 
 interface Chip {
-  label:    string;
+  label: string;
   paramKey: string;
-  value?:   string;   // if undefined, the whole key is removed
+  value?: string; // if undefined, the whole key is removed
 }
 
 export function ActiveFilterBar({ searchParams }: Props) {
-  const router   = useRouter();
+  const router = useRouter();
   const pathname = usePathname();
   const [, start] = useTransition();
 
   const chips: Chip[] = [];
 
   // Categories
-  (searchParams.categories ?? "").split(",").filter(Boolean).forEach((slug) => {
-    chips.push({ label: slug.replace("-", " "), paramKey: "categories", value: slug });
-  });
+  (searchParams.categories ?? "")
+    .split(",")
+    .filter(Boolean)
+    .forEach((slug) => {
+      chips.push({
+        label: slug.replace("-", " "),
+        paramKey: "categories",
+        value: slug,
+      });
+    });
 
   // Price
   if (searchParams.minPrice || searchParams.maxPrice) {
-    const min = searchParams.minPrice ? `€${searchParams.minPrice}` : "";
-    const max = searchParams.maxPrice ? `€${searchParams.maxPrice}` : "";
-    const label = min && max ? `${min} – ${max}` : min || max;
-    chips.push({ label: `Price: ${label}`, paramKey: "priceRange" });
+    const min = Number(searchParams.minPrice ?? 0);
+    const max = Number(searchParams.maxPrice ?? 9999);
+
+    const preset = PRICE_PRESETS.find((p) => p.min === min && p.max === max);
+
+    if (preset) {
+      chips.push({ label: preset.label, paramKey: "priceRange" });
+    } else {
+      const minStr = searchParams.minPrice ? `€${searchParams.minPrice}` : "";
+      const maxStr = searchParams.maxPrice ? `€${searchParams.maxPrice}` : "";
+      const label =
+        minStr && maxStr ? `${minStr} – ${maxStr}` : minStr || maxStr;
+      chips.push({ label, paramKey: "priceRange" });
+    }
   }
 
   // Tags
-  (searchParams.tags ?? "").split(",").filter(Boolean).forEach((tag) => {
-    chips.push({ label: tag, paramKey: "tags", value: tag });
-  });
+  (searchParams.tags ?? "")
+    .split(",")
+    .filter(Boolean)
+    .forEach((tag) => {
+      chips.push({ label: tag, paramKey: "tags", value: tag });
+    });
 
   // In stock
   if (searchParams.inStock === "true") {
@@ -51,22 +72,21 @@ export function ActiveFilterBar({ searchParams }: Props) {
 
     if (chip.paramKey === "categories" && chip.value) {
       const next = (searchParams.categories ?? "")
-        .split(",").filter(Boolean)
+        .split(",")
+        .filter(Boolean)
         .filter((s) => s !== chip.value)
         .join(",");
       next ? params.set("categories", next) : params.delete("categories");
-
     } else if (chip.paramKey === "tags" && chip.value) {
       const next = (searchParams.tags ?? "")
-        .split(",").filter(Boolean)
+        .split(",")
+        .filter(Boolean)
         .filter((t) => t !== chip.value)
         .join(",");
       next ? params.set("tags", next) : params.delete("tags");
-
     } else if (chip.paramKey === "priceRange") {
       params.delete("minPrice");
       params.delete("maxPrice");
-
     } else {
       params.delete(chip.paramKey);
     }
@@ -76,7 +96,11 @@ export function ActiveFilterBar({ searchParams }: Props) {
   }
 
   return (
-    <div className="flex items-center flex-wrap gap-2" role="group" aria-label="Active filters">
+    <div
+      className="flex items-center flex-wrap gap-2"
+      role="group"
+      aria-label="Active filters"
+    >
       {chips.map((chip) => (
         <span
           key={`${chip.paramKey}-${chip.value ?? "single"}`}
