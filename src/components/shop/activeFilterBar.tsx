@@ -65,6 +65,21 @@ export function ActiveFilterBar({ searchParams }: Props) {
     chips.push({ label: "In stock", paramKey: "inStock" });
   }
 
+  // Sale Badge
+  if (searchParams.badge === "sale") {
+    chips.push({ label: "Sale", paramKey: "badge" });
+  }
+
+  // Out Signatures Sort
+  if (searchParams.sort === "signature") {
+    chips.push({ label: "Out Signatures", paramKey: "sort" });
+  }
+
+  // New Arrivals Sort
+  if (searchParams.sort === "newest") {
+    chips.push({ label: "New Arrivals", paramKey: "sort" });
+  }
+
   if (chips.length === 0) return null;
 
   function removeChip(chip: Chip) {

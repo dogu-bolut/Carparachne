@@ -1,12 +1,12 @@
 "use client";
 
-import Image     from "next/image";
-import Link      from "next/link";
+import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Heart, ShoppingBag } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCartStore } from "@/lib/stores/cartStore";
-import { formatPrice }  from "@/lib/utils/index";
+import { formatPrice } from "@/lib/utils/index";
 
 interface ProductCardProps {
   product: Product;
@@ -17,10 +17,10 @@ interface ProductCardProps {
 }
 
 const BADGE_STYLES: Record<string, string> = {
-  new:        "badge badge-accent",
-  sale:       "badge bg-error-light text-error",
-  bestseller: "badge badge-neutral",
-  "low-stock":"badge bg-warning-light text-warning",
+  new: "badge badge-accent",
+  sale: "badge bg-error-light text-error",
+  signature: "badge badge-neutral",
+  "low-stock": "badge bg-warning-light text-warning",
   "sold-out": "badge bg-ink-line text-ink-muted",
 };
 
@@ -29,17 +29,17 @@ export function ProductCard({
   disableImageSwap = false,
   index = 0,
 }: ProductCardProps) {
-  const [hovered, setHovered]     = useState(false);
-  const [wishlisted, setWish]     = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [wishlisted, setWish] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const { addItem, openCart }     = useCartStore();
+  const { addItem, openCart } = useCartStore();
 
   // Mount flag to safely render random client data
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const primaryImage   = product.images[0] ?? {
+  const primaryImage = product.images[0] ?? {
     id: "placeholder",
     src: "/images/product-placeholder.jpg",
     altText: product.name,
@@ -47,7 +47,7 @@ export function ProductCard({
     height: 800,
   };
   const secondaryImage = product.images[1];
-  const showAltImage   = hovered && !disableImageSwap && secondaryImage;
+  const showAltImage = hovered && !disableImageSwap && secondaryImage;
 
   const discountPct = product.compareAtPrice
     ? Math.round((1 - product.price / product.compareAtPrice) * 100)
@@ -57,12 +57,12 @@ export function ProductCard({
     e.preventDefault(); // don't navigate to PDP
     addItem({
       productId: product.id,
-      slug:      product.slug,
-      name:      product.name,
-      image:     primaryImage,
-      price:     product.price,
-      currency:  product.currency,
-      quantity:  1,
+      slug: product.slug,
+      name: product.name,
+      image: primaryImage,
+      price: product.price,
+      currency: product.currency,
+      quantity: 1,
       selectedVariants: {} as any, // quick-add uses defaults
     });
     openCart();
@@ -123,7 +123,10 @@ export function ProductCard({
 
           {/* ── Wishlist button ── */}
           <button
-            onClick={(e) => { e.preventDefault(); setWish(!wishlisted); }}
+            onClick={(e) => {
+              e.preventDefault();
+              setWish(!wishlisted);
+            }}
             className={`
               absolute top-3 right-3 p-2 rounded-full
               bg-surface-raised/80 backdrop-blur-sm
@@ -176,12 +179,16 @@ export function ProductCard({
 
           {/* Star rating */}
           {(product.reviewCount || 0) > 0 && (
-            <div 
-              className="flex items-center gap-1.5 mb-2" 
+            <div
+              className="flex items-center gap-1.5 mb-2"
               aria-label={`${product.rating} out of 5 stars`}
               suppressHydrationWarning
             >
-              <div className="flex gap-0.5" aria-hidden suppressHydrationWarning>
+              <div
+                className="flex gap-0.5"
+                aria-hidden
+                suppressHydrationWarning
+              >
                 {Array.from({ length: 5 }, (_, i) => (
                   <svg
                     key={i}
@@ -194,7 +201,9 @@ export function ProductCard({
                   </svg>
                 ))}
               </div>
-              <span className="text-xs text-ink-ghost">({product.reviewCount})</span>
+              <span className="text-xs text-ink-ghost">
+                ({product.reviewCount})
+              </span>
             </div>
           )}
 
@@ -203,11 +212,12 @@ export function ProductCard({
             <span className="text-sm font-semibold text-ink-soft">
               {formatPrice(product.price, product.currency)}
             </span>
-            {product.compareAtPrice && product.compareAtPrice > product.price &&(
-              <span className="text-ink-muted line-through text-sm">
-                {formatPrice(product.compareAtPrice, product.currency)}
-              </span>
-            )}
+            {product.compareAtPrice &&
+              product.compareAtPrice > product.price && (
+                <span className="text-ink-muted line-through text-sm">
+                  {formatPrice(product.compareAtPrice, product.currency)}
+                </span>
+              )}
           </div>
         </div>
       </Link>

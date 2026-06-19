@@ -72,7 +72,7 @@ export const MOCK_PRODUCTS: Product[] = [
     ],
     categorySlug: "clothing",
     tags: ["Organic", "Handcrafted", "New Arrival"],
-    badge: "bestseller",
+    badge: "signature",
     rating: 5,
     reviewCount: 2,
     inStock: true,
@@ -139,8 +139,9 @@ export const MOCK_PRODUCTS: Product[] = [
     ],
     categorySlug: "clothing",
     tags: ["Sustainable", "Handcrafted"],
-    rating: 4.8,
-    reviewCount: 27,
+    badge: "sale",
+    rating: 5,
+    reviewCount: 2,
     inStock: true,
     relatedProductIds: ["bs-0", "bs-6"],
     seo: {
@@ -201,7 +202,8 @@ export const MOCK_PRODUCTS: Product[] = [
     ],
     categorySlug: "accessories",
     tags: ["Handcrafted", "Sustainable"],
-    rating: 4.5,
+    badge: "sale",
+    rating: 2.2,
     reviewCount: 34,
     inStock: true,
     relatedProductIds: ["bs-3"],
@@ -436,6 +438,7 @@ export const MOCK_PRODUCTS: Product[] = [
     ],
     categorySlug: "home-and-living",
     tags: ["Organic", "Sustainable"],
+    badge: "sale",
     rating: 5,
     reviewCount: 69,
     inStock: true,
@@ -609,6 +612,7 @@ export type SortOption =
   | "price-asc"
   | "price-desc"
   | "best-rating"
+  | "signature"
   | "most-reviewed";
 
 export interface GetProductsArgs {
@@ -620,6 +624,7 @@ export interface GetProductsArgs {
   sort?: string;
   page?: string;
   pageSize?: string;
+  badge?: string;
 }
 
 export function filterAndSortProducts(
@@ -635,6 +640,7 @@ export function filterAndSortProducts(
     sort = "featured",
     page = "1",
     pageSize = "20",
+    badge = "", // 1. Extract the badge from the arguments
   } = args;
 
   const activeCats = categories.split(",").filter(Boolean);
@@ -649,6 +655,10 @@ export function filterAndSortProducts(
     if (activeTags.length && !activeTags.some((t) => p.tags.includes(t)))
       return false;
     if (inStockOnly && !p.inStock) return false;
+    if (badge && p.badge?.toLowerCase() !== badge.toLowerCase()) {
+      return false;
+    }
+
     return true;
   });
 
@@ -664,6 +674,18 @@ export function filterAndSortProducts(
         return (b.reviewCount ?? 0) - (a.reviewCount ?? 0);
       case "newest":
         return Number(b.id.split("-")[1]) - Number(a.id.split("-")[1]);
+      case "signature": {
+        const aIsBadged = a.badge?.toLowerCase() === "signature" ? 1 : 0;
+        const bIsBadged = b.badge?.toLowerCase() === "signature" ? 1 : 0;
+
+        if (aIsBadged !== bIsBadged) {
+          return bIsBadged - aIsBadged;
+        }
+        const aScore = (a.reviewCount ?? 0) * (a.rating ?? 0);
+        const bScore = (b.reviewCount ?? 0) * (b.rating ?? 0);
+
+        return bScore - aScore;
+      }
       default:
         return 0;
     }

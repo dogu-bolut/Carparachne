@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { HeroSection }        from "@/components/home/heroSection";
-import { CategoryGrid }       from "@/components/home/categoryGrid";
+import { HeroSection } from "@/components/home/heroSection";
+import { CategoryGrid } from "@/components/home/categoryGrid";
 import { ProductCarousel } from "@/components/product/productCarousel";
 import { MOCK_PRODUCTS } from "@/lib/mock/mockProducts";
-import { ValueProposition }   from "@/components/home/valueProposition";
-import { EditorialBanner }    from "@/components/home/editorialBanner";
-import { BlogTeaser }         from "@/components/home/blogTeaser";
+import { ValueProposition } from "@/components/home/valueProposition";
+import { EditorialBanner } from "@/components/home/editorialBanner";
+import { BlogTeaser } from "@/components/home/blogTeaser";
 
 export const metadata: Metadata = {
   title: "Carparachne — Refined Commerce",
   description:
-    "Thoughtfully curated products for a considered life. Shop new arrivals, best sellers, and editorial collections.",
+    "Thoughtfully curated products for a considered life. Shop new arrivals, our signatures, and editorial collections.",
 };
 
 export default function HomePage() {
-  const homeBestsellers = MOCK_PRODUCTS.slice(0, 8);
+  const homeOurSignatures = MOCK_PRODUCTS.slice(0, 8);
   return (
     <>
       {/* 1. Full-viewport hero with CTA */}
@@ -31,25 +31,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Best-selling products carousel */}
+      {/* 3. Our-signatures products carousel */}
       <section
         className="section-md bg-surface-sunken"
-        aria-labelledby="bestsellers-heading"
+        aria-labelledby="signatures-heading"
       >
         <div className="container-site">
           <header className="mb-10 lg:mb-14 flex items-end justify-between">
             <div>
               <p className="label-caps text-ink-muted mb-3">Curated for you</p>
-              <h2 id="bestsellers-heading">Best Sellers</h2>
+              <h2 id="signatures-heading">Our Signatures</h2>
             </div>
             <a
-              href="/shop?sort=bestseller"
+              href="/shop?sort=signature"
               className="label-caps text-ink-muted hover:text-ink transition-colors hidden sm:flex items-center gap-2"
             >
               View all →
             </a>
           </header>
-          <ProductCarousel products={homeBestsellers} />
+          <ProductCarousel products={homeOurSignatures} />
         </div>
       </section>
 

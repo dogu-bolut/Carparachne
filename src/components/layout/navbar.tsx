@@ -14,19 +14,19 @@ const NAV_ITEMS: NavItem[] = [
     href: "/shop",
     children: [
       { label: "New Arrivals", href: "/shop?sort=newest" },
-      { label: "Best Sellers", href: "/shop?sort=bestseller" },
-      { label: "Sale",         href: "/shop?badge=sale",   badge: "Sale" },
+      { label: "Our Signatures", href: "/shop?sort=signature" },
+      { label: "Sale", href: "/shop?badge=sale", badge: "Sale" },
     ],
   },
   { label: "Collections", href: "/collections" },
-  { label: "About",       href: "/about" },
-  { label: "Journal",     href: "/blog" },
+  { label: "About", href: "/about" },
+  { label: "Journal", href: "/blog" },
 ];
 
 export function Navbar() {
-  const pathname           = usePathname();
+  const pathname = usePathname();
   const { itemCount, openCart } = useCartStore();
-  const [scrolled,   setScrolled]   = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
@@ -57,7 +57,6 @@ export function Navbar() {
         role="banner"
       >
         <div className="container-site h-full flex items-center justify-between">
-
           {/* ── Logo ── */}
           <Link
             href="/"
@@ -110,7 +109,9 @@ export function Navbar() {
                           >
                             {child.label}
                             {child.badge && (
-                              <span className="badge badge-accent ml-3">{child.badge}</span>
+                              <span className="badge badge-accent ml-3">
+                                {child.badge}
+                              </span>
                             )}
                           </Link>
                         </li>

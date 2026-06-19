@@ -5,22 +5,22 @@ import { Instagram, Twitter, Facebook } from "lucide-react";
 
 const FOOTER_LINKS = {
   Shop: [
-    { label: "New Arrivals",  href: "/shop?sort=newest" },
-    { label: "Best Sellers",  href: "/shop?sort=bestseller" },
-    { label: "Sale",          href: "/shop?badge=sale" },
-    { label: "Gift Cards",    href: "/gift-cards" },
+    { label: "New Arrivals", href: "/shop?sort=newest" },
+    { label: "Our Signatures", href: "/shop?sort=signature" },
+    { label: "Sale", href: "/shop?badge=sale" },
+    { label: "Gift Cards", href: "/gift-cards" },
   ],
   Company: [
-    { label: "About Us",      href: "/about" },
-    { label: "Journal",       href: "/blog" },
+    { label: "About Us", href: "/about" },
+    { label: "Journal", href: "/blog" },
     { label: "Sustainability", href: "/sustainability" },
-    { label: "Careers",       href: "/careers" },
+    { label: "Careers", href: "/careers" },
   ],
   Help: [
-    { label: "Contact",       href: "/contact" },
-    { label: "FAQ",           href: "/faq" },
-    { label: "Shipping",      href: "/policies/shipping" },
-    { label: "Returns",       href: "/policies/returns" },
+    { label: "Contact", href: "/contact" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Shipping", href: "/policies/shipping" },
+    { label: "Returns", href: "/policies/returns" },
   ],
 };
 
@@ -30,7 +30,6 @@ export function Footer() {
       {/* ── Main grid ── */}
       <div className="container-site py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12">
-
           {/* Brand column */}
           <div className="lg:col-span-2 flex flex-col gap-6">
             <Link
@@ -40,7 +39,8 @@ export function Footer() {
               Carparachne
             </Link>
             <p className="text-sm leading-relaxed text-surface/60 max-w-xs">
-              Thoughtfully curated products for those who value quality, craft, and a considered life.
+              Thoughtfully curated products for those who value quality, craft,
+              and a considered life.
             </p>
 
             {/* Newsletter */}
@@ -70,9 +70,21 @@ export function Footer() {
             {/* Socials */}
             <div className="flex items-center gap-4">
               {[
-                { Icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-                { Icon: Twitter,   href: "https://twitter.com",   label: "Twitter" },
-                { Icon: Facebook,  href: "https://facebook.com",  label: "Facebook" },
+                {
+                  Icon: Instagram,
+                  href: "https://instagram.com",
+                  label: "Instagram",
+                },
+                {
+                  Icon: Twitter,
+                  href: "https://twitter.com",
+                  label: "Twitter",
+                },
+                {
+                  Icon: Facebook,
+                  href: "https://facebook.com",
+                  label: "Facebook",
+                },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -117,9 +129,9 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-5">
             {[
-              { label: "Privacy",  href: "/policies/privacy" },
-              { label: "Terms",    href: "/policies/terms" },
-              { label: "Cookies",  href: "/policies/cookies" },
+              { label: "Privacy", href: "/policies/privacy" },
+              { label: "Terms", href: "/policies/terms" },
+              { label: "Cookies", href: "/policies/cookies" },
             ].map(({ label, href }) => (
               <Link
                 key={href}
