@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Twitter, Facebook } from "lucide-react";
+import { Instagram, Twitter, Facebook, Linkedin } from "lucide-react";
 
 const FOOTER_LINKS = {
   Shop: [
@@ -84,6 +84,11 @@ export function Footer() {
                   Icon: Facebook,
                   href: "https://facebook.com",
                   label: "Facebook",
+                },
+                {
+                  Icon: Linkedin,
+                  href: "https://linkedin.com",
+                  label: "LinkedIn",
                 },
               ].map(({ Icon, href, label }) => (
                 <a
