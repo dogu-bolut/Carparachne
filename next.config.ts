@@ -7,15 +7,15 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
 
     // Define breakpoints that match Tailwind screens for optimal srcSet
-    deviceSizes:  [375, 640, 768, 1024, 1280, 1440, 1920],
-    imageSizes:   [16, 32, 48, 64, 80, 96, 128, 256, 384],
+    deviceSizes: [375, 640, 768, 1024, 1280, 1440, 1920],
+    imageSizes: [16, 32, 48, 64, 80, 96, 128, 256, 384],
     qualities: [25, 50, 75, 80, 85, 90, 100],
 
     // Domains / patterns for external images (CDN, Shopify, Contentful, etc.)
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.carparachne.com",     // your production CDN
+        hostname: "cdn.carparachne.com", // your production CDN
         pathname: "/images/**",
       },
       {
@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.shopify.com",       // if using Shopify Storefront API
+        hostname: "*.shopify.com", // if using Shopify Storefront API
       },
     ],
 
@@ -34,9 +34,10 @@ const nextConfig: NextConfig = {
 
   // ── Compiler options ──────────────────────────────────────────────────────
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production"
-      ? { exclude: ["error", "warn"] }
-      : false,
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? { exclude: ["error", "warn"] }
+        : false,
   },
 
   // ── Experimental ─────────────────────────────────────────────────────────
@@ -56,28 +57,31 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "X-DNS-Prefetch-Control",   value: "on" },
-          { key: "X-Frame-Options",           value: "SAMEORIGIN" },
-          { key: "X-Content-Type-Options",    value: "nosniff" },
-          { key: "Referrer-Policy",           value: "strict-origin-when-cross-origin" },
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },
-      {
+      /*{
         // Immutable cache for all Next.js static assets
         source: "/_next/static/(.*)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
-      },
+      },*/
       {
         // Long cache for public images
         source: "/images/(.*)",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=31536000" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=31536000",
+          },
         ],
       },
     ];
@@ -86,10 +90,10 @@ const nextConfig: NextConfig = {
   // ── Redirects ─────────────────────────────────────────────────────────────
   async redirects() {
     return [
-      { source: "/shop/all",    destination: "/shop",             permanent: true },
-      { source: "/blog/index",  destination: "/blog",             permanent: true },
-      { source: "/privacy",     destination: "/policies/privacy", permanent: true },
-      { source: "/terms",       destination: "/policies/terms",   permanent: true },
+      { source: "/shop/all", destination: "/shop", permanent: true },
+      { source: "/blog/index", destination: "/blog", permanent: true },
+      { source: "/privacy", destination: "/policies/privacy", permanent: true },
+      { source: "/terms", destination: "/policies/terms", permanent: true },
     ];
   },
 
@@ -97,8 +101,8 @@ const nextConfig: NextConfig = {
   webpack(config, { isServer }) {
     // Inline SVG support
     config.module.rules.push({
-      test:  /\.svg$/,
-      use:   ["@svgr/webpack"],
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
     });
     return config;
   },
