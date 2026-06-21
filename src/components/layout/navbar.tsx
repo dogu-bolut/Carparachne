@@ -7,6 +7,9 @@ import { ShoppingBag, Search, Menu, X, ChevronDown } from "lucide-react";
 import { useCartStore } from "@/lib/stores/cartStore";
 import type { NavItem } from "@/lib/types";
 
+// Import the Language Selector (Adjust this path if it is located in a different folder)
+import LanguageSelector from "src/components/LanguageSelector";
+
 /* ── Static nav config — replace with CMS data in production ────────────── */
 const NAV_ITEMS: NavItem[] = [
   {
@@ -125,6 +128,11 @@ export function Navbar() {
 
           {/* ── Right actions ── */}
           <div className="flex items-center gap-1">
+            {/* Desktop Language Selector */}
+            <div className="hidden md:block mr-2">
+              <LanguageSelector />
+            </div>
+
             {/* Search */}
             <Link href="/search" className="btn-ghost" aria-label="Search">
               <Search size={18} />
@@ -198,6 +206,11 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
+
+            {/* Mobile Language Selector (Anchored to bottom) */}
+            <div className="mt-auto p-6 border-t border-ink-line/50">
+              <LanguageSelector direction="up" />
+            </div>
           </nav>
         </>
       )}
