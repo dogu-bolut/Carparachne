@@ -1,3 +1,5 @@
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
@@ -42,40 +44,51 @@ export const metadata: Metadata = {
   description: "Thoughtfully curated products for a considered life.",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_US", // Note: If you want to translate the OG locale, you will need to move metadata generation into a generateMetadata function later.
     siteName: "Carparachne",
   },
   robots: { index: true, follow: true },
 };
 
 /* ── Layout ──────────────────────────────────────────────────────────────── */
-export default function RootLayout({
+// 1. Change to an async function and add the params object
+export default async function RootLayout({
   children,
+  params, // 1. Remove the direct destructuring here
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>; // 2. Type it as a Promise
 }) {
+  // 3. Await the params to get the locale
+  const { locale } = await params;
+
+  // Await the translations for the current locale
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}
       suppressHydrationWarning
     >
       <body>
-        <Providers>
-          {/* Persistent chrome */}
-          <Navbar />
-          <CartDrawer />
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
+            {/* Persistent chrome */}
+            <Navbar />
+            <CartDrawer />
 
-          {/* Page content */}
-          <main id="main-content" tabIndex={-1}>
-            {children}
-          </main>
+            {/* Page content */}
+            <main id="main-content" tabIndex={-1}>
+              {children}
+            </main>
 
-          <Footer />
+            <Footer />
 
-          {/* Global toast notifications */}
-          <ToastRegion />
-        </Providers>
+            {/* Global toast notifications */}
+            <ToastRegion />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

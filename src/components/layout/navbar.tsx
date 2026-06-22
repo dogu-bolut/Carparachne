@@ -1,37 +1,38 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingBag, Search, Menu, X, ChevronDown } from "lucide-react";
 import { useCartStore } from "@/lib/stores/cartStore";
 import type { NavItem } from "@/lib/types";
+import { useTranslations } from "next-intl"; // <-- Import the hook
 
-// Import the Language Selector (Adjust this path if it is located in a different folder)
 import LanguageSelector from "src/components/LanguageSelector";
 
-/* ── Static nav config — replace with CMS data in production ────────────── */
-const NAV_ITEMS: NavItem[] = [
-  {
-    label: "Shop",
-    href: "/shop",
-    children: [
-      { label: "New Arrivals", href: "/shop?sort=newest" },
-      { label: "Our Signatures", href: "/shop?sort=signature" },
-      { label: "Sale", href: "/shop?badge=sale", badge: "Sale" },
-    ],
-  },
-  { label: "Collections", href: "/collections" },
-  { label: "About", href: "/about" },
-  { label: "Journal", href: "/blog" },
-];
-
 export function Navbar() {
+  const t = useTranslations("Navbar"); // <-- Initialize the hook
   const pathname = usePathname();
   const { itemCount, openCart } = useCartStore();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+
+  // ── Move NAV_ITEMS inside so it can react to language changes ──
+  const NAV_ITEMS: NavItem[] = [
+    {
+      label: t("shop"),
+      href: "/shop",
+      children: [
+        { label: t("newArrivals"), href: "/shop?sort=newest" },
+        { label: t("ourSignatures"), href: "/shop?sort=signature" },
+        { label: t("sale"), href: "/shop?badge=sale", badge: t("saleBadge") },
+      ],
+    },
+    { label: t("collections"), href: "/collections" },
+    { label: t("about"), href: "/about" },
+    { label: t("journal"), href: "/blog" },
+  ];
 
   /* Detect scroll for transparent → solid header transition */
   useEffect(() => {

@@ -1,8 +1,73 @@
 {
-  "nav": {
-    "products": "Ürünler"
+  "About": {
+    "metadata": {
+      "title": "Hakkımızda",
+      "description": "We believe in the enduring value of quality craft. Learn about our story, mission, and the people behind Carparachne."
+    },
+    "hero": {
+      "eyebrow": "Hikayemiz",
+      "headingLine1": "Made with intention.",
+      "headingLine2": "Built to last."
+    },
+    "stats": {
+      "founded": { "value": "2018", "label": "Founded" },
+      "partners": { "value": "24", "label": "Supplier Partners" },
+      "packaging": { "value": "100%", "label": "Compostable Packaging" },
+      "styles": { "value": "~12", "label": "New Styles per Year" }
+    },
+    "stories": {
+      "beginning": {
+        "eyebrow": "Our Beginning",
+        "heading": "Born from a love\nof enduring craft",
+        "body": "Carparachne began in 2018 in a small studio in Copenhagen — a single room stacked with sample fabrics, sketches, and the firm belief that the things we choose to surround ourselves with should be made with intention. We were tired of fast cycles and fleeting trends. We wanted objects and garments that would earn a place in your life, not just your wardrobe."
+      },
+      "philosophy": {
+        "eyebrow": "Our Philosophy",
+        "heading": "Less, but\nbetter",
+        "body": "We source materials directly from family-run mills across Portugal, Japan, and Peru — partners we visit twice a year and work with on long-term contracts. Every product passes through a 28-point quality review before it reaches you. We deliberately keep our range small; each piece earns its place. If something doesn't justify its existence, we don't make it."
+      },
+      "commitment": {
+        "eyebrow": "Our Commitment",
+        "heading": "Sustainability\nas practice",
+        "body": "For us, sustainability isn't a marketing claim — it's a design constraint. We use certified organic and recycled materials wherever possible, work exclusively with carbon-neutral shipping partners, and publish an annual impact report with full supply-chain transparency. Our packaging is entirely compostable."
+      }
+    },
+    "mission": {
+      "eyebrow": "Our Mission",
+      "quote": "\"To make only things worth making — and to make them as well as they can be made.\"",
+      "author": "— Lena Hartmann, Founder"
+    },
+    "teamSection": {
+      "eyebrow": "The People",
+      "heading": "Meet the Team"
+    },
+    "team": {
+      "lena": {
+        "role": "Founder & Creative Director",
+        "bio": "Former textile engineer turned designer. Lena's obsession with material science shapes every product decision."
+      },
+      "marcus": {
+        "role": "Head of Sourcing",
+        "bio": "Marcus has spent 15 years building relationships with the world's finest material producers."
+      },
+      "priya": {
+        "role": "Head of Product",
+        "bio": "Priya brings a human-centred design approach to every piece, obsessing over fit, function and feel."
+      },
+      "tobias": {
+        "role": "Operations & Sustainability",
+        "bio": "Tobias built our supply chain from scratch and holds us accountable to every sustainability promise we make."
+      }
+    }
   },
-  "cartDrawer": {
-    "title": "Sepet"
+  "Navbar": {
+    "shop": "Mağaza",
+    "newArrivals": "Yeni Gelenler",
+    "ourSignatures": "İmzalarımız",
+    "sale": "İndirim",
+    "saleBadge": "İndirim",
+    "collections": "Koleksiyonlar",
+    "about": "Hakkımızda",
+    "journal": "Günlük"
   }
 }

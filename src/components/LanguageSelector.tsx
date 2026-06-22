@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useState, useEffect, useRef, useTransition } from "react";
+import { useLocale } from "next-intl";
+import { useRouter, usePathname } from "next/navigation";
 
 interface LanguageSelectorProps {
   direction?: "up" | "down";
@@ -10,15 +11,43 @@ interface LanguageSelectorProps {
 export default function LanguageSelector({
   direction = "down",
 }: LanguageSelectorProps) {
-  const { i18n } = useTranslation();
+  const currentLocale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const selectLanguage = (lang: "EN" | "TR") => {
-    i18n.changeLanguage(lang);
+  const selectLanguage = (newLocale: "en" | "tr") => {
     setIsOpen(false);
+    if (newLocale === currentLocale) return;
+
+    // 1. OVERRIDE THE MIDDLEWARE COOKIE
+    // This tells next-intl to stop forcing the old language
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
+
+    // 2. Strip the current locale from the URL
+    let basePath = pathname;
+    if (pathname.startsWith("/en")) {
+      basePath = pathname.replace(/^\/en/, "") || "/";
+    } else if (pathname.startsWith("/tr")) {
+      basePath = pathname.replace(/^\/tr/, "") || "/";
+    }
+
+    // 3. Add the new locale prefix (Blank for TR since it is 'as-needed')
+    let newPath = basePath;
+    if (newLocale === "en") {
+      newPath = `/en${basePath === "/" ? "" : basePath}`;
+    }
+
+    // 4. Navigate seamlessly
+    startTransition(() => {
+      router.push(newPath);
+      router.refresh();
+    });
   };
 
   useEffect(() => {
@@ -32,9 +61,7 @@ export default function LanguageSelector({
     };
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
+      if (event.key === "Escape") setIsOpen(false);
     };
 
     if (isOpen) {
@@ -48,9 +75,7 @@ export default function LanguageSelector({
     };
   }, [isOpen]);
 
-  const currentLangLabel = i18n.language === "TR" ? "Türkçe" : "English";
-
-  // Determine classes based on the direction prop
+  const currentLangLabel = currentLocale === "tr" ? "Türkçe" : "English";
   const positionClasses =
     direction === "up" ? "bottom-full mb-2" : "mt-2 top-full";
 
@@ -58,12 +83,13 @@ export default function LanguageSelector({
     <div ref={dropdownRef} className="relative inline-block w-full md:w-auto">
       <button
         onClick={toggleDropdown}
+        disabled={isPending}
         aria-expanded={isOpen}
-        className="w-full md:w-auto px-4 py-2 border rounded bg-transparent hover:bg-surface-sunken flex items-center justify-between md:justify-start gap-2 text-ink"
+        className={`w-full md:w-auto px-4 py-2 border rounded bg-transparent hover:bg-surface-sunken flex items-center justify-between md:justify-start gap-2 text-ink ${isPending ? "opacity-50 cursor-wait" : ""}`}
       >
         <span>{currentLangLabel}</span>
         <span
-          className={`text-xs transition-transform ${isOpen && direction === "up" ? "rotate-180" : ""}`}
+          className={`text-xs transition-transform duration-200 ${isOpen && direction === "up" ? "rotate-180" : ""}`}
         >
           {direction === "up" ? "▲" : "▼"}
         </span>
@@ -74,14 +100,14 @@ export default function LanguageSelector({
           className={`absolute right-0 w-32 bg-surface-raised shadow-modal rounded-lg border border-ink-line overflow-hidden z-50 ${positionClasses}`}
         >
           <button
-            onClick={() => selectLanguage("EN")}
-            className="block w-full text-left px-4 py-3 text-ink-muted hover:text-ink hover:bg-surface-sunken transition-colors"
+            onClick={() => selectLanguage("en")}
+            className={`block w-full text-left px-4 py-3 hover:bg-surface-sunken transition-colors ${currentLocale === "en" ? "text-ink font-medium" : "text-ink-muted hover:text-ink"}`}
           >
             English
           </button>
           <button
-            onClick={() => selectLanguage("TR")}
-            className="block w-full text-left px-4 py-3 text-ink-muted hover:text-ink hover:bg-surface-sunken transition-colors"
+            onClick={() => selectLanguage("tr")}
+            className={`block w-full text-left px-4 py-3 hover:bg-surface-sunken transition-colors ${currentLocale === "tr" ? "text-ink font-medium" : "text-ink-muted hover:text-ink"}`}
           >
             Türkçe
           </button>

@@ -7,10 +7,8 @@ import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight } from "lucide-react";
 import { useCartStore } from "@/lib/stores/cartStore";
 import { formatPrice } from "@/lib/utils/index";
 import type { CartItem } from "@/lib/types";
-import { useTranslation } from "react-i18next";
 
 export function CartDrawer() {
-  const { t } = useTranslation();
   const {
     isOpen,
     closeCart,
@@ -121,7 +119,7 @@ export function CartDrawer() {
                 margin: 0,
               }}
             >
-              {t("cartDrawer.title")}
+              Your Cart {/*{t("cartDrawer.title")}*/}
             </h2>
             {itemCount > 0 && (
               <span className="badge badge-neutral">{itemCount}</span>
