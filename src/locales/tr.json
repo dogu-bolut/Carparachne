@@ -1,65 +1,4 @@
 {
-  "About": {
-    "metadata": {
-      "title": "Hakkımızda",
-      "description": "We believe in the enduring value of quality craft. Learn about our story, mission, and the people behind Carparachne."
-    },
-    "hero": {
-      "eyebrow": "Hikayemiz",
-      "headingLine1": "Made with intention.",
-      "headingLine2": "Built to last."
-    },
-    "stats": {
-      "founded": { "value": "2018", "label": "Founded" },
-      "partners": { "value": "24", "label": "Supplier Partners" },
-      "packaging": { "value": "100%", "label": "Compostable Packaging" },
-      "styles": { "value": "~12", "label": "New Styles per Year" }
-    },
-    "stories": {
-      "beginning": {
-        "eyebrow": "Our Beginning",
-        "heading": "Born from a love\nof enduring craft",
-        "body": "Carparachne began in 2018 in a small studio in Copenhagen — a single room stacked with sample fabrics, sketches, and the firm belief that the things we choose to surround ourselves with should be made with intention. We were tired of fast cycles and fleeting trends. We wanted objects and garments that would earn a place in your life, not just your wardrobe."
-      },
-      "philosophy": {
-        "eyebrow": "Our Philosophy",
-        "heading": "Less, but\nbetter",
-        "body": "We source materials directly from family-run mills across Portugal, Japan, and Peru — partners we visit twice a year and work with on long-term contracts. Every product passes through a 28-point quality review before it reaches you. We deliberately keep our range small; each piece earns its place. If something doesn't justify its existence, we don't make it."
-      },
-      "commitment": {
-        "eyebrow": "Our Commitment",
-        "heading": "Sustainability\nas practice",
-        "body": "For us, sustainability isn't a marketing claim — it's a design constraint. We use certified organic and recycled materials wherever possible, work exclusively with carbon-neutral shipping partners, and publish an annual impact report with full supply-chain transparency. Our packaging is entirely compostable."
-      }
-    },
-    "mission": {
-      "eyebrow": "Our Mission",
-      "quote": "\"To make only things worth making — and to make them as well as they can be made.\"",
-      "author": "— Lena Hartmann, Founder"
-    },
-    "teamSection": {
-      "eyebrow": "The People",
-      "heading": "Meet the Team"
-    },
-    "team": {
-      "lena": {
-        "role": "Founder & Creative Director",
-        "bio": "Former textile engineer turned designer. Lena's obsession with material science shapes every product decision."
-      },
-      "marcus": {
-        "role": "Head of Sourcing",
-        "bio": "Marcus has spent 15 years building relationships with the world's finest material producers."
-      },
-      "priya": {
-        "role": "Head of Product",
-        "bio": "Priya brings a human-centred design approach to every piece, obsessing over fit, function and feel."
-      },
-      "tobias": {
-        "role": "Operations & Sustainability",
-        "bio": "Tobias built our supply chain from scratch and holds us accountable to every sustainability promise we make."
-      }
-    }
-  },
   "Navbar": {
     "shop": "Mağaza",
     "newArrivals": "Yeni Gelenler",
@@ -69,5 +8,124 @@
     "collections": "Koleksiyonlar",
     "about": "Hakkımızda",
     "journal": "Günlük"
+  },
+  "About": {
+    "metadata": {
+      "title": "Hakkımızda",
+      "description": "Kaliteli zanaatın kalıcı değerine inanıyoruz. Hikayemiz, misyonumuz ve Carparachne'nin arkasındaki insanlar hakkında bilgi edinin."
+    },
+    "hero": {
+      "eyebrow": "Hikayemiz",
+      "headingLine1": "Özenle üretildi.",
+      "headingLine2": "Uzun ömürlü tasarlandı."
+    },
+    "stats": {
+      "founded": { "value": "2018", "label": "Kuruluş" },
+      "partners": { "value": "24", "label": "Tedarikçi Ortak" },
+      "packaging": { "value": "%100", "label": "Doğada Çözünebilir Ambalaj" },
+      "styles": { "value": "~12", "label": "Yıllık Yeni Tasarım" }
+    },
+    "stories": {
+      "beginning": {
+        "eyebrow": "Başlangıcımız",
+        "heading": "Kalıcı zanaat\nsevgisinden doğdu",
+        "body": "Carparachne 2018'de Kopenhag'da küçük bir stüdyoda başladı — kumaş örnekleri, eskizler ve etrafımızı sarmayı seçtiğimiz şeylerin özenle yapılması gerektiğine dair güçlü bir inançla dolu tek bir oda. Hızlı tüketim döngülerinden ve gelip geçici trendlerden bıkmıştık. Sadece gardırobunuzda değil, hayatınızda bir yer edinecek objeler ve giysiler istiyorduk."
+      },
+      "philosophy": {
+        "eyebrow": "Felsefemiz",
+        "heading": "Daha az,\nama daha iyi",
+        "body": "Malzemelerimizi doğrudan Portekiz, Japonya ve Peru'daki aile tarafından işletilen dokuma fabrikalarından sağlıyoruz — yılda iki kez ziyaret ettiğimiz ve uzun vadeli sözleşmelerle çalıştığımız ortaklar. Her ürün size ulaşmadan önce 28 aşamalı bir kalite kontrolünden geçer. Ürün yelpazemizi bilinçli olarak küçük tutuyoruz; her parça yerini hak eder. Bir şey varoluşunu haklı çıkarmıyorsa, onu üretmeyiz."
+      },
+      "commitment": {
+        "eyebrow": "Taahhüdümüz",
+        "heading": "Bir pratik olarak\nsürdürülebilirlik",
+        "body": "Bizim için sürdürülebilirlik bir pazarlama iddiası değil — bir tasarım kuralıdır. Mümkün olan her yerde sertifikalı organik ve geri dönüştürülmüş malzemeler kullanıyor, yalnızca karbon nötr nakliye ortaklarıyla çalışıyor ve tam tedarik zinciri şeffaflığına sahip yıllık bir etki raporu yayınlıyoruz. Ambalajımız tamamen doğada çözünebilir yapıdadır."
+      }
+    },
+    "mission": {
+      "eyebrow": "Misyonumuz",
+      "quote": "\"Yalnızca üretmeye değer şeyler yapmak — ve onları yapılabilecekleri en iyi şekilde yapmak.\"",
+      "author": "— Lena Hartmann, Kurucu"
+    },
+    "teamSection": {
+      "eyebrow": "Ekibimiz",
+      "heading": "Ekiple Tanışın"
+    },
+    "team": {
+      "lena": {
+        "role": "Kurucu ve Kreatif Direktör",
+        "bio": "Eski bir tekstil mühendisi olan tasarımcı. Lena'nın malzeme bilimine olan tutkusu her ürün kararını şekillendiriyor."
+      },
+      "marcus": {
+        "role": "Tedarik Yöneticisi",
+        "bio": "Marcus, dünyanın en iyi malzeme üreticileriyle ilişkiler kurarak 15 yılını geçirdi."
+      },
+      "priya": {
+        "role": "Ürün Yöneticisi",
+        "bio": "Priya, her bir parçaya insan odaklı bir tasarım yaklaşımı getirerek uyum, işlev ve hissiyata odaklanıyor."
+      },
+      "tobias": {
+        "role": "Operasyon ve Sürdürülebilirlik",
+        "bio": "Tobias tedarik zincirimizi sıfırdan kurdu ve bizi verdiğimiz her sürdürülebilirlik sözünden sorumlu tutuyor."
+      }
+    }
+  },
+  "Blog": {
+    "metadata": {
+      "title": "Günlük",
+      "description": "Zanaat, sürdürülebilirlik, stil ve düşünceli yaşam üzerine hikayeler. Carparachne stüdyosundan haberler."
+    },
+    "header": {
+      "eyebrow": "Hikayeler ve Fikirler",
+      "title": "Günlük"
+    },
+    "categories": {
+      "all": "Tümü",
+      "craft": "Zanaat",
+      "sustainability": "Sürdürülebilirlik",
+      "style": "Stil",
+      "studioNotes": "Stüdyo Notları"
+    },
+    "ui": {
+      "minRead": "dk okuma",
+      "min": "dk",
+      "noPosts": "Bu kategoride henüz yazı bulunmuyor.",
+      "viewAll": "Tüm Yazıları Gör"
+    },
+    "mockPosts": {
+      "post1": {
+        "title": "Neden Doğal Elyaflar Yaşlandıkça Güzelleşir",
+        "excerpt": "Sentetik materyallerin asla taklit edemeyeceği özel bir güzellik vardır — giyilmiş, yıkanmış ve içinde yaşanmış bir giysinin zarafeti."
+      },
+      "post2": {
+        "title": "Alentejo Keten Fabrikalarına Ziyaretimiz",
+        "excerpt": "Her yıl, üç kuşaktır keten dokuyan ailelerle tanışmak için güney Portekiz'e seyahat ediyoruz. Bu yılki gezi bize zanaatın neden önemli olduğunu hatırlattı."
+      },
+      "post3": {
+        "title": "Daha Az ve Daha İyi Satın Almak Üzerine",
+        "excerpt": "Bir mağazanın bunu söylemesi kulağa mantıksız gelse de: gardırobunuz için yapabileceğiniz en iyi şey bu kadar çok şey satın almayı bırakmaktır."
+      },
+      "post4": {
+        "title": "Tek Bir Nötr Renk Etrafında Bahar Paleti Oluşturmak",
+        "excerpt": "Tek bir sıcak taş rengi, bütün bir sezonun gardırobunu nasıl demirleyebilir ve giyinmeyi nasıl zahmetsiz hissettirebilir."
+      }
+    },
+    "slugPage": {
+      "minRead": "dk okuma",
+      "allArticles": "Tüm Yazılar",
+      "tags": "Etiketler",
+      "inThisArticle": "Bu yazıda",
+      "writtenBy": "Yazan"
+    },
+    "tags": {
+      "craft": "Zanaat",
+      "materials": "Malzemeler",
+      "sustainability": "Sürdürülebilirlik",
+      "science": "Bilim",
+      "sourcing": "Tedarik",
+      "travel": "Seyahat",
+      "craftsmanship": "Zanaatkarlık",
+      "colour": "Renk"
+    }
   }
 }

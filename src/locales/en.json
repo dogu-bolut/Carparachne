@@ -1,4 +1,14 @@
 {
+  "Navbar": {
+    "shop": "Shop",
+    "newArrivals": "New Arrivals",
+    "ourSignatures": "Our Signatures",
+    "sale": "Sale",
+    "saleBadge": "Sale",
+    "collections": "Collections",
+    "about": "About",
+    "journal": "Journal"
+  },
   "About": {
     "metadata": {
       "title": "About Us",
@@ -60,14 +70,62 @@
       }
     }
   },
-  "Navbar": {
-    "shop": "Shop",
-    "newArrivals": "New Arrivals",
-    "ourSignatures": "Our Signatures",
-    "sale": "Sale",
-    "saleBadge": "Sale",
-    "collections": "Collections",
-    "about": "About",
-    "journal": "Journal"
+  "Blog": {
+    "metadata": {
+      "title": "Journal",
+      "description": "Stories on craft, sustainability, style, and the considered life. Dispatches from the Carparachne studio."
+    },
+    "header": {
+      "eyebrow": "Stories & Ideas",
+      "title": "The Journal"
+    },
+    "categories": {
+      "all": "All",
+      "craft": "Craft",
+      "sustainability": "Sustainability",
+      "style": "Style",
+      "studioNotes": "Studio Notes"
+    },
+    "ui": {
+      "minRead": "min read",
+      "min": "min",
+      "noPosts": "No posts in this category yet.",
+      "viewAll": "View All Posts"
+    },
+    "mockPosts": {
+      "post1": {
+        "title": "Why Natural Fibres Only Get Better With Age",
+        "excerpt": "There is a particular kind of beauty that synthetic materials can never replicate — the grace of a garment that has been worn, washed and lived in."
+      },
+      "post2": {
+        "title": "Our Visit to the Alentejo Linen Mills",
+        "excerpt": "Every year we travel to southern Portugal to meet the families who have been weaving linen for three generations. This year's trip reminded us why craft matters."
+      },
+      "post3": {
+        "title": "The Case for Buying Less — and Better",
+        "excerpt": "Counter-intuitive as it sounds for a shop to say this: the best thing you can do for your wardrobe is stop buying so much of it."
+      },
+      "post4": {
+        "title": "Building a Spring Palette Around One Neutral",
+        "excerpt": "How a single warm stone colour can anchor an entire season's wardrobe and make getting dressed feel effortless."
+      }
+    },
+    "slugPage": {
+      "minRead": "min read",
+      "allArticles": "All Articles",
+      "tags": "Tags",
+      "inThisArticle": "In this article",
+      "writtenBy": "Written by"
+    },
+    "tags": {
+      "craft": "Craft",
+      "materials": "Materials",
+      "sustainability": "Sustainability",
+      "science": "Science",
+      "sourcing": "Sourcing",
+      "travel": "Travel",
+      "craftsmanship": "Craftsmanship",
+      "colour": "Colour"
+    }
   }
 }

@@ -1,40 +1,190 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link  from "next/link";
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import type { BlogPost } from "@/lib/types";
-import { formatDate }    from "@/lib/utils/index";
+import { formatDate } from "@/lib/utils/index";
 
-export const metadata: Metadata = {
-  title: "Journal",
-  description:
-    "Stories on craft, sustainability, style, and the considered life. Dispatches from the Carparachne studio.",
-};
+// ── Dynamic Server Metadata ──────────────────────────────────────────────────
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Blog.metadata" });
 
-/* ── Static data — replace with CMS query ── */
-const CATEGORIES = ["All", "Craft", "Sustainability", "Style", "Studio Notes"];
-
-async function getPosts(): Promise<BlogPost[]> {
-  // Replace with: return fetch('/api/blog').then(r => r.json())
-  return MOCK_POSTS;
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
 }
 
-// 1. Define the props with searchParams as a Promise
+/* ── Static data — mapped to translation keys ── */
+const CATEGORY_KEYS = [
+  "all",
+  "craft",
+  "sustainability",
+  "style",
+  "studioNotes",
+];
+
+// Added a translation key identifier to link mock posts to the JSON dictionary
+const MOCK_POSTS: (BlogPost & { tKey: string })[] = [
+  {
+    id: "1",
+    slug: "why-natural-fibres-age-better",
+    tKey: "post1",
+    category: "craft",
+    title: "",
+    excerpt: "",
+    content: "",
+    coverImage: {
+      id: "i1",
+      src: "/images/blog-fibres.jpg",
+      altText: "Linen folded on a wooden surface",
+      width: 1200,
+      height: 675,
+    },
+    author: {
+      id: "a1",
+      name: "Lena Hartmann",
+      bio: "",
+      avatar: {
+        id: "av1",
+        src: "/images/team-lena.jpg",
+        altText: "Lena",
+        width: 80,
+        height: 80,
+      },
+    },
+    tags: ["craft", "materials"],
+    publishedAt: "2026-03-10T08:00:00Z",
+    readingTime: 6,
+    seo: { title: "", description: "" },
+  },
+  {
+    id: "2",
+    slug: "our-visit-to-the-alentejo-mills",
+    tKey: "post2",
+    category: "studioNotes",
+    title: "",
+    excerpt: "",
+    content: "",
+    coverImage: {
+      id: "i2",
+      src: "/images/blog-portugal.jpg",
+      altText: "Rows of linen drying in Portuguese sun",
+      width: 1200,
+      height: 675,
+    },
+    author: {
+      id: "a2",
+      name: "Marcus Veil",
+      bio: "",
+      avatar: {
+        id: "av2",
+        src: "/images/team-marcus.jpg",
+        altText: "Marcus",
+        width: 80,
+        height: 80,
+      },
+    },
+    tags: ["sourcing", "travel"],
+    publishedAt: "2026-02-14T09:00:00Z",
+    readingTime: 8,
+    seo: { title: "", description: "" },
+  },
+  {
+    id: "3",
+    slug: "the-case-for-buying-less",
+    tKey: "post3",
+    category: "sustainability",
+    title: "",
+    excerpt: "",
+    content: "",
+    coverImage: {
+      id: "i3",
+      src: "/images/blog-less.jpg",
+      altText: "Minimal wardrobe on an open rail",
+      width: 1200,
+      height: 675,
+    },
+    author: {
+      id: "a3",
+      name: "Priya Nair",
+      bio: "",
+      avatar: {
+        id: "av3",
+        src: "/images/team-priya.jpg",
+        altText: "Priya",
+        width: 80,
+        height: 80,
+      },
+    },
+    tags: ["sustainability", "style"],
+    publishedAt: "2026-01-28T10:00:00Z",
+    readingTime: 5,
+    seo: { title: "", description: "" },
+  },
+  {
+    id: "4",
+    slug: "spring-palette-2026",
+    tKey: "post4",
+    category: "style",
+    title: "",
+    excerpt: "",
+    content: "",
+    coverImage: {
+      id: "i4",
+      src: "/images/blog-palette.jpg",
+      altText: "Neutral garments in earthy tones",
+      width: 1200,
+      height: 675,
+    },
+    author: {
+      id: "a1",
+      name: "Lena Hartmann",
+      bio: "",
+      avatar: {
+        id: "av1",
+        src: "/images/team-lena.jpg",
+        altText: "Lena",
+        width: 80,
+        height: 80,
+      },
+    },
+    tags: ["style", "colour"],
+    publishedAt: "2026-01-10T08:00:00Z",
+    readingTime: 4,
+    seo: { title: "", description: "" },
+  },
+];
+
 type Props = {
-  searchParams: Promise<{ category?: string }>;
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ category?: string; tag?: string }>; // Add 'tag' here
 };
 
-// 2. Apply the Props type to your page component
 export default async function BlogIndexPage({ searchParams }: Props) {
-  const posts = await getPosts();
-  
-  // 3. Await the searchParams promise before reading the category
+  // Await params and translations
   const resolvedParams = await searchParams;
-  const category = resolvedParams.category ?? "All";
+  const category = resolvedParams.category ?? "all";
+  const t = await getTranslations("Blog");
 
-  const filtered =
-    category === "All"
-      ? posts
-      : posts.filter((p) => p.category === category);
+  // Filter posts based on the URL parameter key
+  const filteredRaw =
+    category === "all"
+      ? MOCK_POSTS
+      : MOCK_POSTS.filter((p) => p.category === category);
+
+  // Map translations onto the raw posts
+  const filtered = filteredRaw.map((post) => ({
+    ...post,
+    title: t(`mockPosts.${post.tKey}.title`),
+    excerpt: t(`mockPosts.${post.tKey}.excerpt`),
+  }));
 
   const [featured, ...rest] = filtered;
 
@@ -42,35 +192,32 @@ export default async function BlogIndexPage({ searchParams }: Props) {
     <div>
       {/* ── Page header ── */}
       <div className="container-site py-12 lg:py-16 border-b border-ink-line">
-        <p className="label-caps text-ink-muted mb-3">Stories & Ideas</p>
-        <h1>The Journal</h1>
+        <p className="label-caps text-ink-muted mb-3">{t("header.eyebrow")}</p>
+        <h1>{t("header.title")}</h1>
       </div>
 
       <div className="container-site py-10 lg:py-14">
-
         {/* ── Category pills ── */}
         <nav
           className="flex flex-wrap gap-2 mb-10"
           aria-label="Blog categories"
         >
-          {CATEGORIES.map((cat) => (
+          {CATEGORY_KEYS.map((catKey) => (
             <Link
-              key={cat}
-              href={cat === "All" ? "/blog" : `/blog?category=${encodeURIComponent(cat)}`}
+              key={catKey}
+              href={catKey === "all" ? "/blog" : `/blog?category=${catKey}`}
               className={`
                 px-4 py-2 rounded-full text-sm border transition-all duration-150
-                ${category === cat
-                  ? "bg-ink text-white border-ink"
-                  : "bg-transparent text-ink-muted border-ink-line hover:border-ink hover:text-ink"}
+                ${category === catKey ? "bg-ink text-white border-ink" : "bg-transparent text-ink-muted border-ink-line hover:border-ink hover:text-ink"}
               `}
-              aria-current={category === cat ? "page" : undefined}
+              aria-current={category === catKey ? "page" : undefined}
             >
-              {cat}
+              {t(`categories.${catKey}`)}
             </Link>
           ))}
         </nav>
 
-        {/* ── Featured post (large hero card) ── */}
+        {/* ── Featured post ── */}
         {featured && (
           <Link
             href={`/blog/${featured.slug}`}
@@ -78,7 +225,6 @@ export default async function BlogIndexPage({ searchParams }: Props) {
             aria-label={`Read: ${featured.title}`}
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-surface-raised rounded-xl overflow-hidden border border-ink-line shadow-card-rest hover:shadow-card-hover transition-shadow duration-400">
-              {/* Image */}
               <div className="relative aspect-video lg:aspect-[4/3] overflow-hidden">
                 <Image
                   src={featured.coverImage.src}
@@ -90,12 +236,14 @@ export default async function BlogIndexPage({ searchParams }: Props) {
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out-expo"
                 />
               </div>
-
-              {/* Content */}
               <div className="p-8 lg:p-10 flex flex-col gap-4">
                 <div className="flex items-center gap-3">
-                  <span className="badge badge-accent">{featured.category}</span>
-                  <span className="text-xs text-ink-ghost">{featured.readingTime} min read</span>
+                  <span className="badge badge-accent">
+                    {t(`categories.${featured.category}`)}
+                  </span>
+                  <span className="text-xs text-ink-ghost">
+                    {featured.readingTime} {t("ui.minRead")}
+                  </span>
                 </div>
                 <h2 className="text-2xl lg:text-3xl group-hover:text-accent transition-colors duration-200 text-balance">
                   {featured.title}
@@ -108,13 +256,18 @@ export default async function BlogIndexPage({ searchParams }: Props) {
                     <Image
                       src={featured.author.avatar.src}
                       alt={featured.author.avatar.altText}
-                      fill sizes="32px"
+                      fill
+                      sizes="32px"
                       className="object-cover"
                     />
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-ink-soft">{featured.author.name}</p>
-                    <p className="text-xs text-ink-ghost">{formatDate(featured.publishedAt)}</p>
+                    <p className="text-xs font-medium text-ink-soft">
+                      {featured.author.name}
+                    </p>
+                    <p className="text-xs text-ink-ghost">
+                      {formatDate(featured.publishedAt)}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -126,16 +279,16 @@ export default async function BlogIndexPage({ searchParams }: Props) {
         {rest.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {rest.map((post, i) => (
-              <BlogCard key={post.id} post={post} index={i} />
+              <BlogCard key={post.id} post={post} index={i} t={t} />
             ))}
           </div>
         )}
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-ink-muted">No posts in this category yet.</p>
+            <p className="text-ink-muted">{t("ui.noPosts")}</p>
             <Link href="/blog" className="btn-secondary mt-6 inline-flex">
-              View All Posts
+              {t("ui.viewAll")}
             </Link>
           </div>
         )}
@@ -145,14 +298,14 @@ export default async function BlogIndexPage({ searchParams }: Props) {
 }
 
 /* ── Blog card ── */
-function BlogCard({ post, index }: { post: BlogPost; index: number }) {
+// Passed the translation function as a prop to keep the component lightweight
+function BlogCard({ post, index, t }: { post: any; index: number; t: any }) {
   return (
     <article
       className="group animate-fade-up"
       style={{ animationDelay: `${index * 75}ms` }}
     >
       <Link href={`/blog/${post.slug}`} className="block">
-        {/* Cover */}
         <div className="relative aspect-blog-thumb rounded-lg overflow-hidden bg-surface-sunken mb-4">
           <Image
             src={post.coverImage.src}
@@ -163,30 +316,27 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
             className="object-cover group-hover:scale-105 transition-transform duration-600 ease-out-expo"
           />
         </div>
-
-        {/* Meta */}
         <div className="flex items-center gap-2 mb-2.5">
-          <span className="badge badge-neutral">{post.category}</span>
-          <span className="text-xs text-ink-ghost">{post.readingTime} min</span>
+          <span className="badge badge-neutral">
+            {t(`categories.${post.category}`)}
+          </span>
+          <span className="text-xs text-ink-ghost">
+            {post.readingTime} {t("ui.min")}
+          </span>
         </div>
-
-        {/* Title */}
         <h3 className="font-display text-xl font-normal text-ink-soft leading-snug mb-2 group-hover:text-accent transition-colors duration-200 line-clamp-2">
           {post.title}
         </h3>
-
-        {/* Excerpt */}
         <p className="text-sm text-ink-muted leading-relaxed line-clamp-2 mb-4">
           {post.excerpt}
         </p>
-
-        {/* Author + date */}
         <div className="flex items-center gap-2.5">
           <div className="relative w-7 h-7 rounded-full overflow-hidden bg-surface-sunken flex-shrink-0">
             <Image
               src={post.author.avatar.src}
               alt={post.author.avatar.altText}
-              fill sizes="28px"
+              fill
+              sizes="28px"
               className="object-cover"
             />
           </div>
@@ -198,47 +348,3 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
     </article>
   );
 }
-
-/* ── Mock data ── */
-const MOCK_POSTS: BlogPost[] = [
-  {
-    id: "1", slug: "why-natural-fibres-age-better",
-    title: "Why Natural Fibres Only Get Better With Age",
-    excerpt: "There is a particular kind of beauty that synthetic materials can never replicate — the grace of a garment that has been worn, washed and lived in.",
-    content: "", category: "Craft",
-    coverImage: { id: "i1", src: "/images/blog-fibres.jpg", altText: "Linen folded on a wooden surface", width: 1200, height: 675 },
-    author: { id: "a1", name: "Lena Hartmann", bio: "", avatar: { id: "av1", src: "/images/team-lena.jpg", altText: "Lena", width: 80, height: 80 } },
-    tags: ["craft", "materials"], publishedAt: "2026-03-10T08:00:00Z", readingTime: 6,
-    seo: { title: "Why Natural Fibres Age Better", description: "" },
-  },
-  {
-    id: "2", slug: "our-visit-to-the-alentejo-mills",
-    title: "Our Visit to the Alentejo Linen Mills",
-    excerpt: "Every year we travel to southern Portugal to meet the families who have been weaving linen for three generations. This year's trip reminded us why craft matters.",
-    content: "", category: "Studio Notes",
-    coverImage: { id: "i2", src: "/images/blog-portugal.jpg", altText: "Rows of linen drying in Portuguese sun", width: 1200, height: 675 },
-    author: { id: "a2", name: "Marcus Veil", bio: "", avatar: { id: "av2", src: "/images/team-marcus.jpg", altText: "Marcus", width: 80, height: 80 } },
-    tags: ["sourcing", "travel"], publishedAt: "2026-02-14T09:00:00Z", readingTime: 8,
-    seo: { title: "Visit to Alentejo Linen Mills", description: "" },
-  },
-  {
-    id: "3", slug: "the-case-for-buying-less",
-    title: "The Case for Buying Less — and Better",
-    excerpt: "Counter-intuitive as it sounds for a shop to say this: the best thing you can do for your wardrobe is stop buying so much of it.",
-    content: "", category: "Sustainability",
-    coverImage: { id: "i3", src: "/images/blog-less.jpg", altText: "Minimal wardrobe on an open rail", width: 1200, height: 675 },
-    author: { id: "a3", name: "Priya Nair", bio: "", avatar: { id: "av3", src: "/images/team-priya.jpg", altText: "Priya", width: 80, height: 80 } },
-    tags: ["sustainability", "style"], publishedAt: "2026-01-28T10:00:00Z", readingTime: 5,
-    seo: { title: "The Case for Buying Less", description: "" },
-  },
-  {
-    id: "4", slug: "spring-palette-2026",
-    title: "Building a Spring Palette Around One Neutral",
-    excerpt: "How a single warm stone colour can anchor an entire season's wardrobe and make getting dressed feel effortless.",
-    content: "", category: "Style",
-    coverImage: { id: "i4", src: "/images/blog-palette.jpg", altText: "Neutral garments in earthy tones", width: 1200, height: 675 },
-    author: { id: "a1", name: "Lena Hartmann", bio: "", avatar: { id: "av1", src: "/images/team-lena.jpg", altText: "Lena", width: 80, height: 80 } },
-    tags: ["style", "colour"], publishedAt: "2026-01-10T08:00:00Z", readingTime: 4,
-    seo: { title: "Spring Palette 2026", description: "" },
-  },
-];
