@@ -2,13 +2,14 @@ import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import type { TeamMember } from "@/lib/types";
+import type { Metadata } from "next";
 
 // ── Dynamic Server Metadata ──────────────────────────────────────────────────
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "About.metadata" });
 

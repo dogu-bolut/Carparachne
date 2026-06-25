@@ -168,18 +168,24 @@ type Props = {
 };
 
 export default async function BlogIndexPage({ searchParams }: Props) {
-  // Await params and translations
+  // 1. Await params and translations
   const resolvedParams = await searchParams;
   const category = resolvedParams.category ?? "all";
+  const tag = resolvedParams.tag; // Extract the tag parameter
   const t = await getTranslations("Blog");
 
-  // Filter posts based on the URL parameter key
-  const filteredRaw =
-    category === "all"
-      ? MOCK_POSTS
-      : MOCK_POSTS.filter((p) => p.category === category);
+  // 2. Filter posts based on BOTH category and tag
+  const filteredRaw = MOCK_POSTS.filter((p) => {
+    // If category is "all", it matches. Otherwise, it must match the specific category.
+    const matchesCategory = category === "all" || p.category === category;
 
-  // Map translations onto the raw posts
+    // If there is no tag in the URL, it matches. Otherwise, the post's tags array must include the tag.
+    const matchesTag = !tag || p.tags.includes(tag.toLowerCase());
+
+    return matchesCategory && matchesTag;
+  });
+
+  // 3. Map translations onto the raw posts
   const filtered = filteredRaw.map((post) => ({
     ...post,
     title: t(`mockPosts.${post.tKey}.title`),
@@ -199,7 +205,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
       <div className="container-site py-10 lg:py-14">
         {/* ── Category pills ── */}
         <nav
-          className="flex flex-wrap gap-2 mb-10"
+          className="flex flex-wrap items-center gap-2 mb-10"
           aria-label="Blog categories"
         >
           {CATEGORY_KEYS.map((catKey) => (
@@ -208,13 +214,33 @@ export default async function BlogIndexPage({ searchParams }: Props) {
               href={catKey === "all" ? "/blog" : `/blog?category=${catKey}`}
               className={`
                 px-4 py-2 rounded-full text-sm border transition-all duration-150
-                ${category === catKey ? "bg-ink text-white border-ink" : "bg-transparent text-ink-muted border-ink-line hover:border-ink hover:text-ink"}
+                ${
+                  category === catKey && !tag
+                    ? "bg-ink text-white border-ink"
+                    : "bg-transparent text-ink-muted border-ink-line hover:border-ink hover:text-ink"
+                }
               `}
-              aria-current={category === catKey ? "page" : undefined}
+              aria-current={category === catKey && !tag ? "page" : undefined}
             >
               {t(`categories.${catKey}`)}
             </Link>
           ))}
+
+          {/* Optional: Show active tag filter pill so users know why results are limited */}
+          {tag && (
+            <div className="flex items-center gap-2 ml-auto">
+              <span className="text-sm text-ink-muted">Filtered by tag:</span>
+              <span className="px-4 py-2 rounded-full text-sm border bg-ink text-white border-ink">
+                {t(`tags.${tag}`)}
+              </span>
+              <Link
+                href="/blog"
+                className="text-sm text-ink-muted hover:text-ink underline underline-offset-4 ml-2"
+              >
+                Clear
+              </Link>
+            </div>
+          )}
         </nav>
 
         {/* ── Featured post ── */}
