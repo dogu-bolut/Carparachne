@@ -249,7 +249,7 @@ export const POSTS: BlogPost[] = [
 
         <p>Visible mending—the practice of repairing clothes with contrasting threads to highlight the repair rather than hide it—is a beautiful way to wear your garment's history on your sleeve. It is the ultimate rejection of disposable culture. It says: <em>This is valuable, and it is worth saving.</em></p>
       `,
-    tags: ["sustainability", "style", "mindfulness", "slow fashion"],
+    tags: ["sustainability", "style", "materials", "sourcing"],
     seo: {
       title:
         "The Case for Buying Less — and Better | Sustainable Wardrobe Guide",
@@ -319,7 +319,7 @@ export const POSTS: BlogPost[] = [
 
         <p>Ultimately, a successful wardrobe is about harmony. By allowing one versatile neutral to take center stage, you allow the rest of your closet to work smarter, not harder.</p>
       `,
-    tags: ["style", "colour theory", "capsule wardrobe", "spring 2026"],
+    tags: ["style", "colour", "craftsmanship", "sustainability"],
     seo: {
       title: "Spring Palette 2026: Styling with Warm Stone | Style Guide",
       description:
@@ -497,6 +497,129 @@ const POST_TRANSLATIONS: Record<string, Record<string, Partial<BlogPost>>> = {
         },
         { id: "the-human-element", text: "İnsan Unsuru", level: 2 },
         { id: "looking-forward", text: "Yaz Koleksiyonuna Bakış", level: 2 },
+      ],
+    },
+    "the-case-for-buying-less": {
+      title: "Daha Az ve Daha İyi Satın Almanın Haklı Gerekçesi",
+      category: "Sürdürülebilirlik",
+      content: `
+                <p>Bir giyim markasının ayağa kalkıp size alışveriş yapmayı bırakmanızı söylemesi tamamen sezgilere aykırı görünebilir. Ancak gerçek şu ki, dünyadaki en sürdürülebilir giysi halihazırda dolabınızda asılı olan giysidir. Stüdyomuzda, giysilerimize yapabileceğiniz en büyük iltifatın onu sonuna kadar giymek, yıprandığında onarmak ve sonunda bir sonrakine devretmek olduğuna inanıyoruz.</p>
+
+                <p>Modern moda endüstrisi ihtiyaçlarınızı karşılamak üzerine kurulmamıştır; sürekli bir memnuniyetsizlik yaratmak üzere tasarlanmıştır. Haftalık mikro trendleri zorlayarak ve birkaç yıkamadan sonra dağılacak şekilde tasarlanmış giysiler üreterek, hızlı moda modeli bizi sürekli bir tüketim döngüsüne hapseder. Bu döngüden çıkmak, giysilerimize bakış açımızda radikal bir değişim gerektirir: tek kullanımlık mallardan ömür boyu yoldaşlara.</p>
+
+                <h2 id="the-illusion">Hızlı Moda İllüzyonu</h2>
+                <p>Tarihsel olarak moda iki sezonda işlerdi: İlkbahar/Yaz ve Sonbahar/Kış. Bugün ultra hızlı moda markaları yılda 52 "mikro sezon" ile çalışıyor. Bu amansız tempo, fiyatları yapay olarak düşük tutmak için sentetik kumaşlara—esasen eğrilmiş plastiklere—ve sömürücü işçi uygulamalarına dayanıyor.</p>
+
+                <p>Bir tişört bir fincan kahveden daha ucuza mal olduğunda, kültürel olarak ona kahvenin geldiği kağıt bardakla aynı tek kullanımlık muamelesini yapmaya şartlanıyoruz. Ancak bu ucuzluk bir illüzyondur. Gerçek maliyet sadece ertelenir—tekstil işçileri, kirlenmiş su yolları ve nihayetinde dolup taşan çöplükler tarafından ödenir.</p>
+
+                <h2 id="cost-per-wear">Kalitenin Matematiği: Giyim Başına Maliyet</h2>
+                <p>"Daha az al, daha iyi al" zihniyetine geçerken, en büyük engel genellikle ilk etiket şokudur. Doğal elyaflardan yapılan, adil ücret alan zanaatkarlar tarafından dikilen yüksek kaliteli giysilerin başlangıçta daha pahalıya mal olduğu yadsınamaz. Ancak, <strong>Giyim Başına Maliyet (CPW)</strong> kavramının devreye girdiği yer burasıdır.</p>
+
+                <blockquote>Giyim Başına Maliyet = Giysinin Toplam Maliyeti / Giyilme Sayısı</blockquote>
+
+                <p>30 dolarlık sentetik bir kazak aldığınızı hayal edin. Üç yıkamadan sonra tüylenir, şeklini kaybeder ve kaşındırır. Çekmecenizin arkasına saklamadan önce beş kez giyersiniz. Giyim Başına Maliyetiniz 6,00 dolardır.</p>
+
+                <p>Şimdi, 180 dolarlık özenle hazırlanmış, ağır keten bir gömlek-ceket düşünün. Üzerinize mükemmel oturur, kumaş zamanla yumuşar ve güzelleşir ve zamansız kesimi sayesinde asla modası geçmez. Onu beş yıl boyunca yılda 50 kez giyersiniz. Giyim Başına Maliyetiniz sadece 0,72 dolardır. Daha pahalı olan giysi matematiksel olarak çok daha iyi bir finansal karardır.</p>
+
+                <h2 id="decision-fatigue">Karar Yorgunluğu ve Dağınık Dolap</h2>
+                <p>Finansal ve çevresel faydalarının ötesinde, daha az satın almak derin bir psikolojik rahatlama sunar. Hiç yüzlerce eşyayla dolu bir dolaba bakıp giyecek hiçbir şeyiniz yokmuş gibi hissettiniz mi?</p>
+
+                <p>Bu, seçim paradoksudur. Dürtüsel satın alımlarla, tam oturmayan giysilerle ve yalnızca belirli bir ayakkabıyla uyan aşırı trend parçalarla dolu bir dolap günlük karar yorgunluğu yaratır. Gerçekten sevdiğiniz 30 çok yönlü, yüksek kaliteli parçadan oluşan özenle seçilmiş bir gardırop bu stresi ortadan kaldırır. Giyinmek bir sabah angaryası olmaktan çıkıp zahmetsiz bir neşeye dönüşür.</p>
+
+                <h2 id="building-intention">Niyetle Bir Gardırop Oluşturmak</h2>
+                <p>Peki, bu tüketim modeline pratik olarak nasıl geçebiliriz? Duraklat düğmesine basmakla başlar.</p>
+                <ul>
+                  <li><strong>48 Saat Kuralı:</strong> Satın almak istediğiniz bir şey gördüğünüzde 48 saat bekleyin. Genellikle bu dürtü, eşyanın kendisinden ziyade eşya <em>fikrinin</em> verdiği dopamin etkisiyle tetiklenir. İki gün sonra hala istiyorsanız, düşünün.</li>
+                  <li><strong>Üniformanızı Belirleyin:</strong> Sahip olmayı hayal ettiğiniz fantezi hayatında değil, günlük yaşamınızda gerçekte hangi silüetleri ve kumaşları giydiğinizi bulun. Bu temel formlara ağırlıklı olarak yatırım yapın.</li>
+                  <li><strong>Bir Giren, Bir Çıkan:</strong> Evinize yeni bir parça getirmeden önce kendinize neyin yerini aldığını sorun. Eski bir eşyayla yollarınızı ayırmaya istekli değilseniz, muhtemelen yenisine ihtiyacınız yoktur.</li>
+                </ul>
+
+                <h2 id="art-of-maintenance">Bakım Sanatı</h2>
+                <p>Daha az satın almanın son adımı, sahip olduklarınıza bakmayı öğrenmektir. Giysi bakımıyla ilgili nesiller boyu aktarılan bilgiyi büyük ölçüde kaybettik. Giysileri daha az sıklıkta yıkamak, soğuk su kullanmak, havada kurutmak ve temel onarım becerilerini öğrenmek (bir düğmeyi yeniden dikmek veya küçük bir deliği örmek gibi) bir giysinin ömrünü onlarca yıl uzatabilir.</p>
+
+                <p>Görünür onarım—giysileri gizlemek yerine onarımı vurgulamak için zıt ipliklerle onarma pratiği—giysinizin geçmişini üzerinizde taşımanın güzel bir yoludur. Kullan at kültürünün nihai reddidir. Şöyle der: <em>Bu değerlidir ve kurtarılmaya değerdir.</em></p>
+              `,
+      seo: {
+        title:
+          "Daha Az ve Daha İyi Satın Almanın Haklı Gerekçesi | Sürdürülebilir Gardırop Rehberi",
+        description:
+          "Daha az ve yüksek kaliteli giysilere yatırım yapmanın cüzdanınız, ruh sağlığınız ve gezegenimiz için neden daha iyi olduğu. Yavaş modaya pratik bir rehber.",
+      },
+      author: {
+        name: "Priya Nair",
+        role: "Sürdürülebilirlik Direktörü",
+        bio: "Priya, yavaş moda, bilinçli tüketim ve çevre etiğinin kesişimi hakkında yazılar yazıyor.",
+        avatar: { src: "/images/team-priya.jpg", altText: "Priya Nair" },
+      },
+      toc: [
+        { id: "the-illusion", text: "Hızlı Moda İllüzyonu", level: 2 },
+        {
+          id: "cost-per-wear",
+          text: "Kalitenin Matematiği: Giyim Başına Maliyet",
+          level: 2,
+        },
+        {
+          id: "decision-fatigue",
+          text: "Karar Yorgunluğu ve Dağınık Dolap",
+          level: 2,
+        },
+        {
+          id: "building-intention",
+          text: "Niyetle Bir Gardırop Oluşturmak",
+          level: 2,
+        },
+        { id: "art-of-maintenance", text: "Bakım Sanatı", level: 2 },
+      ],
+    },
+    "spring-palette-2026": {
+      title: "Bir Nötr Renk Etrafında İlkbahar Paleti Oluşturmak",
+      category: "Stil",
+      content: `
+            <p>Gardırobunuzu kışın ağır, yalıtkan katmanlarından ilkbahar başlarının daha hafif, öngörülemez günlerine geçirmek herkesin bildiği gibi zordur. Çoğu zaman ilk güneş ışığı vurduğu an aceleyle dışarı çıkıp tamamen yeni, parlak renkli bir gardırop satın alma isteği uyanır. Ancak, en uyumlu ve zarif ilkbahar gardıropları sıfırdan inşa edilmez; dikkatlice dönüştürülürler.</p>
+
+            <p>Aşırı tüketim yapmadan bu geçişte ustalaşmanın sırrı, mevcut dolabınızı tek, oldukça çok yönlü bir nötr renkle demirlemektir. 2026 İlkbaharı için kendimizi sürekli belirli, dengeleyici bir tona çekilirken buluyoruz: Sıcak Taş.</p>
+
+            <h2 id="why-warm-stone">Neden Sıcak Taş?</h2>
+            <p>"Sıcak Taş" derken, boz kahverengi (taupe), soluk haki ve açık grinin tam kesişim noktasında yer alan karmaşık bir rengi kastediyoruz. Onu soğuk veya klinik hissettirmekten alıkoyan ince bir toprak alt tonuna sahiptir.</p>
+
+            <p>Mart ayında çok ani gelebilen sert optik beyazın veya günler ısındıkça ısıyı hapseden ağır siyahın aksine, sıcak taş tonu ışığı yumuşak bir şekilde yansıtır. Görsel bir damak temizleyici görevi görür. En önemlisi, mükemmel bir köprü kumaş görevi görür; efil efil bir yazlık ketenle olduğu kadar ağır bir kışlık kaşmirle eşleştirildiğinde de aynı derecede doğal görünür.</p>
+
+            <h2 id="the-three-pairings">Üç Temel Eşleştirme</h2>
+            <p>Bir kahraman nötr seçerek sabahları karar yorgunluğunu büyük ölçüde azaltırsınız. Her şey basitçe birbiriyle uyumlu olur. Bu sezon Sıcak Taş'ı şu şekilde stillendiriyoruz:</p>
+
+            <ul>
+              <li><strong>Derin Lacivert İle:</strong> Bu, sert siyah-beyaza daha yumuşak, daha sofistike bir alternatiftir. Sıcak taş rengi keten bir pantolonu canlı bir lacivert gömlek-ceketle eşleştirmek, tasarım stüdyosundan akşam gezmesine kusursuz bir şekilde geçiş yapan keskin, denizcilikten ilham alan bir kontrast yaratır.</li>
+              <li><strong>Zeytin Yeşili İle:</strong> Bu kombinasyon derinlemesine dengeli, dünyevi bir his uyandırır. Her iki renk de sıcak, doğal alt tonları paylaştığı için güzel bir şekilde uyum sağlarlar. Mükemmel bir hafta sonu giyimi için açık zeytin yeşili bir iş ceketinin altına giyilen taş rengi bir tişörtü deneyin.</li>
+              <li><strong>Monokrom Dokular:</strong> Baştan aşağı tek renk giyinmek, anında derli toplu görünmenin en kolay yoludur. Monokrom taş rengi bir kıyafetin düz görünmesini engellemenin püf noktası dokuları karıştırmaktır. Pürüzsüz, ince ipek karışımlı bir örgüyü daha ağır, dokulu kanvas veya ham keten pantolonla eşleştirin. Işığın farklı dokumalara çarpma şekli derinlik ve görsel ilgi yaratır.</li>
+            </ul>
+
+            <h2 id="where-to-start">Nereden Başlamalı</h2>
+            <p>Bu paleti kapsülünüze dahil etmek istiyorsanız, her şeyi aynı anda satın alma ihtiyacı hissetmeyin. Kıyafetinizin silüetini belirleyen tek bir yapısal parçayla başlamanızı öneririz.</p>
+
+            <p>Orta ağırlıkta dikilmiş bir pantolon veya Sıcak Taş renginde hafif bir mevsimlik ceket mükemmel başlangıç noktalarıdır. Bunlar, görünümü anında aydınlatmak ve yeni sezona taşımak için mevcut kışlık temel parçalarınızın (en sevdiğiniz gri sweatshirt veya siyah balıkçı yaka gibi) üzerine atabileceğiniz "dış katmanlar"dır.</p>
+
+            <p>Sonuç olarak, başarılı bir gardırop uyumla ilgilidir. Çok yönlü tek bir nötr rengin merkezde yer almasına izin vererek, dolabınızın geri kalanının daha çok değil, daha akıllıca çalışmasına olanak tanırsınız.</p>
+          `,
+      seo: {
+        title:
+          "İlkbahar Paleti 2026: Sıcak Taş ile Stillendirme | Stil Rehberi",
+        description:
+          "Mükemmel dengelenmiş tek bir nötr tonla desteklenen çok yönlü, zahmetsiz bir ilkbahar gardırobunun nasıl oluşturulacağını öğrenin. Bu sezon karar yorgunluğunu ortadan kaldırın.",
+      },
+      author: {
+        name: "Lena Hartmann",
+        role: "Baş Tekstil Araştırmacısı",
+        bio: "Lena, sürdürülebilir tedarik zincirleri ve eski dokuma teknikleri konusunda tutkulu.",
+        avatar: { src: "/images/team-lena.jpg", altText: "Lena Hartmann" },
+      },
+      toc: [
+        { id: "why-warm-stone", text: "Neden Sıcak Taş?", level: 2 },
+        {
+          id: "the-three-pairings",
+          text: "Üç Temel Eşleştirme",
+          level: 2,
+        },
+        { id: "where-to-start", text: "Nereden Başlamalı", level: 2 },
       ],
     },
   },
