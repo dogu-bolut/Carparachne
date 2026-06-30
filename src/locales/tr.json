@@ -154,43 +154,128 @@
       "noCollections": "Bu kategoride henüz bir koleksiyon bulunmuyor.",
       "viewAll": "Tüm Koleksiyonları Gör"
     },
+    "slugPage": {
+      "home": "Ana Sayfa",
+      "materialsAndProvenance": "Malzemeler ve Köken",
+      "care": "Bakım",
+      "shopThisCollection": "Bu Koleksiyonu Satın Al",
+      "allCollections": "Tüm Koleksiyonlar",
+      "fromThisCollection": "Bu Koleksiyondan",
+      "featuredPieces": "Öne Çıkan Parçalar",
+      "viewAllPieces": "Tüm {count} parçayı gör",
+      "exploreFurther": "Daha Fazlasını Keşfet",
+      "moreCollections": "Diğer Koleksiyonlar",
+      "notFound": "Koleksiyon Bulunamadı"
+    },
     "mockCollections": {
       "collection1": {
         "title": "İlkbahar Keten",
         "subtitle": "SS26 — Hafif Koleksiyon",
         "description": "Portekiz keteninden dokunan bu sezonun kıyafetleri, ağırlık yapmadan sıcaklık sağlamak için tasarlandı — vücutla birlikte hareket eden ve her yıkamada daha da yumuşayan dökümlü silüetler.",
-        "season": "İlkbahar"
+        "season": "İlkbahar",
+        "longDescription": "Bu sezonun ağırlıklarını ve dokumalarını seçmek için Alentejo fabrikalarında üç gün geçirdik. Sonuç olarak, yumuşak başlayan ve giderek daha da güzelleşen bir keten ortaya çıktı. Bu koleksiyondaki her parça, dökümlü durması, ağırlık yapmadan katmanlanması ve özen gerektirmeden içinde yaşanması için kesildi.\n\nBu yılın renk paleti, erken ilkbahardaki Portekiz manzarasından ilham alıyor: kireçli duvarlar, kuru otlar, yıllanmış mantarın soluk grisi. İhtiyaç olmayan hiçbir şey boyanmadı.",
+        "materials": [
+          "%100 Portekiz Keteni",
+          "Taşlanmış yüzey",
+          "Doğal boyasız renk seçenekleri"
+        ],
+        "careInstructions": "30°C'de makinede yıkayın. Düşük ısıda kurutun. Nemliyken orta ısıda ütüleyin."
       },
       "collection2": {
         "title": "Atölye Seramik",
         "subtitle": "Ev Serisi — Cilt III",
         "description": "Lizbon stüdyomuzda el yapımı işlevsel objeler. Her parça çarkta şekillendirilir, doğal kül sırlarıyla kaplanır ve trendlerin ötesinde bir dayanıklılık için yüksek ısıda fırınlanır.",
-        "season": "Devam Eden"
+        "season": "Devam Eden",
+        "longDescription": "Bu koleksiyondaki her kupa, kase ve kap Ocak ve Mart 2026 arasında Lizbon atölyemizde yapıldı. Japonya'da eğitim almış ve şimdi zamanını Lizbon ile Alentejo arasında paylaştıran tek bir stüdyo seramikçisiyle çalışıyoruz.\n\nKül sırları öngörülemezdir. Hiçbir iki parça aynı çıkmaz. Bunu bir özellik olarak görüyoruz.",
+        "materials": [
+          "Seramik kili",
+          "Doğal kül sırları",
+          "Yüksek dereceli fırın"
+        ],
+        "careInstructions": "Bulaşık makinesinde yıkanabilir ve mikrodalgaya uygundur. Termal şoktan kaçının."
       },
       "collection3": {
         "title": "Sonbahar Yün",
         "subtitle": "AW25 — Sıcaklık Koleksiyonu",
         "description": "Kalın merinos yünü ve İskoç Harris tüvit iş birliği. Yapılandırılmış kabanlar, rahat pantolonlar ve sahip olacağınız en yumuşak balıkçı yaka kazak.",
-        "season": "Sonbahar"
+        "season": "Sonbahar",
+        "longDescription": "Bu koleksiyon iki yıllık bir çalışmanın ürünüdür. Klasik tüvit ile daha çağdaş bir şey arasında oturan bir kumaş geliştirmek için Harris Adası'ndaki dördüncü nesil bir Harris Tüvit dokumacısı ile ortaklık kurduk — hala ayakla çalışan bir tezgahta elde dokunuyor, hala sertifikalı, ancak günümüze uygun hissettiren bir ağırlığa ve tutuşa sahip.\n\nMerinos parçaları, Patagonya'daki tek bir mülkten elde edilen ekstra ince 17.5 mikron elyaf kullanıyor.",
+        "materials": [
+          "Ekstra ince merinos (17.5μ)",
+          "Harris Tüvit (sertifikalı)",
+          "Tamamen astarlı"
+        ],
+        "careInstructions": "Kuru temizleme yapın veya soğuk suda elde yıkayın. Şeklini verin ve sererek kurutun."
       },
       "collection4": {
         "title": "Masa ve Yatak Örtüleri",
         "subtitle": "Ev Serisi — Temel",
         "description": "Yedi farklı boyanmamış ve doğal boyalı renk seçeneğiyle taşlanmış keten. Mevsimlik değil, on yıllarca masanızda ve yatağınızda yaşaması için tasarlandı.",
-        "season": "Daimi"
+        "season": "Daimi",
+        "longDescription": "Bu her yıl geri döndüğümüz koleksiyonumuzdur. Hiçbir şey değişmez — ağırlık, dokuma, yedi renk. Bunu tamamlanmış olarak görüyoruz.\n\nKeten Portekiz'de dokunur, Belçika'da taşlanır ve stüdyomuzda geri dönüştürülmüş kraft ambalajlanır. Boyasız seride plastik veya sentetik boya yoktur.",
+        "materials": [
+          "%100 Belçika keteni",
+          "Taşlanmış",
+          "OEKO-TEX® sertifikalı"
+        ],
+        "careInstructions": "60°C'de makinede yıkayın. Kurutma makinesinde kurutulabilir. Her yıkamada daha da yumuşar."
       },
       "collection5": {
         "title": "Deri Ürünler",
         "subtitle": "Aksesuar — Bitkisel Tabaklanmış",
         "description": "Tam damarlı bitkisel tabaklanmış deriden kesilmiş kemerler, cüzdanlar ve çantalar. Donanım cilası yok, kaplama yok — sadece sahibine özel bir patina ile yaşlanan deri.",
-        "season": "Devam Eden"
+        "season": "Devam Eden",
+        "longDescription": "Bitkisel tabaklama 60 gün sürer. Krom tabaklama 24 saat sürer. 1580'den beri aynı meşe kabuğu çukurlarını kullanan Toskana'daki bir tabakhaneden bitkisel tabaklanmış deri kullanıyoruz.\n\nHer parça Porto atölyemizde elle kesilir ve dikilir. Dikiş için makine kullanmıyoruz. Sonuç, gardırobunuzdaki diğer her şeyden daha uzun süre dayanacak bir üründür.",
+        "materials": [
+          "Tam damarlı bitkisel tabaklanmış deri",
+          "Toskana tabakhanesi",
+          "Keten iplik"
+        ],
+        "careInstructions": "Doğal balmumu ile bakım yapın. Uzun süreli nemden uzak tutun."
       },
       "collection6": {
         "title": "Yazlık Keten Arşivi",
         "subtitle": "SS23 — Son Stok",
         "description": "2023 yaz koleksiyonumuzdan seçili parçalar, stoklar tükenene kadar indirimli fiyatla sunuluyor. Aynı kalite, aynı köken — sadece bir sezon daha eski.",
-        "season": "Yaz"
+        "season": "Yaz",
+        "longDescription": "Arşivimizi dürüstçe satmaya özen gösteriyoruz — yapay bir aciliyet yok, flaş satışlar yok. Bu parçalar burada çünkü gerçekten iyiler ve gerçekten indirimliler. Bittiğinde bitmiştir.\n\nTüm arşiv ürünleri Lizbon depomuzdan 48 saat içinde kargoya verilir.",
+        "materials": [
+          "%100 Portekiz keteni",
+          "Doğal boyalar"
+        ],
+        "careInstructions": "30°C'de makinede yıkayın. Asarak kurutun."
       }
+    }
+  },
+  "Footer": {
+    "description": "Kaliteye, zanaata ve özenli bir yaşama değer verenler için özenle seçilmiş ürünler.",
+    "joinTheList": "Listeye katılın",
+    "emailPlaceholder": "eposta@adresiniz.com",
+    "subscribe": "Abone Ol",
+    "rightsReserved": "© {year} Carparachne. Tüm hakları saklıdır.",
+    "headings": {
+      "Shop": "Mağaza",
+      "Company": "Şirket",
+      "Help": "Yardım"
+    },
+    "links": {
+      "newArrivals": "Yeni Gelenler",
+      "ourSignatures": "İmzalarımız",
+      "sale": "İndirim",
+      "giftCards": "Hediye Kartları",
+      "aboutUs": "Hakkımızda",
+      "journal": "Günlük",
+      "sustainability": "Sürdürülebilirlik",
+      "careers": "Kariyer",
+      "contact": "İletişim",
+      "faq": "SSS",
+      "shipping": "Kargo",
+      "returns": "İadeler"
+    },
+    "legal": {
+      "privacy": "Gizlilik",
+      "terms": "Şartlar",
+      "cookies": "Çerezler"
     }
   }
 }

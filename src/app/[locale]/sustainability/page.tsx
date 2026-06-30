@@ -36,11 +36,10 @@ const PILLARS = [
 
 export default function SustainabilityPage() {
   return (
-    <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-64px)] w-full">
+    <div className="flex flex-col min-h-[calc(100vh-64px)] w-full">
       {/* ── Hero ── */}
       {/* Used lg:flex-[1.2] to dynamically fill available space instead of fixed massive paddings */}
-      <section className="relative bg-ink text-surface flex flex-col items-center justify-center text-center px-6 py-16 lg:py-0 lg:flex-[1.2] shrink-0 overflow-hidden">
-        {/* Subtle green glow from bottom */}
+      <section className="relative bg-ink text-surface flex flex-col items-center justify-center text-center px-6 py-12 lg:py-16 shrink-0 overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
@@ -53,7 +52,7 @@ export default function SustainabilityPage() {
         <p className="label-caps text-surface/40 mb-4 relative">
           Our Commitment
         </p>
-        <h1 className="font-display text-5xl lg:text-7xl font-light tracking-tighter leading-[1.05] text-white max-w-xl mb-5 relative">
+        <h1 className="font-display text-4xl lg:text-6xl font-light tracking-tighter leading-[1.05] text-white max-w-xl mb-5 relative">
           Dressed well.{" "}
           <em className="not-italic text-white/50">Living well.</em>
         </h1>
@@ -85,13 +84,12 @@ export default function SustainabilityPage() {
       </div>
 
       {/* ── Three pillars ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:flex-[1.5] shrink-0">
+      <div className="grid grid-cols-1 lg:grid-cols-3 shrink-0">
         {PILLARS.map(({ eyebrow, heading, body, tag }, i) => (
           <div
             key={eyebrow}
-            className={`flex flex-col justify-center gap-4 p-8 lg:p-10 ${
-              i === 1 ? "bg-surface" : "bg-surface-sunken"
-            }`}
+            className={`flex flex-col justify-center gap-4 p-8 lg:p-10 ${i === 1 ? "bg-surface" : "bg-surface-sunken"
+              }`}
           >
             {/* Icon dot */}
             <div

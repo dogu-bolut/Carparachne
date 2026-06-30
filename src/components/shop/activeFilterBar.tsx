@@ -70,9 +70,9 @@ export function ActiveFilterBar({ searchParams }: Props) {
     chips.push({ label: "Sale", paramKey: "badge" });
   }
 
-  // Out Signatures Sort
+  // Our Signatures Sort
   if (searchParams.sort === "signature") {
-    chips.push({ label: "Out Signatures", paramKey: "sort" });
+    chips.push({ label: "Our Signatures", paramKey: "sort" });
   }
 
   // New Arrivals Sort
