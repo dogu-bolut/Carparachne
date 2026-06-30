@@ -127,5 +127,69 @@
       "craftsmanship": "Zanaatkarlık",
       "colour": "Renk"
     }
+  },
+  "Collections": {
+    "metadata": {
+      "title": "Koleksiyonlar",
+      "description": "Küratörlüğünü yaptığımız koleksiyonlarımızı keşfedin — doğal malzemeler, yavaş zanaat ve düşünceli tasarımlarla üretilmiş zamansız giysiler ve objeler."
+    },
+    "header": {
+      "eyebrow": "Stüdyo",
+      "title": "Koleksiyonlar",
+      "description": "Her koleksiyon tek bir materyal, sezon veya fikir etrafında şekillenir — ardından zamanla gelişmeye bırakılır. Burada hiçbir şey trend odaklı değildir."
+    },
+    "categories": {
+      "All": "Tümü",
+      "Apparel": "Giyim",
+      "Accessories": "Aksesuar",
+      "Home & Living": "Ev & Yaşam",
+      "Archive": "Arşiv"
+    },
+    "ui": {
+      "newBadge": "Yeni",
+      "pieces": "parça",
+      "exploreCollection": "Koleksiyonu İncele",
+      "exploreAria": "Keşfet:",
+      "noCollections": "Bu kategoride henüz bir koleksiyon bulunmuyor.",
+      "viewAll": "Tüm Koleksiyonları Gör"
+    },
+    "mockCollections": {
+      "collection1": {
+        "title": "İlkbahar Keten",
+        "subtitle": "SS26 — Hafif Koleksiyon",
+        "description": "Portekiz keteninden dokunan bu sezonun kıyafetleri, ağırlık yapmadan sıcaklık sağlamak için tasarlandı — vücutla birlikte hareket eden ve her yıkamada daha da yumuşayan dökümlü silüetler.",
+        "season": "İlkbahar"
+      },
+      "collection2": {
+        "title": "Atölye Seramik",
+        "subtitle": "Ev Serisi — Cilt III",
+        "description": "Lizbon stüdyomuzda el yapımı işlevsel objeler. Her parça çarkta şekillendirilir, doğal kül sırlarıyla kaplanır ve trendlerin ötesinde bir dayanıklılık için yüksek ısıda fırınlanır.",
+        "season": "Devam Eden"
+      },
+      "collection3": {
+        "title": "Sonbahar Yün",
+        "subtitle": "AW25 — Sıcaklık Koleksiyonu",
+        "description": "Kalın merinos yünü ve İskoç Harris tüvit iş birliği. Yapılandırılmış kabanlar, rahat pantolonlar ve sahip olacağınız en yumuşak balıkçı yaka kazak.",
+        "season": "Sonbahar"
+      },
+      "collection4": {
+        "title": "Masa ve Yatak Örtüleri",
+        "subtitle": "Ev Serisi — Temel",
+        "description": "Yedi farklı boyanmamış ve doğal boyalı renk seçeneğiyle taşlanmış keten. Mevsimlik değil, on yıllarca masanızda ve yatağınızda yaşaması için tasarlandı.",
+        "season": "Daimi"
+      },
+      "collection5": {
+        "title": "Deri Ürünler",
+        "subtitle": "Aksesuar — Bitkisel Tabaklanmış",
+        "description": "Tam damarlı bitkisel tabaklanmış deriden kesilmiş kemerler, cüzdanlar ve çantalar. Donanım cilası yok, kaplama yok — sadece sahibine özel bir patina ile yaşlanan deri.",
+        "season": "Devam Eden"
+      },
+      "collection6": {
+        "title": "Yazlık Keten Arşivi",
+        "subtitle": "SS23 — Son Stok",
+        "description": "2023 yaz koleksiyonumuzdan seçili parçalar, stoklar tükenene kadar indirimli fiyatla sunuluyor. Aynı kalite, aynı köken — sadece bir sezon daha eski.",
+        "season": "Yaz"
+      }
+    }
   }
 }

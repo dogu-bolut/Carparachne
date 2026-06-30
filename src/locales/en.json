@@ -127,5 +127,69 @@
       "craftsmanship": "Craftsmanship",
       "colour": "Colour"
     }
+  },
+  "Collections": {
+    "metadata": {
+      "title": "Collections",
+      "description": "Explore our curated collections — timeless garments and objects made with natural materials, slow craft, and considered design."
+    },
+    "header": {
+      "eyebrow": "The Studio",
+      "title": "Collections",
+      "description": "Each collection is built around a single material, season, or idea — then left to develop over time. Nothing here is trend-driven."
+    },
+    "categories": {
+      "All": "All",
+      "Apparel": "Apparel",
+      "Accessories": "Accessories",
+      "Home & Living": "Home & Living",
+      "Archive": "Archive"
+    },
+    "ui": {
+      "newBadge": "New",
+      "pieces": "pieces",
+      "exploreCollection": "Explore Collection",
+      "exploreAria": "Explore:",
+      "noCollections": "No collections in this category yet.",
+      "viewAll": "View All Collections"
+    },
+    "mockCollections": {
+      "collection1": {
+        "title": "Spring Linen",
+        "subtitle": "SS26 — The Light Collection",
+        "description": "Woven from Portuguese stonewashed linen, this season's garments are designed for warmth without weight — loose silhouettes that move with the body and soften further with every wash.",
+        "season": "Spring"
+      },
+      "collection2": {
+        "title": "Workshop Ceramics",
+        "subtitle": "Home Series — Vol. III",
+        "description": "Functional objects made by hand in our Lisbon studio. Each piece is thrown on the wheel, glazed with natural ash glazes, and fired at high temperature for durability that outlasts trends.",
+        "season": "Ongoing"
+      },
+      "collection3": {
+        "title": "Autumn Wool",
+        "subtitle": "AW25 — The Warmth Collection",
+        "description": "Heavy-gauge merino and a Scottish Harris tweed collaboration. Structured coats, relaxed trousers, and the softest roll-neck you will own.",
+        "season": "Autumn"
+      },
+      "collection4": {
+        "title": "Table & Bed Linen",
+        "subtitle": "Home Series — Foundational",
+        "description": "Stonewashed linen in seven undyed and naturally dyed colourways. Designed to live on your table and bed for decades, not seasons.",
+        "season": "Perennial"
+      },
+      "collection5": {
+        "title": "Leather Goods",
+        "subtitle": "Accessories — Vegetable Tanned",
+        "description": "Belts, wallets, and bags cut from full-grain vegetable-tanned leather. No hardware polish, no coating — just leather that ages to a patina unique to its owner.",
+        "season": "Ongoing"
+      },
+      "collection6": {
+        "title": "Summer Linen Archive",
+        "subtitle": "SS23 — Final Stock",
+        "description": "Select pieces from our 2023 summer collection, offered at reduced price while stock lasts. Same quality, same provenance — just a season older.",
+        "season": "Summer"
+      }
+    }
   }
 }

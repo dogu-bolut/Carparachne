@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useTransition } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface LanguageSelectorProps {
   direction?: "up" | "down";
@@ -12,9 +12,7 @@ export default function LanguageSelector({
   direction = "down",
 }: LanguageSelectorProps) {
   const currentLocale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -25,8 +23,7 @@ export default function LanguageSelector({
     setIsOpen(false);
     if (newLocale === currentLocale) return;
 
-    // 1. OVERRIDE THE MIDDLEWARE COOKIE
-    // This tells next-intl to stop forcing the old language
+    // 1. Override the middleware cookie
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
 
     // 2. Strip the current locale from the URL
@@ -43,11 +40,8 @@ export default function LanguageSelector({
       newPath = `/en${basePath === "/" ? "" : basePath}`;
     }
 
-    // 4. Navigate seamlessly
-    startTransition(() => {
-      router.push(newPath);
-      router.refresh();
-    });
+    // 4. Force a hard navigation to bust the Next.js cache
+    window.location.href = newPath;
   };
 
   useEffect(() => {
@@ -83,9 +77,8 @@ export default function LanguageSelector({
     <div ref={dropdownRef} className="relative inline-block w-full md:w-auto">
       <button
         onClick={toggleDropdown}
-        disabled={isPending}
         aria-expanded={isOpen}
-        className={`w-full md:w-auto px-4 py-2 border rounded bg-transparent hover:bg-surface-sunken flex items-center justify-between md:justify-start gap-2 text-ink ${isPending ? "opacity-50 cursor-wait" : ""}`}
+        className="w-full md:w-auto px-4 py-2 border rounded bg-transparent hover:bg-surface-sunken flex items-center justify-between md:justify-start gap-2 text-ink transition-colors"
       >
         <span>{currentLangLabel}</span>
         <span
