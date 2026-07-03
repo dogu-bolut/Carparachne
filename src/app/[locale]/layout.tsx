@@ -50,6 +50,11 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/* ── Static Params ───────────────────────────────────────────────────────── */
+export function generateStaticParams() {
+  return [{ locale: "tr" }, { locale: "en" }];
+}
+
 /* ── Layout ──────────────────────────────────────────────────────────────── */
 // 1. Change to an async function and add the params object
 export default async function RootLayout({
