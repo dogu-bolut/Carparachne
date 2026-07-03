@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { CartPageClient } from "@/components/cart/cartPageClient";
 
-export const metadata: Metadata = {
-  title: "Your Cart",
-  description: "Review the items in your cart and proceed to checkout.",
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function CartPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Cart.metadata" });
+  
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
+export default async function CartPage() {
   return <CartPageClient />;
 }

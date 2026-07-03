@@ -247,6 +247,152 @@
       }
     }
   },
+  "CartDrawer": {
+    "title": "Sepetiniz",
+    "subtotal": "Ara Toplam",
+    "shippingAndTaxes": "Vergiler ve kargo ödeme adımında hesaplanır.",
+    "proceedToCheckout": "Ödemeye Geç",
+    "viewCart": "Sepeti Gör",
+    "continueShopping": "Alışverişe Devam Et",
+    "emptyCart": {
+      "title": "Sepetiniz boş",
+      "description": "Henüz hiçbir şey eklememişsiniz gibi görünüyor. Başlamak için koleksiyonlarımızı keşfedin.",
+      "startShopping": "Alışverişe Başla"
+    }
+  },
+  "Cart": {
+    "metadata": {
+      "title": "Sepetiniz",
+      "description": "Sepetinizdeki ürünleri inceleyin ve ödemeye geçin."
+    },
+    "title": "Sepetiniz",
+    "itemsCount": "{count} ürün",
+    "table": {
+      "product": "Ürün",
+      "quantity": "Adet",
+      "total": "Toplam"
+    },
+    "actions": {
+      "continueShopping": "Alışverişe Devam Et",
+      "clearCart": "Sepeti Temizle",
+      "confirmClear": "Sepetinizdeki tüm ürünleri kaldırmak istediğinize emin misiniz?",
+      "remove": "Kaldır",
+      "each": "adet"
+    },
+    "summary": {
+      "title": "Sipariş Özeti",
+      "subtotal": "Ara Toplam ({count} ürün)",
+      "promo": "Promosyon ({code} −%{discount})",
+      "shipping": "Kargo",
+      "free": "Ücretsiz",
+      "freeShippingThreshold": "{price} üzeri siparişlerde ücretsiz",
+      "estimatedTotal": "Tahmini Toplam",
+      "promoApplied": "{code} uygulandı — %{discount} indirim",
+      "removePromo": "Kaldır",
+      "promoPlaceholder": "Promosyon kodu",
+      "applyPromo": "Uygula",
+      "invalidPromo": "Geçersiz promosyon kodu. Lütfen tekrar deneyin.",
+      "proceedToCheckout": "Ödemeye Geç",
+      "taxesNotice": "Vergiler ödeme adımında hesaplanır. Devam ederek <terms>Şartlar</terms> & <privacy>Gizlilik Politikası</privacy>'nı kabul etmiş olursunuz."
+    },
+    "trustSignals": {
+      "freeShipping": "{price} üzeri ücretsiz kargo",
+      "freeReturns": "30 gün ücretsiz iade",
+      "secureCheckout": "Güvenli ödeme"
+    },
+    "keepBrowsing": "Göz atmaya devam et",
+    "empty": {
+      "title": "Sepetiniz boş",
+      "description": "Henüz hiçbir şey eklememişsiniz gibi görünüyor. Koleksiyonlarımızı keşfedin ve seveceğiniz bir şeyler bulun.",
+      "browseShop": "Mağazayı İncele",
+      "viewCollections": "Koleksiyonları Gör",
+      "footer": "{price} üzeri siparişlerde ücretsiz kargo · 30 gün ücretsiz iade"
+    }
+  },
+  "Contact": {
+    "metadata": {
+      "title": "Bize Ulaşın",
+      "description": "Carparachne ekibiyle iletişime geçin. Genellikle bir iş günü içinde yanıt veririz."
+    },
+    "header": {
+      "eyebrow": "İletişim",
+      "title": "Bize Ulaşın",
+      "subtitle": "Bir sipariş, bir ürün hakkında sorunuz mu var ya da sadece merhaba demek mi istiyorsunuz? Buradayız."
+    },
+    "info": {
+      "email": {
+        "label": "E-posta",
+        "value": "support@carparachne.com"
+      },
+      "responseTime": {
+        "label": "Yanıt Süresi",
+        "value": "1 iş günü içinde"
+      },
+      "studio": {
+        "label": "Stüdyo",
+        "value": "Vesterbrogade 12, Kopenhag, Danimarka"
+      },
+      "liveChat": {
+        "label": "Canlı Destek",
+        "value": "Pzt–Cum, 09:00–17:00 CET arası"
+      }
+    },
+    "faq": {
+      "title": "Hızlı cevaplar mı arıyorsunuz?",
+      "description": "SSS sayfamız kargo, iade, beden ve daha fazlasını kapsar.",
+      "cta": "SSS'yi İncele"
+    },
+    "form": {
+      "heading": "Bize mesaj gönderin"
+    }
+  },
+  "ContactForm": {
+    "ariaLabel": "İletişim formu",
+    "labels": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "E-posta adresi",
+      "subject": "Konu",
+      "selectSubject": "Bir konu seçin…",
+      "orderNumber": "Sipariş numarası (isteğe bağlı)",
+      "message": "Mesaj",
+      "messagePlaceholder": "Size nasıl yardımcı olabileceğimizi anlatın…",
+      "minChars": "min"
+    },
+    "subjects": {
+      "orderInquiry": "Sipariş sorgusu",
+      "productQuestion": "Ürün sorusu",
+      "returnsExchanges": "İade ve değişim",
+      "shippingDelivery": "Kargo ve teslimat",
+      "pressCollaborations": "Basın ve iş birlikleri",
+      "other": "Diğer"
+    },
+    "errors": {
+      "firstNameRequired": "Ad alanı zorunludur.",
+      "lastNameRequired": "Soyad alanı zorunludur.",
+      "emailRequired": "E-posta adresi zorunludur.",
+      "emailInvalid": "Lütfen geçerli bir e-posta adresi girin.",
+      "subjectRequired": "Lütfen bir konu seçin.",
+      "messageRequired": "Mesaj alanı zorunludur.",
+      "messageMinLength": "Mesaj en az 20 karakter olmalıdır.",
+      "serverGeneric": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+      "networkError": "Ağ hatası — lütfen bağlantınızı kontrol edip tekrar deneyin."
+    },
+    "buttons": {
+      "send": "Mesaj Gönder",
+      "sending": "Gönderiliyor…"
+    },
+    "success": {
+      "title": "Mesaj gönderildi!",
+      "thankYou": "Bize ulaştığınız için teşekkürler, {name}.",
+      "replyTo": "{email} adresine bir iş günü içinde yanıt vereceğiz.",
+      "sendAnother": "Başka bir mesaj gönder"
+    },
+    "privacy": {
+      "prefix": "Göndererek,",
+      "link": "Gizlilik Politikamızı kabul etmiş olursunuz"
+    }
+  },
   "Footer": {
     "description": "Kaliteye, zanaata ve özenli bir yaşama değer verenler için özenle seçilmiş ürünler.",
     "joinTheList": "Listeye katılın",

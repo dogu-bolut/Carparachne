@@ -8,6 +8,7 @@ import {
   ShoppingBag, Tag, ChevronRight, Truck,
   RotateCcw, ShieldCheck,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useCartStore }  from "@/lib/stores/cartStore";
 import { formatPrice }   from "@/lib/utils/index";
 import type { CartItem } from "@/lib/types";
@@ -24,6 +25,7 @@ export function CartPageClient() {
     items, subtotal, itemCount,
     removeItem, updateQuantity, clearCart,
   } = useCartStore();
+  const t = useTranslations("Cart");
 
   const [mounted,    setMounted]    = useState(false);
   const [promoInput, setPromoInput] = useState("");
@@ -52,7 +54,7 @@ export function CartPageClient() {
       setPromoApplied(true);
       setPromoError("");
     } else {
-      setPromoError("Invalid promo code. Please try again.");
+      setPromoError(t("summary.invalidPromo"));
       setPromoCode(null);
       setPromoApplied(false);
     }
@@ -76,9 +78,9 @@ export function CartPageClient() {
       <div className="bg-surface-raised border-b border-ink-line">
         <div className="container-site py-8 lg:py-10">
           <div style={{ display: "flex", flexDirection: "row", alignItems: "baseline", gap: "0.75rem", flexWrap: "wrap" }}>
-            <h1>Your Cart</h1>
+            <h1>{t("title")}</h1>
             <span className="label-caps text-ink-ghost" style={{ fontSize: "0.75rem" }}>
-              {itemCount} {itemCount === 1 ? "item" : "items"}
+              {t("itemsCount", { count: itemCount })}
             </span>
           </div>
         </div>
@@ -97,9 +99,9 @@ export function CartPageClient() {
               className="hidden md:grid mb-4 pb-3 border-b border-ink-line"
               style={{ gridTemplateColumns: "80px 120px 1fr 1px", gap: "1rem" }}
             >
-              <span className="label-caps text-ink-ghost">Product</span>
-              <span className="label-caps text-ink-ghost text-center">Quantity</span>
-              <span className="label-caps text-ink-ghost text-right">Total</span>
+              <span className="label-caps text-ink-ghost">{t("table.product")}</span>
+              <span className="label-caps text-ink-ghost text-center">{t("table.quantity")}</span>
+              <span className="label-caps text-ink-ghost text-right">{t("table.total")}</span>
               <span />
             </div>
 
@@ -126,18 +128,18 @@ export function CartPageClient() {
                 className="label-caps text-ink-muted hover:text-ink transition-colors"
                 style={{ display: "inline-flex", flexDirection: "row", alignItems: "center", gap: "0.375rem" }}
               >
-                ← Continue Shopping
+                ← {t("actions.continueShopping")}
               </Link>
 
               <button
                 onClick={() => {
-                  if (confirm("Remove all items from your cart?")) clearCart();
+                  if (confirm(t("actions.confirmClear"))) clearCart();
                 }}
                 className="label-caps text-ink-ghost hover:text-error transition-colors"
                 style={{ display: "inline-flex", flexDirection: "row", alignItems: "center", gap: "0.375rem" }}
               >
                 <Trash2 size={12} />
-                Clear cart
+                {t("actions.clearCart")}
               </button>
             </div>
 
@@ -166,7 +168,7 @@ export function CartPageClient() {
                     margin: 0,
                   }}
                 >
-                  Order Summary
+                  {t("summary.title")}
                 </h2>
               </div>
 
@@ -174,27 +176,27 @@ export function CartPageClient() {
                 {/* Line items */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
                   <SummaryRow
-                    label={`Subtotal (${itemCount} ${itemCount === 1 ? "item" : "items"})`}
+                    label={t("summary.subtotal", { count: itemCount })}
                     value={formatPrice(subtotal, currency)}
                   />
 
                   {promoApplied && promoCode && (
                     <SummaryRow
-                      label={`Promo (${promoCode} −${discountPct}%)`}
+                      label={t("summary.promo", { code: promoCode, discount: discountPct })}
                       value={`−${formatPrice(discountAmt, currency)}`}
                       highlight
                     />
                   )}
 
                   <SummaryRow
-                    label="Shipping"
+                    label={t("summary.shipping")}
                     value={
                       shipping === 0
-                        ? "Free"
+                        ? t("summary.free")
                         : formatPrice(shipping, currency)
                     }
                     {...(shipping > 0
-                      ? { subLabel: `Free on orders over ${formatPrice(75, currency)}` }
+                      ? { subLabel: t("summary.freeShippingThreshold", { price: formatPrice(75, currency) }) }
                       : {})}
                     valueHighlight={shipping === 0}
                   />
@@ -220,7 +222,7 @@ export function CartPageClient() {
                       color: "#1A1A1A",
                     }}
                   >
-                    Estimated Total
+                    {t("summary.estimatedTotal")}
                   </span>
                   <span
                     style={{
@@ -253,14 +255,14 @@ export function CartPageClient() {
                       <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.5rem" }}>
                         <Tag size={14} color="#3D7A5F" />
                         <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "#3D7A5F" }}>
-                          {promoCode} applied — {discountPct}% off
+                          {t("summary.promoApplied", { code: promoCode || "", discount: discountPct })}
                         </span>
                       </div>
                       <button
                         onClick={removePromo}
                         style={{ fontSize: "0.75rem", color: "#3D7A5F", textDecoration: "underline", background: "none", border: "none", cursor: "pointer" }}
                       >
-                        Remove
+                        {t("summary.removePromo")}
                       </button>
                     </div>
                   ) : (
@@ -280,7 +282,7 @@ export function CartPageClient() {
                           />
                           <input
                             type="text"
-                            placeholder="Promo code"
+                            placeholder={t("summary.promoPlaceholder")}
                             value={promoInput}
                             onChange={(e) => {
                               setPromoInput(e.target.value);
@@ -288,7 +290,7 @@ export function CartPageClient() {
                             }}
                             onKeyDown={(e) => e.key === "Enter" && applyPromo()}
                             style={{ paddingLeft: "2.25rem", fontSize: "0.875rem" }}
-                            aria-label="Promo code"
+                            aria-label={t("summary.promoPlaceholder")}
                           />
                         </div>
                         <button
@@ -296,7 +298,7 @@ export function CartPageClient() {
                           className="btn-secondary"
                           style={{ padding: "0.625rem 1rem", fontSize: "0.8125rem", whiteSpace: "nowrap" }}
                         >
-                          Apply
+                          {t("summary.applyPromo")}
                         </button>
                       </div>
                       {promoError && (
@@ -320,7 +322,7 @@ export function CartPageClient() {
                     padding: "0.9375rem 1.5rem",
                   }}
                 >
-                  Proceed to Checkout
+                  {t("summary.proceedToCheckout")}
                   <ArrowRight size={15} />
                 </Link>
 
@@ -333,14 +335,18 @@ export function CartPageClient() {
                     lineHeight: 1.6,
                   }}
                 >
-                  Taxes calculated at checkout. By continuing you agree to our{" "}
-                  <Link href="/policies/terms" style={{ textDecoration: "underline" }} className="hover:text-accent transition-colors">
-                    Terms
-                  </Link>{" "}
-                  &{" "}
-                  <Link href="/policies/privacy" style={{ textDecoration: "underline" }} className="hover:text-accent transition-colors">
-                    Privacy Policy
-                  </Link>.
+                  {t.rich("summary.taxesNotice", {
+                    terms: (chunks) => (
+                      <Link href="/policies/terms" style={{ textDecoration: "underline" }} className="hover:text-accent transition-colors">
+                        {chunks}
+                      </Link>
+                    ),
+                    privacy: (chunks) => (
+                      <Link href="/policies/privacy" style={{ textDecoration: "underline" }} className="hover:text-accent transition-colors">
+                        {chunks}
+                      </Link>
+                    ),
+                  })}
                 </p>
               </div>
 
@@ -357,7 +363,7 @@ export function CartPageClient() {
                 className="label-caps text-ink-muted hover:text-ink transition-colors"
                 style={{ display: "inline-flex", flexDirection: "row", alignItems: "center", gap: "0.375rem" }}
               >
-                Keep browsing
+                {t("keepBrowsing")}
                 <ChevronRight size={12} />
               </Link>
             </div>
@@ -379,6 +385,7 @@ function CartRow({
   onRemove: () => void;
   onChangeQty: (q: number) => void;
 }) {
+  const t = useTranslations("Cart");
   const variantLabel = Object.values(item.selectedVariants)
     .filter(Boolean)
     .join(" / ");
@@ -445,7 +452,7 @@ function CartRow({
             )}
             {/* Unit price — always visible */}
             <p style={{ fontSize: "0.8125rem", color: "#5A5A5A", marginTop: "0.375rem" }}>
-              {formatPrice(item.price, item.currency)} each
+              {formatPrice(item.price, item.currency)} {t("actions.each")}
             </p>
           </div>
 
@@ -544,7 +551,7 @@ function CartRow({
             >
               <Trash2 size={15} />
               <span className="hidden sm:inline" style={{ fontSize: "0.75rem", fontFamily: "var(--font-body)" }}>
-                Remove
+                {t("actions.remove")}
               </span>
             </button>
           </div>
@@ -597,10 +604,11 @@ function SummaryRow({
    Trust signals
 ══════════════════════════════════════════ */
 function TrustSignals({ compact = false }: { compact?: boolean }) {
+  const t = useTranslations("Cart");
   const signals = [
-    { Icon: Truck,       label: "Free shipping over €75" },
-    { Icon: RotateCcw,   label: "Free 30-day returns" },
-    { Icon: ShieldCheck, label: "Secure checkout" },
+    { Icon: Truck,       label: t("trustSignals.freeShipping", { price: formatPrice(75, "EUR") }) },
+    { Icon: RotateCcw,   label: t("trustSignals.freeReturns") },
+    { Icon: ShieldCheck, label: t("trustSignals.secureCheckout") },
   ];
 
   if (compact) {
@@ -644,6 +652,7 @@ function TrustSignals({ compact = false }: { compact?: boolean }) {
    Empty cart state
 ══════════════════════════════════════════ */
 function EmptyCartPage() {
+  const t = useTranslations("Cart");
   return (
     <div className="bg-surface min-h-[70vh] flex items-center justify-center">
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "1.5rem", padding: "2rem", maxWidth: 480 }}>
@@ -663,26 +672,26 @@ function EmptyCartPage() {
         {/* Copy */}
         <div>
           <h1 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", marginBottom: "0.75rem" }}>
-            Your cart is empty
+            {t("empty.title")}
           </h1>
           <p style={{ fontSize: "1rem", color: "#5A5A5A", lineHeight: 1.65, maxWidth: "38ch", margin: "0 auto" }}>
-            Looks like you haven't added anything yet. Explore our collections and find something you'll love.
+            {t("empty.description")}
           </p>
         </div>
 
         {/* CTAs */}
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center", marginTop: "0.5rem" }}>
           <Link href="/shop" className="btn-primary">
-            Browse Shop
+            {t("empty.browseShop")}
           </Link>
           <Link href="/collections" className="btn-secondary">
-            View Collections
+            {t("empty.viewCollections")}
           </Link>
         </div>
 
         {/* Social proof nudge */}
         <p style={{ fontSize: "0.8125rem", color: "#9A9A9A", marginTop: "1rem" }}>
-          Free shipping on orders over €75 · Free 30-day returns
+          {t("empty.footer", { price: formatPrice(75, "EUR") })}
         </p>
       </div>
     </div>

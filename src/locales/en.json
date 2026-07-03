@@ -247,6 +247,152 @@
       }
     }
   },
+  "CartDrawer": {
+    "title": "Your Cart",
+    "subtotal": "Subtotal",
+    "shippingAndTaxes": "Shipping and taxes calculated at checkout.",
+    "proceedToCheckout": "Proceed to Checkout",
+    "viewCart": "View Cart",
+    "continueShopping": "Continue Shopping",
+    "emptyCart": {
+      "title": "Your cart is empty",
+      "description": "Looks like you haven't added anything yet. Explore our collections to get started.",
+      "startShopping": "Start Shopping"
+    }
+  },
+  "Cart": {
+    "metadata": {
+      "title": "Your Cart",
+      "description": "Review the items in your cart and proceed to checkout."
+    },
+    "title": "Your Cart",
+    "itemsCount": "{count, plural, =1 {1 item} other {# items}}",
+    "table": {
+      "product": "Product",
+      "quantity": "Quantity",
+      "total": "Total"
+    },
+    "actions": {
+      "continueShopping": "Continue Shopping",
+      "clearCart": "Clear cart",
+      "confirmClear": "Remove all items from your cart?",
+      "remove": "Remove",
+      "each": "each"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal ({count, plural, =1 {1 item} other {# items}})",
+      "promo": "Promo ({code} −{discount}%)",
+      "shipping": "Shipping",
+      "free": "Free",
+      "freeShippingThreshold": "Free on orders over {price}",
+      "estimatedTotal": "Estimated Total",
+      "promoApplied": "{code} applied — {discount}% off",
+      "removePromo": "Remove",
+      "promoPlaceholder": "Promo code",
+      "applyPromo": "Apply",
+      "invalidPromo": "Invalid promo code. Please try again.",
+      "proceedToCheckout": "Proceed to Checkout",
+      "taxesNotice": "Taxes calculated at checkout. By continuing you agree to our <terms>Terms</terms> & <privacy>Privacy Policy</privacy>."
+    },
+    "trustSignals": {
+      "freeShipping": "Free shipping over {price}",
+      "freeReturns": "Free 30-day returns",
+      "secureCheckout": "Secure checkout"
+    },
+    "keepBrowsing": "Keep browsing",
+    "empty": {
+      "title": "Your cart is empty",
+      "description": "Looks like you haven't added anything yet. Explore our collections and find something you'll love.",
+      "browseShop": "Browse Shop",
+      "viewCollections": "View Collections",
+      "footer": "Free shipping on orders over {price} · Free 30-day returns"
+    }
+  },
+  "Contact": {
+    "metadata": {
+      "title": "Contact Us",
+      "description": "Get in touch with the Carparachne team. We typically respond within one business day."
+    },
+    "header": {
+      "eyebrow": "Get in Touch",
+      "title": "Contact Us",
+      "subtitle": "Questions about an order, a product, or just want to say hello? We're here."
+    },
+    "info": {
+      "email": {
+        "label": "Email",
+        "value": "support@carparachne.com"
+      },
+      "responseTime": {
+        "label": "Response Time",
+        "value": "Within 1 business day"
+      },
+      "studio": {
+        "label": "Studio",
+        "value": "Vesterbrogade 12, Copenhagen, Denmark"
+      },
+      "liveChat": {
+        "label": "Live Chat",
+        "value": "Available Mon–Fri, 9am–5pm CET"
+      }
+    },
+    "faq": {
+      "title": "Looking for quick answers?",
+      "description": "Our FAQ covers shipping, returns, sizing, and more.",
+      "cta": "Browse the FAQ"
+    },
+    "form": {
+      "heading": "Send us a message"
+    }
+  },
+  "ContactForm": {
+    "ariaLabel": "Contact form",
+    "labels": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "subject": "Subject",
+      "selectSubject": "Select a subject…",
+      "orderNumber": "Order number (optional)",
+      "message": "Message",
+      "messagePlaceholder": "Tell us how we can help…",
+      "minChars": "min"
+    },
+    "subjects": {
+      "orderInquiry": "Order inquiry",
+      "productQuestion": "Product question",
+      "returnsExchanges": "Returns & exchanges",
+      "shippingDelivery": "Shipping & delivery",
+      "pressCollaborations": "Press & collaborations",
+      "other": "Other"
+    },
+    "errors": {
+      "firstNameRequired": "First name is required.",
+      "lastNameRequired": "Last name is required.",
+      "emailRequired": "Email address is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "subjectRequired": "Please select a subject.",
+      "messageRequired": "Message is required.",
+      "messageMinLength": "Message must be at least 20 characters.",
+      "serverGeneric": "Something went wrong. Please try again.",
+      "networkError": "Network error — please check your connection and try again."
+    },
+    "buttons": {
+      "send": "Send Message",
+      "sending": "Sending…"
+    },
+    "success": {
+      "title": "Message sent!",
+      "thankYou": "Thanks for reaching out, {name}.",
+      "replyTo": "We'll reply to {email} within one business day.",
+      "sendAnother": "Send another message"
+    },
+    "privacy": {
+      "prefix": "By submitting, you agree to our",
+      "link": "Privacy Policy"
+    }
+  },
   "Footer": {
     "description": "Thoughtfully curated products for those who value quality, craft, and a considered life.",
     "joinTheList": "Join the list",

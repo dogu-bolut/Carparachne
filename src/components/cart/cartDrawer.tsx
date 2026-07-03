@@ -6,9 +6,11 @@ import Image from "next/image";
 import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight } from "lucide-react";
 import { useCartStore } from "@/lib/stores/cartStore";
 import { formatPrice } from "@/lib/utils/index";
+import { useTranslations } from "next-intl";
 import type { CartItem } from "@/lib/types";
 
 export function CartDrawer() {
+  const t = useTranslations("CartDrawer");
   const {
     isOpen,
     closeCart,
@@ -119,7 +121,7 @@ export function CartDrawer() {
                 margin: 0,
               }}
             >
-              Your Cart {/*{t("cartDrawer.title")}*/}
+              {t("title")}
             </h2>
             {itemCount > 0 && (
               <span className="badge badge-neutral">{itemCount}</span>
@@ -176,7 +178,7 @@ export function CartDrawer() {
               }}
             >
               <span style={{ fontSize: "0.875rem", color: "#5A5A5A" }}>
-                Subtotal
+                {t("subtotal")}
               </span>
               <span
                 style={{ fontSize: "1rem", fontWeight: 600, color: "#2C2C2C" }}
@@ -191,7 +193,7 @@ export function CartDrawer() {
                 marginBottom: "1.25rem",
               }}
             >
-              Shipping and taxes calculated at checkout.
+              {t("shippingAndTaxes")}
             </p>
             {/* Primary CTA — checkout */}
             <Link
@@ -200,7 +202,7 @@ export function CartDrawer() {
               className="btn-primary"
               style={{ width: "100%", justifyContent: "center", gap: "0.5rem" }}
             >
-              Proceed to Checkout <ArrowRight size={15} />
+              {t("proceedToCheckout")} <ArrowRight size={15} />
             </Link>
             {/* Secondary CTA — view full cart page */}
             <Link
@@ -214,7 +216,7 @@ export function CartDrawer() {
                 fontSize: "0.8125rem",
               }}
             >
-              View Cart
+              {t("viewCart")}
             </Link>
             <button
               onClick={closeCart}
@@ -230,7 +232,7 @@ export function CartDrawer() {
                 padding: "0.25rem",
               }}
             >
-              Continue Shopping
+              {t("continueShopping")}
             </button>
           </div>
         )}
@@ -423,6 +425,7 @@ function CartLineItem({
 
 /* ── Empty state ── */
 function EmptyCart({ onClose }: { onClose: () => void }) {
+  const t = useTranslations("CartDrawer");
   return (
     <div
       style={{
@@ -459,7 +462,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
             marginBottom: "0.5rem",
           }}
         >
-          Your cart is empty
+          {t("emptyCart.title")}
         </h3>
         <p
           style={{
@@ -470,8 +473,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
             margin: "0 auto",
           }}
         >
-          Looks like you haven't added anything yet. Explore our collections to
-          get started.
+          {t("emptyCart.description")}
         </p>
       </div>
       <Link
@@ -480,7 +482,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
         className="btn-primary"
         style={{ marginTop: "0.5rem" }}
       >
-        Start Shopping
+        {t("emptyCart.startShopping")}
       </Link>
     </div>
   );
